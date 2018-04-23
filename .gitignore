@@ -9,14 +9,14 @@
 *.ear
 
 #ant specific
-dist/
-build/
+9CardSiege/dist/
+9CardSiege/build/
 
 #netbeans specific
 core
-nbproject/*
-!nbproject/project.properties
-!nbproject/project.xml
+9CardSiege/nbproject/*
+!9CardSiege/nbproject/project.properties
+!9CardSiege/nbproject/project.xml
 
 #java specific
 *.class
@@ -32,3 +32,4 @@ nbproject/*
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/9CardSiege/nbproject/private/
