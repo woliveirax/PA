@@ -6,8 +6,6 @@
 package gameLogic;
 import java.io.Serializable;
 
-public class Day{};
-
 public class Card implements Serializable {
     private final int id;
     private Day[] days;
