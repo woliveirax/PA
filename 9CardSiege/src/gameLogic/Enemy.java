@@ -19,6 +19,10 @@ public class Enemy implements Serializable{
     }
 
     public void setPos(int pos) {
+        
+        if(pos < 0 || pos > 4)
+            return;
+        
         this.pos = pos;
     }
     
