@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package gameLogic;
+import java.io.Serializable;
 
-public class Event {
+public class Event implements Serializable{
     private GameData gameData;
-    
     
     public boolean triggerEvent(int type)
     {
