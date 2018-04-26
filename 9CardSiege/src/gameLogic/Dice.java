@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class Dice implements Serializable{
     
-    int number;
+    int number = 1;
 
     public int getNumber() {
         return number;
