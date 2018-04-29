@@ -5,6 +5,7 @@
  */
 package gameLogic;
 
+import gameLogic.Events._Event;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -13,10 +14,10 @@ public class Day implements Serializable{
     private final int  number_day;
     int action_point;
     
-    ArrayList<Event> events;
+    ArrayList<_Event> events;
     ArrayList<Enemy> movements;
 
-    public Day(int number_day, int action_point, ArrayList<Event> events, ArrayList<Enemy> movements) {
+    public Day(int number_day, int action_point, ArrayList<_Event> events, ArrayList<Enemy> movements) {
         this.number_day = number_day;
         this.action_point = action_point;
         this.events = events;
@@ -35,7 +36,7 @@ public class Day implements Serializable{
         this.action_point = action_point;
     }
     
-    public Event getCurrentEvent(int index){
+    public _Event getCurrentEvent(int index){
         
         if(index < 0 || index > events.size())
             return null;
@@ -43,11 +44,11 @@ public class Day implements Serializable{
         return events.get(index);
     }
     
-    public ArrayList<Event> getEvents() {
+    public ArrayList<_Event> getEvents() {
         return events;
     }
 
-    public void setEvents(ArrayList<Event> events) {
+    public void setEvents(ArrayList<_Event> events) {
         this.events = events;
     }
     

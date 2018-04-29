@@ -5,32 +5,25 @@ import java.util.List;
 
 public class GameData implements Serializable{
     //IState state;
-    int currentDay = 1;
+    int currentDay;
     
     Card currentCard;
-    ArrayList<Card> deck;
+    List<Card> deck;
     Dice dice;
     
     Castle castle;
-    
-    //Criar ou não classe enemy forces
-    Enemy ladder;
-    Enemy batteringRam;
-    Enemy tower;
+    EnemyForces enemies;
     
     public GameData (){
-       createEnemies();
-       deckCreator();
+        currentDay = 1;
+        dice = new Dice();
+        castle = new Castle();
+        deck = new ArrayList<>();
+        enemies = new EnemyForces(this);
     }
     
     private void deckCreator(){
         createCards();
-    }
-    
-    private void createEnemies(){
-        ladder = new Enemy(this,2);
-        batteringRam = new Enemy(this,3);
-        tower = new Enemy(this,4);
     }
     
     private void createCards(){
@@ -54,5 +47,19 @@ public class GameData implements Serializable{
 //      //  days[0]=new Day(1,3,"Trebuchet Attack");
 //        
 //    }
-
+    
+    public boolean ReduceMorale(int dmg)
+    {
+        return castle.reduceMorale(dmg);
+    }
+    
+    public boolean ReduceSupplies(int dmg)
+    {
+        return castle.reduceSupplies(dmg);
+    }
+    
+    public boolean DamageWall(int dmg)
+    {
+        return castle.reduceWallStrength(dmg);
+    }
 }

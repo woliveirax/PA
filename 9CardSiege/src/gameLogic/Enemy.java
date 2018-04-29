@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 
 public class Enemy implements Serializable{
-    GameData data;
-    int pos;
-    int strenght;
+    private GameData data;
+    private int pos;
+    private int strenght;
 
     public Enemy(GameData data, int strenght) {
         this.pos = 4;

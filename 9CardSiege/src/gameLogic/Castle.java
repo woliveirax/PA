@@ -10,38 +10,27 @@ public class Castle implements Serializable{
     
     private int supplies;
     private int morale;
-    private int wallStrenght;
-    public Tunnel tunnel;
+    private int wallStrength;
     
-    
-    //Criar ficheiro com dados constantes
-    public enum tunnel_pos{
-      CASTLE,
-      TUNNEL_1,
-      TUNNEL_2,
-      ENEMY_LINES;
-    };
-    
-    public enum tunnel_sup {
-        EMPTY,
-        HALF,
-        FULL;
-    };
-    
-    //Tunnel
-    class Tunnel implements Serializable {
-        private tunnel_pos position = tunnel_pos.CASTLE;
-        private tunnel_sup raidSupplies = tunnel_sup.EMPTY;
-        
-    }
+    private TunnelPos position;
+    private int tunnelSupplies;
     
     
     public Castle(){
         supplies = 4;
         morale = 4;
-        wallStrenght = 4;
-        tunnel = new Tunnel();
+        wallStrength = 4;
+        position = TunnelPos.CASTLE;
+        tunnelSupplies = 0;
     }
+    
+    
+    //Tunnel Functions
+    //TODO: tunnel movement functions
+    //      - Reset Movement,
+    //      - Fast Travel,
+    //      - etc.
+    //TODO: Increase / decrease tunnel supplies
     
     //Supplies functions
     
@@ -62,15 +51,27 @@ public class Castle implements Serializable{
         
         return true;
     }
+    
+    public boolean increaseSupplies(int inc) {
+        int incSup = supplies + inc;
+        
+        if(incSup >= 4)
+        {
+            supplies = 4;
+            return false;
+        }
+        else
+            supplies = incSup;
+        
+        return true;
+    }
 
-    
-    
     //Morale functions
     
     public int getMorale() {
         return morale;
     }
-
+    
     public boolean reduceMorale(int morale) {
         int reducedMorale = this.morale - morale;
         
@@ -84,30 +85,53 @@ public class Castle implements Serializable{
         
         return true;
     }
+    
+    public boolean increaseMorale(int inc) {
+        int incMorale = morale + inc;
+        
+        if(incMorale >= 4)
+        {
+            morale = 4;
+            return false;
+        }
+        else
+            morale = incMorale;
+        
+        return true;
+    }
 
     
     //Wall Related functions
     
     public int getWallStrenght() {
-        return wallStrenght;
+        return wallStrength;
     }
 
-    public boolean setWallStrenght(int wallStrenght) {
-        int reducedWall = this.wallStrenght - wallStrenght;
+    public boolean reduceWallStrength(int wallStrength) {
+        int reducedWall = this.wallStrength - wallStrength;
         
         if(reducedWall <= 0)
         {
-            this.wallStrenght = 0;
+            this.wallStrength = 0;
             return false;
         }
         else
-            this.wallStrenght = reducedWall;
+            this.wallStrength = reducedWall;
         
         return true;
     }
-
-//    public Tunnel getTunnel() {
-//        return tunnel;
-//    }
     
+    public boolean increaseWallStrenght(int inc) {
+        int incWall = wallStrength + inc;
+        
+        if(incWall >= 4)
+        {
+            wallStrength = 4;
+            return false;
+        }
+        else
+            wallStrength = incWall;
+        
+        return true;
+    }
 }
