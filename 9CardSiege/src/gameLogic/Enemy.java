@@ -5,33 +5,47 @@ import java.io.Serializable;
 
 public class Enemy implements Serializable{
     private GameData data;
+    private final int defaultStrength;
+    private int strength;
     private int pos;
-    private int strenght;
 
-    public Enemy(GameData data, int strenght) {
+    public Enemy(GameData data, int strength) {
         this.pos = 4;
         this.data = data;
-        this.strenght = strenght;
+        this.strength = defaultStrength = strength;
     }
 
     public int getPos() {
         return pos;
     }
 
-    public void setPos(int pos) {
+    public int retreat() {
+        if(pos > 3)
+            return pos;
         
-        if(pos < 0 || pos > 4)
-            return;
-        
-        this.pos = pos;
+        pos++;
+        return pos;
     }
     
-    public int getStrenght() {
-        return strenght;
+    public int advance(){
+        if(pos < 1)
+            return pos;
+
+        pos--;
+        return pos;
+    }
+    
+    public int getStrength() {
+        return strength;
     }
 
-    public void setStrenght(int strenght) {
-        this.strenght = strenght;
+    public void enterCloseCombat() {
+        strength = 4;
+        
+        //TODO: reduce morale by 1
     }
     
+    public void leaveCloseCombat(){
+        strength = defaultStrength;
+    }
 }

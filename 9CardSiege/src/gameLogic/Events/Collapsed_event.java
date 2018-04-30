@@ -20,5 +20,6 @@ public class Collapsed_event extends _Event {
 
     @Override
     public void triggerEvent() {
+        //get
     }
 }
