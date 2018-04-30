@@ -17,46 +17,96 @@ public class EnemyForces implements Serializable {
     private Enemy ladder;
     private Enemy batteringRam;
     private Enemy tower;
-    private int treebuchets;
+    private int trebuchets;
     
     public EnemyForces(GameData data){
         ladder = new Enemy(data,2);
         batteringRam = new Enemy(data,3);
         tower = new Enemy(data,4);
-        treebuchets = 3;
+        trebuchets = 3;
     }
     
-    //TODO: repair Treebuchets...
+    //Treebuchet Funcs
     
-    //TODO: destroy treebuchets...
+    public int getTrebuchets(){
+        return trebuchets;
+    }
     
-    //TODO: move slowest (enemy or enemy forces on day)...
+    public void repairTrebuchet(){
+        if(trebuchets < 3)
+            trebuchets++;
+    }
+    
+    public void destroyTrebuchet(){
+        if(trebuchets > 0)
+            trebuchets--;
+    }
+    
+    //##### Enemy movement functions
+    
+    private List<Enemy> getSlowestEnemies(){
+        List<Enemy> temp = new ArrayList<>();
+        
+        int max = Math.max(Math.max(tower.getPos(), batteringRam.getPos()),ladder.getPos());
+        
+        if(tower.getPos() == max)
+            temp.add(tower);
+        
+        if(batteringRam.getPos() == max)
+            temp.add(batteringRam);
+        
+        if(ladder.getPos() == max)
+            temp.add(ladder);
+        
+        return temp;
+    }
+    
+    //### Get positions functions
+    public int getTowerPOS(){
+        return tower.getPos();
+    }
+    
+    public int getBatteringRamPOS(){
+        return batteringRam.getPos();
+    }
+    
+    public int getLadderPOS(){
+        return ladder.getPos();
+    }
+    
+    //### Enemy movement functions
+    public boolean ladderAdvance(){
+        return ladder.advance() != ladder.getPos();
+    }
+    
+    public boolean ladderRetreat(){
+        return ladder.retreat() != ladder.getPos();
+    }
+    
+    public boolean batterringRamAdvance(){
+        return batteringRam.advance() != batteringRam.getPos();
+    }
+    
+    public boolean batteringRamRetreat(){
+        return batteringRam.retreat() != batteringRam.getPos();
+    }
+    
+    public boolean towerAdvance(){
+        return tower.advance() != batteringRam.getPos();
+    }
+    
+    public boolean towerRetreat(){
+        return tower.retreat() != tower.getPos();
+    }
+    
+    //Tower Functions
     
     public void removeTowerFromGame(){
         if(tower != null)
             tower = null;
     }
-
-    public int getTreebuchets(){
-        return treebuchets;
-    }
     
-    public void repairTreebuchet(){
-        if(treebuchets < 3)
-            treebuchets++;
+    public boolean isTowerInGame(){
+        return tower != null;
     }
-    
-    public void destroyTreebuchet(){
-        if(treebuchets > 0)
-            treebuchets--;
-    }
-    
-    private ArrayList<Enemy> getSlowestEnemies(){
-        List<Enemy> temp = new ArrayList<>();
-        
-        int max = Math.max(Math.max(tower.getPos(), batteringRam.getPos()),ladder.getPos());
-        
-    }
-    
-    //Tower Functions
 }

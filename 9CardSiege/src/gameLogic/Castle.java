@@ -25,12 +25,64 @@ public class Castle implements Serializable{
     }
     
     
-    //Tunnel Functions
-    //TODO: tunnel movement functions
-    //      - Reset Movement,
-    //      - Fast Travel,
-    //      - etc.
-    //TODO: Increase / decrease tunnel supplies
+    //#### Tunnel Functions
+    
+    //Tunnel Supplies
+    public void increaseTunnelSupplies()
+    {
+        if(tunnelSupplies > 1)
+            return;
+        
+        tunnelSupplies++;
+    }
+    
+    //Events
+    public void tunnelForcesCaptured()
+    {
+        position = TunnelPos.CASTLE;
+        tunnelSupplies = 0;
+        
+        if(morale > 0)
+            morale--;
+    }
+    
+    //Fast travel functions
+    
+    public void fastTravelToCastle()
+    {
+        if(position != TunnelPos.TUNNEL_1 && position != TunnelPos.TUNNEL_2)
+            return;
+        
+        position = TunnelPos.CASTLE;
+        
+        if(tunnelSupplies > 0 && supplies < 4)
+            if((tunnelSupplies + supplies) > 4)
+                supplies = 4;
+            else
+                supplies += tunnelSupplies;
+    }
+    
+    public void fastTravelToEnemyLines()
+    {
+        if(position != TunnelPos.TUNNEL_1 && position != TunnelPos.TUNNEL_2)
+            return;
+        
+        position = TunnelPos.ENEMY_LINES;
+    }
+    
+    //Tunnel movement
+    
+    public void moveSoldiersTorwardsEnemyLines()
+    {
+        if(position.MoveTorwardsEnemyLines() != null)
+            position = position.MoveTorwardsEnemyLines();
+    }
+    
+    public void moveSoldiersTorwardsCastle()
+    {
+        if(position.MoveTorwardsCastle() != null)
+            position = position.MoveTorwardsCastle();
+    }
     
     //Supplies functions
     
@@ -38,99 +90,68 @@ public class Castle implements Serializable{
         return supplies;
     }
 
-    public boolean reduceSupplies(int supplies) {
-        int reducedSup = this.supplies - supplies;
-        
-        if(reducedSup <= 0)
-        {
-            this.supplies = 0;
+    public boolean reduceSupplies() {
+        if(supplies < 1)
             return false;
-        }
-        else
-            this.supplies = reducedSup;
+        
+        supplies--;
         
         return true;
     }
     
-    public boolean increaseSupplies(int inc) {
-        int incSup = supplies + inc;
-        
-        if(incSup >= 4)
-        {
-            supplies = 4;
+    public boolean increaseSupplies() {
+        if(supplies >= 4)
             return false;
-        }
-        else
-            supplies = incSup;
+        
+        supplies++;
         
         return true;
     }
-
+    
     //Morale functions
     
     public int getMorale() {
         return morale;
     }
     
-    public boolean reduceMorale(int morale) {
-        int reducedMorale = this.morale - morale;
-        
-        if(reducedMorale <= 0)
-        {
-            this.morale = 0;
+    public boolean reduceMorale() {
+        if(morale < 1)
             return false;
-        }
-        else
-            this.morale = reducedMorale;
+        
+        morale--;
         
         return true;
     }
     
-    public boolean increaseMorale(int inc) {
-        int incMorale = morale + inc;
-        
-        if(incMorale >= 4)
-        {
-            morale = 4;
+    public boolean increaseMorale() {
+        if(morale >= 4)
             return false;
-        }
-        else
-            morale = incMorale;
+        
+        morale++;
         
         return true;
     }
-
     
     //Wall Related functions
     
-    public int getWallStrenght() {
+    public int getWallStrength() {
         return wallStrength;
     }
 
-    public boolean reduceWallStrength(int wallStrength) {
-        int reducedWall = this.wallStrength - wallStrength;
-        
-        if(reducedWall <= 0)
-        {
-            this.wallStrength = 0;
+    public boolean reduceWallStrength() {
+        if(wallStrength < 1)
             return false;
-        }
-        else
-            this.wallStrength = reducedWall;
+        
+        wallStrength--;
         
         return true;
     }
     
-    public boolean increaseWallStrenght(int inc) {
-        int incWall = wallStrength + inc;
-        
-        if(incWall >= 4)
-        {
-            wallStrength = 4;
-            return false;
-        }
-        else
-            wallStrength = incWall;
+    public boolean increaseWallStrength() {
+        if(wallStrength >= 4)
+            return true;
+
+        wallStrength++;
         
         return true;
     }
