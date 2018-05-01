@@ -17,4 +17,10 @@ public class AwaitRestrictedAction_state extends StateAdapter{
         super(gameData);
     }
     
+    
+    @Override
+    public String toString() {
+        return "Actions allowed:\n)1)Sabotage\t(2)Raid\n";
+    }
+
 }

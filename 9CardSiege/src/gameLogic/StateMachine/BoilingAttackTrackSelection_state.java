@@ -17,4 +17,8 @@ public class BoilingAttackTrackSelection_state extends StateAdapter{
         super(gameData);
     }
     
+    @Override
+    public String toString() {
+        return "Boiling Water:\n\tEnemy selection: (1)Ladders\t(2)Battering Ram\t(3)Siege Tower\n";
+    }
 }

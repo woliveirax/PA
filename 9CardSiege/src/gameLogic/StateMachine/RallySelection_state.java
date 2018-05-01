@@ -17,4 +17,13 @@ public class RallySelection_state extends StateAdapter{
         super(gameData);
     }
     
+    @Override
+    public String toString() {
+        return "(1)Normal roll dice\t(2)Adittional DRM by reducing 1 pt of supplies\n";
+    }
+
+    @Override
+    public IStates endOfAction(GameData gameData) {
+        return getOldState(); //To change body of generated methods, choose Tools | Templates.
+    }
 }
