@@ -67,5 +67,6 @@ public abstract class _Event implements Serializable{
     public int getDRMAttackCloseCombat(){
         return 0;
     }
+    
 }
 
