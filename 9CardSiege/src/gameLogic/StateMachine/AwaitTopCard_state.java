@@ -17,4 +17,8 @@ public class AwaitTopCard_state extends StateAdapter{
         super(gameData);
     }
     
+    @Override
+    public String toString() {
+        return "Obtain a card from deck.\n";
+    }
 }

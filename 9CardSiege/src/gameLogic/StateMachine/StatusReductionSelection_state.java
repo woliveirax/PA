@@ -17,4 +17,8 @@ public class StatusReductionSelection_state extends StateAdapter{
         super(gameData);
     }
     
+    @Override
+    public String toString() {
+        return "Adittional action point by:(1)Reducing 1 pt of supplies\t(2)Reducing 1 pt of moral\n";
+    }
 }

@@ -11,6 +11,7 @@ public class StateAdapter implements IStates, Serializable{
     public StateAdapter(GameData gameData) {
         this.gameData = gameData;
     }
+    
     @Override
     public IStates start(GameData gameData){
         return this;

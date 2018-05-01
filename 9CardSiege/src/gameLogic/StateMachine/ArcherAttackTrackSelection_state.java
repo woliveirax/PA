@@ -8,11 +8,19 @@ package gameLogic.StateMachine;
 import gameLogic.GameData;
 
 public class ArcherAttackTrackSelection_state extends StateAdapter{
-    private GameData gameData;
 
     public ArcherAttackTrackSelection_state(GameData gameData) {
         super(gameData);
-        this.gameData = gameData;
+    }
+
+    @Override
+    public IStates endOfAction(GameData gameData) {
+        return getOldState(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String toString() {
+        return "Archer Attack:\n\tEnemy selection: (1)Ladders\t(2)Battering Ram\t(3)Siege Tower\n";
     }
 
   

@@ -17,4 +17,13 @@ public class AwaitRestart_state extends StateAdapter{
         super(gameData);
     }
     
+    @Override
+    public String toString() {
+        return "(1)Restart game\t(2)Sair\n";
+    }
+
+    @Override
+    public IStates endOfAction(GameData gameData) {
+        return new AwaitTopCard_state(gameData); //To change body of generated methods, choose Tools | Templates.
+    }
 }
