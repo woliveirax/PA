@@ -36,6 +36,12 @@ public class Castle implements Serializable{
         tunnelSupplies++;
     }
     
+    public int getTunnelSupplies()
+    {
+        return tunnelSupplies;
+    }
+    
+    
     //Events
     public void tunnelForcesCaptured()
     {
@@ -46,8 +52,8 @@ public class Castle implements Serializable{
             morale--;
     }
     
-    //Fast travel functions
     
+    //Fast travel functions
     public void fastTravelToCastle()
     {
         if(position != TunnelPos.TUNNEL_1 && position != TunnelPos.TUNNEL_2)
@@ -70,7 +76,12 @@ public class Castle implements Serializable{
         position = TunnelPos.ENEMY_LINES;
     }
     
+    
     //Tunnel movement
+    public TunnelPos getTunnelPosition()
+    {
+        return position;
+    }
     
     public void moveSoldiersTorwardsEnemyLines()
     {
@@ -84,8 +95,8 @@ public class Castle implements Serializable{
             position = position.MoveTorwardsCastle();
     }
     
-    //Supplies functions
     
+    //Supplies functions
     public int getSupplies() {
         return supplies;
     }
@@ -108,8 +119,8 @@ public class Castle implements Serializable{
         return true;
     }
     
-    //Morale functions
     
+    //Morale functions
     public int getMorale() {
         return morale;
     }
@@ -132,8 +143,8 @@ public class Castle implements Serializable{
         return true;
     }
     
-    //Wall Related functions
     
+    //Wall Related functions
     public int getWallStrength() {
         return wallStrength;
     }

@@ -65,7 +65,7 @@ public class Day implements Serializable{
 
     public void setMovements(ArrayList<Enemy> movements) {
         this.movements = movements;
-    }  
+    }
     
 }
 

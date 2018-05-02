@@ -10,6 +10,6 @@ public class SuppliesSpoiled_event extends _Event{
 
     @Override
     public void triggerEvent() {
-        getGameData().ReduceSupplies(1); //To change body of generated methods, choose Tools | Templates.
+        getGameData().ReduceSupplies();
     }    
 }
