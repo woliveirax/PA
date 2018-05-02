@@ -18,6 +18,11 @@ public class StatusReductionSelection_state extends StateAdapter{
     }
     
     @Override
+    public IStates endOfAction() {
+        return getOldState(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
     public String toString() {
         return "Adittional action point by:(1)Reducing 1 pt of supplies\t(2)Reducing 1 pt of moral\n";
     }

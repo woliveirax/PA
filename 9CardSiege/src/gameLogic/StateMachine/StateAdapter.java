@@ -12,100 +12,106 @@ public class StateAdapter implements IStates, Serializable{
         this.gameData = gameData;
     }
     
+//    @Override
+//    public IStates start(GameData gameData){
+//        return this;
+//    };
     @Override
-    public IStates start(GameData gameData){
+    public IStates restart(){
+        return this;
+    };
+    /*
+    @Override
+    public IStates exit(){
+        return this;
+    };*/
+    @Override
+    public IStates endOfTurn(){
         return this;
     };
     @Override
-    public IStates restart(GameData gameData){
+    public IStates drawCard(){
         return this;
     };
     @Override
-    public IStates exit(GameData gameData){
+    public IStates endOfGame(){
         return this;
     };
     @Override
-    public IStates endOfTurn(GameData gameData){
+    public IStates endOfAction(){
         return this;
     };
     @Override
-    public IStates drawCard(GameData gameData){
+    public IStates archerAttack(){
         return this;
     };
     @Override
-    public IStates endOfGame(GameData gameData){
+    public IStates extraAction(){
         return this;
     };
     @Override
-    public IStates endOfAction(GameData gameData){
+    public IStates rally(){
         return this;
     };
     @Override
-    public IStates archerAttack(GameData gameData){
+    public IStates extraMoral(){
         return this;
     };
     @Override
-    public IStates extraAction(GameData gameData){
+    public IStates boilingWater(){
         return this;
     };
     @Override
-    public IStates Rally(GameData gameData){
+    public IStates closeCombat1(){
         return this;
     };
     @Override
-    public IStates ExtraMoral(GameData gameData){
+    public IStates closeCombat2(){
         return this;
     };
     @Override
-    public IStates BoilingWater(GameData gameData){
+    public IStates coupure(){
         return this;
     };
     @Override
-    public IStates CloseCombat1(GameData gameData){
+    public IStates sabotage(){
         return this;
     };
     @Override
-    public IStates CloseCombat2(GameData gameData){
+    public IStates raid(){
         return this;
     };
     @Override
-    public IStates Coupure(GameData gameData){
-        return this;
-    };
-    @Override
-    public IStates Sabotage(GameData gameData){
-        return this;
-    };
-    @Override
-    public IStates Raid(GameData gameData){
-        return this;
-    };
-    @Override
-    public IStates EnterTunnel(GameData gameData){
-        return this;
-    };
-    
-    @Override
-    public IStates MoveForward(GameData gameData){
+    public IStates enterTunnel(){
         return this;
     };
     
     @Override
-    public IStates MoveBackward(GameData gameData){
+    public IStates moveForward(){
         return this;
     };
     
     @Override
-    public IStates FastTravelEnLine(GameData gameData){
+    public IStates moveBackward(){
+        return this;
+    };
+    
+    @Override
+    public IStates fastTravel(){
         return this;
     };
 
     public IStates getOldState() {
         return oldState;
     }
-    
-//Ver s é necessario
+
     public void setOldState(IStates oldState) {
         this.oldState = oldState;
     }
+
+    public GameData getGameData() {
+        return gameData;
+    }
+    
+    
 }

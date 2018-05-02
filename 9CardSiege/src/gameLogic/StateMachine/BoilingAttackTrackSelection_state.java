@@ -18,6 +18,11 @@ public class BoilingAttackTrackSelection_state extends StateAdapter{
     }
     
     @Override
+    public IStates endOfAction() {
+        return getOldState(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
     public String toString() {
         return "Boiling Water:\n\tEnemy selection: (1)Ladders\t(2)Battering Ram\t(3)Siege Tower\n";
     }
