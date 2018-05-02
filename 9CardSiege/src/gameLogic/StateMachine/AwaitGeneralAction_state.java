@@ -24,7 +24,67 @@ public class AwaitGeneralAction_state extends StateAdapter{
     }
 
     @Override
-    public IStates endOfAction(GameData gameData) {
-        return getOldState(); //To change body of generated methods, choose Tools | Templates.
+    public IStates enterTunnel() {
+        setOldState(this);
+        
+        getGameData().moveSoldiersTorwardsEnemyLines();
+        return new AwaitPt1TunnelAction_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public IStates closeCombat2() {
+        setOldState(this);
+        return new CloseCombatTrackSelection_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates closeCombat1() {
+        return this; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates coupure() {
+        return this; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates boilingWater() {
+        int ladder=getGameData().getLadderPosition(), bat=getGameData().getBatteringRamPosition(), tower=getGameData().getTowerPosition();        
+        if(ladder==1 || bat==1 || tower==1){
+            setOldState(this);
+            return new BoilingAttackTrackSelection_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
+        }   
+        return this;
+    }
+
+    @Override
+    public IStates rally() {
+        setOldState(this);
+        return new ArcherAttackTrackSelection_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates extraAction() {
+        setOldState(this);
+        return new StatusReductionSelection_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates archerAttack() {
+        setOldState(this);
+        return new ArcherAttackTrackSelection_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates endOfGame() {
+        setOldState(this);
+        return new AwaitRestart_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates endOfTurn() {
+        setOldState(this);
+        return new AwaitTopCard_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

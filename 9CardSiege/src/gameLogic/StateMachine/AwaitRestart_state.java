@@ -16,14 +16,16 @@ public class AwaitRestart_state extends StateAdapter{
     public AwaitRestart_state(GameData gameData) {
         super(gameData);
     }
+
+    @Override
+    public IStates restart() {
+        getGameData().InitializeData();
+        return new AwaitTopCard_state(getGameData());
+    }
+    
     
     @Override
     public String toString() {
         return "(1)Restart game\t(2)Sair\n";
-    }
-
-    @Override
-    public IStates endOfAction(GameData gameData) {
-        return new AwaitTopCard_state(gameData); //To change body of generated methods, choose Tools | Templates.
     }
 }

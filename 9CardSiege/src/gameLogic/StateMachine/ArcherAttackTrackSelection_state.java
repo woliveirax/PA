@@ -14,7 +14,7 @@ public class ArcherAttackTrackSelection_state extends StateAdapter{
     }
 
     @Override
-    public IStates endOfAction(GameData gameData) {
+    public IStates endOfAction() {
         return getOldState(); //To change body of generated methods, choose Tools | Templates.
     }
 

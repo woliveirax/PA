@@ -60,8 +60,19 @@ public class GameData implements Serializable{
     public void removeActionPoints();
     
     public void addActionPoints();
+
+    //JOANA MUDOU:
+    public int getCurrentDay() {
+        return currentDay;
+    }
+
+    public Card getCurrentCard() {
+        return currentCard;
+    }
     
-    
+    public void InitializeData(){
+        //recomeçar
+    }
     
     public void endOfDay()
     {
