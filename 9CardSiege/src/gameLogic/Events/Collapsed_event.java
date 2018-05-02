@@ -20,6 +20,7 @@ public class Collapsed_event extends _Event {
 
     @Override
     public void triggerEvent() {
-        //get
+        if(getGameData().getTowerPosition() == 4)
+            getGameData().removeTowerFromGame();
     }
 }

@@ -9,16 +9,16 @@ import gameLogic.GameData;
 
 /**
  *
- * @author Olympus
+ * @author Skully
  */
-public class BoilingOil_event extends _Event{
+public class BadWeather_event extends _Event {
 
-    public BoilingOil_event(GameData gameData) {
-        super("Boiling Oil","+2 to attacks on enemy units in circle spaces",gameData);
+    public BadWeather_event(GameData gameData) {
+        super("Bad Weather", "Only raid and sabotage actions allowed this turn", gameData);
     }
-
+    
     @Override
-    public int getDRMCircleSpaces() {
-        return 2;
+    public boolean actionRestriction() {
+        return true;
     }
 }

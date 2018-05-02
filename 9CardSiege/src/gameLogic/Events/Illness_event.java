@@ -15,7 +15,7 @@ public class Illness_event extends _Event{
 
     @Override
     public void triggerEvent() {
-        getGameData().ReduceMorale(1);
-        getGameData().ReduceSupplies(1);
+        getGameData().ReduceMorale();
+        getGameData().ReduceSupplies();
     }
 }

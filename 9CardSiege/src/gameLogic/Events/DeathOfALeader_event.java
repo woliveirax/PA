@@ -20,6 +20,6 @@ public class DeathOfALeader_event extends _Event {
 
     @Override
     public void triggerEvent() {
-        getGameData().ReduceMorale(1);
+        getGameData().ReduceMorale();
     }
 }

@@ -14,17 +14,17 @@ public class Faith extends _Event{
 
     @Override
     public int getDRMAttackBatteringRam() {
-        return 1; //To change body of generated methods, choose Tools | Templates.
+        return 1;
     }
 
     @Override
     public int getDRMAttackLadders() {
-        return 1; //To change body of generated methods, choose Tools | Templates.
+        return 1;
     }
 
     @Override
     public int getDRMMorale() {
-        return 1; //To change body of generated methods, choose Tools | Templates.
+        return 1;
     }
     
 }

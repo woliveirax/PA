@@ -32,6 +32,10 @@ public abstract class _Event implements Serializable{
       
     public void triggerEvent(){}
     
+    public boolean actionRestriction(){
+        return false;
+    }
+    
     public int getDRMSabotage(){
         return 0;
     }

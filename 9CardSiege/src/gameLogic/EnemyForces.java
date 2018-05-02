@@ -26,8 +26,8 @@ public class EnemyForces implements Serializable {
         trebuchets = 3;
     }
     
-    //Treebuchet Funcs
     
+    //Treebuchet Funcs
     public int getTrebuchets(){
         return trebuchets;
     }
@@ -42,8 +42,8 @@ public class EnemyForces implements Serializable {
             trebuchets--;
     }
     
-    //##### Enemy movement functions
     
+    //##### Enemy movement functions
     private List<Enemy> getSlowestEnemies(){
         List<Enemy> temp = new ArrayList<>();
         
@@ -61,6 +61,7 @@ public class EnemyForces implements Serializable {
         return temp;
     }
     
+    
     //### Get positions functions
     public int getTowerPOS(){
         return tower.getPos();
@@ -74,7 +75,13 @@ public class EnemyForces implements Serializable {
         return ladder.getPos();
     }
     
+    
     //### Enemy movement functions
+    public void moveSlowestEnemies(){
+        for(Enemy each : getSlowestEnemies())
+            each.advance();
+    }
+    
     public boolean ladderAdvance(){
         return ladder.advance() != ladder.getPos();
     }
@@ -99,8 +106,8 @@ public class EnemyForces implements Serializable {
         return tower.retreat() != tower.getPos();
     }
     
-    //Tower Functions
     
+    //Tower Functions
     public void removeTowerFromGame(){
         if(tower != null)
             tower = null;

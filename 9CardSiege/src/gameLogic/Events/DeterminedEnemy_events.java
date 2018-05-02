@@ -19,7 +19,7 @@ public class DeterminedEnemy_events extends _Event{
 
     @Override
     public int getDRMAttackBatteringRam() {
-        return -1; //To change body of generated methods, choose Tools | Templates.
+        return -1;
     }
     
     
