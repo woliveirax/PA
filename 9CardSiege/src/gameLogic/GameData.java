@@ -25,6 +25,23 @@ public class GameData implements Serializable{
         enemies = new EnemyForces(this);
     }
     
+    //Logic Functions
+
+    public int getCurrentDay() {
+        return currentDay;
+    }
+
+    public Card getCurrentCard() {
+        return currentCard;
+    }
+    
+    public void initializeData(){
+        //TODO: restart
+    }
+    
+    //TODO:::, get one card from top, suffle, put current card on discardedCards after use
+    
+    
     public void enemyLineCheck()
     {
         //Roll dice if soldiers on enemy line, if roll == 1 unit is captured and reduce morale by 1.
@@ -262,6 +279,6 @@ public class GameData implements Serializable{
     
     public void moveSoldiersTorwardsEnemyLines()
     {
-        castle.moveSoldiersTorwardsCastle();
+        castle.moveSoldiersTorwardsEnemyLines();
     }
 }
