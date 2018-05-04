@@ -26,6 +26,20 @@ public class EnemyForces implements Serializable {
         trebuchets = 3;
     }
     
+    //Get Enemy funcs
+    public ArrayList<Enemy> getEnemies(boolean tower, boolean ram, boolean ladder)
+    {
+        ArrayList<Enemy> enemies = new ArrayList<>();
+        
+        if(tower)
+            enemies.add(this.tower);
+        if(ram)
+            enemies.add(this.batteringRam);
+        if(ladder)
+            enemies.add(this.ladder);
+        
+        return enemies;        
+    }
     
     //Treebuchet Funcs
     public int getTrebuchets(){
@@ -44,24 +58,7 @@ public class EnemyForces implements Serializable {
     
     
     //##### Enemy movement functions
-    private List<Enemy> getSlowestEnemies(){
-        List<Enemy> temp = new ArrayList<>();
-        
-        int max = Math.max(Math.max(tower.getPos(), batteringRam.getPos()),ladder.getPos());
-        
-        if(tower.getPos() == max)
-            temp.add(tower);
-        
-        if(batteringRam.getPos() == max)
-            temp.add(batteringRam);
-        
-        if(ladder.getPos() == max)
-            temp.add(ladder);
-        
-        return temp;
-    }
-    
-    
+     
     //### Get positions functions
     public int getTowerPOS(){
         return tower.getPos();
@@ -77,10 +74,6 @@ public class EnemyForces implements Serializable {
     
     
     //### Enemy movement functions
-    public void moveSlowestEnemies(){
-        for(Enemy each : getSlowestEnemies())
-            each.advance();
-    }
     
     public boolean ladderAdvance(){
         return ladder.advance() != ladder.getPos();

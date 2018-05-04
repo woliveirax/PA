@@ -8,26 +8,51 @@ package gameLogic;
 import gameLogic.Events._Event;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 public class Day implements Serializable{
-    private final int  number_day;
-    int action_point;
+    private final int dayNumber;
+    private int action_point;
     
-    ArrayList<_Event> events;
-    ArrayList<Enemy> movements;
+    private final boolean moveSlowest; 
+    private final _Event event;
+    private final ArrayList<Enemy> movements;
 
-    public Day(int number_day, int action_point, ArrayList<_Event> events, ArrayList<Enemy> movements) {
-        this.number_day = number_day;
+    public Day(int number_day, int action_point, _Event event, ArrayList<Enemy> movements, boolean slowest) {
+        this.dayNumber = number_day;
         this.action_point = action_point;
-        this.events = events;
+        this.event = event;
         this.movements = movements;
+        moveSlowest = slowest;
+    }
+    
+    public Day(int number_day, int action_point, _Event events) {
+        this.dayNumber = number_day;
+        this.action_point = action_point;
+        this.event = events;
+        movements = new ArrayList<>();
+        moveSlowest = false;
+    }
+    
+    public int getDayNumber() {
+        return dayNumber;
+    }
+    
+    public void moveEnemies()
+    {
+        if(moveSlowest)
+            moveSlowestEnemies();
+        else
+            for(Enemy each : movements)
+                each.advance();
     }
 
-    public int getNumber_day() {
-        return number_day;
+    public _Event getEvent() {
+        return event;
     }
-
+    
     public int getAction_point() {
         return action_point;
     }
@@ -36,36 +61,28 @@ public class Day implements Serializable{
         this.action_point = action_point;
     }
     
-    public _Event getCurrentEvent(int index){
-        
-        if(index < 0 || index > events.size())
-            return null;
-        
-        return events.get(index);
+    private void moveSlowestEnemies(){
+        for(Enemy each : getSlowestEnemies())
+            each.advance();
     }
     
-    public ArrayList<_Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(ArrayList<_Event> events) {
-        this.events = events;
-    }
-    
-    public Enemy getCurrentEnemyMove(int index){
+    private List<Enemy> getSlowestEnemies(){
+        List<Enemy> temp = new ArrayList<>();
+        int max = -1;
         
-        if(index < 0 || index > movements.size())
-            return null;
-        return movements.get(index);
+        for(Enemy each : movements)
+        {
+            if(each.getPos() > max)
+                max = each.getPos();
+        }
+        
+        for(Enemy each : movements)
+        {
+            if(each.getPos() == max)
+                temp.add(each);
+        }
+        
+        return temp;
     }
-
-    public ArrayList<Enemy> getMovements() {
-        return movements;
-    }
-
-    public void setMovements(ArrayList<Enemy> movements) {
-        this.movements = movements;
-    }
-    
 }
 

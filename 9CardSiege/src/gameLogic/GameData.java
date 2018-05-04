@@ -1,6 +1,26 @@
 package gameLogic;
+import gameLogic.Events.BadWeather_event;
+import gameLogic.Events.BoilingOil_event;
+import gameLogic.Events.Collapsed_event;
+import gameLogic.Events.CoverOfDarkness_event;
+import gameLogic.Events.DeathOfALeader_event;
+import gameLogic.Events.DeterminedEnemy_events;
+import gameLogic.Events.EnemyFatigue_event;
+import gameLogic.Events.Faith;
+import gameLogic.Events.FlamingArrows_event;
+import gameLogic.Events.GateFortified_event;
+import gameLogic.Events.GuardsDistracted_event;
+import gameLogic.Events.Illness_event;
+import gameLogic.Events.IronShields_events;
+import gameLogic.Events.Rally_event;
+import gameLogic.Events.RepairedTrebuchet_event;
+import gameLogic.Events.SuppliesSpoiled_event;
+import gameLogic.Events.TrebuchetAttack_event;
+import gameLogic.Events.VolleyOfArrows_event;
+import gameLogic.Events._Event;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GameData implements Serializable{
@@ -26,7 +46,10 @@ public class GameData implements Serializable{
     }
     
     //Logic Functions
-
+    public int getActionPoints(){
+        return actionPoints;
+    }
+    
     public int getCurrentDay() {
         return currentDay;
     }
@@ -40,11 +63,10 @@ public class GameData implements Serializable{
     }
     
     //TODO:::, get one card from top, suffle, put current card on discardedCards after use
-    
-    
     public void enemyLineCheck()
     {
-        //Roll dice if soldiers on enemy line, if roll == 1 unit is captured and reduce morale by 1.
+        if(dice.roll_dice() == 1)
+            castle.tunnelForcesCaptured();
     }
     
     public void applyEvent(){
@@ -52,7 +74,41 @@ public class GameData implements Serializable{
     }
     
     //TODO: if actionRestriction is true change state
+
+    public void dicardCurrentCard()
+    {
+        discardedCards.add(currentCard);
+    }
+    
     public void drawCardFromDeck()
+    {
+        currentCard = deck.remove(0);
+    }
+    
+    public void endOfDay()
+    {
+        //Reduce supplies by 1
+        //check if soldiers on tunnel to castle and add tunnel supplies to castle
+        //Check if soldiers are on the enemy lines and capture them reducing morale by 1
+        //if not on 3 day shuffle cards else end game, WIN
+        //add + 1 on day
+    }
+    //TODO: only called if day < 3
+    public void endOfDay_()
+    {
+        castle.reduceSupplies();
+        
+        castle.tunnelForcesEndOfDayAction();
+        
+        for(Card card : discardedCards)
+            deck.add(card);
+
+        Collections.shuffle(deck);
+        
+        currentDay++;
+    }
+    
+    public void drawCardFromDeck__()
     {
         //Remove top card from deck
         //apply event
@@ -77,39 +133,9 @@ public class GameData implements Serializable{
     public void removeActionPoints();
     
     public void addActionPoints();
-
-    //JOANA MUDOU:
-    public int getCurrentDay() {
-        return currentDay;
-    }
-
-    public Card getCurrentCard() {
-        return currentCard;
-    }
     
     public void InitializeData(){
         //recomeçar
-    }
-    
-    public void endOfDay()
-    {
-        //Reduce supplies by 1
-        //check if soldiers on tunnel to castle and add tunnel supplies to castle
-        //Check if soldiers are on the enemy lines and capture them reducing morale by 1
-        //if not on 3 day shuffle cards else end game, WIN
-        //add + 1 on day
-    }
-    
-    private void createCards(){
-    }
-    
-    private void cardOne(){
-
-        Day[] days = new Day[3];
-        
-        
-      //  days[0]=new Day(1,3,"Trebuchet Attack");
-        
     }
     
     //Dice functions
@@ -137,11 +163,6 @@ public class GameData implements Serializable{
     
     
     //Movement functions
-    public void moveSlowestEnemyUnit()
-    {
-        enemies.moveSlowestEnemies();
-    }
-    
     public boolean enemyLadderAdvance()
     {
         return enemies.ladderAdvance();
@@ -250,9 +271,9 @@ public class GameData implements Serializable{
     
     
     //Tunnel Event
-    public void captureTunnelForces()
+    public void tunnelEndOfDay()
     {
-        castle.tunnelForcesCaptured();
+        castle.tunnelForcesEndOfDayAction();
     }
     
     
@@ -280,5 +301,93 @@ public class GameData implements Serializable{
     public void moveSoldiersTorwardsEnemyLines()
     {
         castle.moveSoldiersTorwardsEnemyLines();
+    }
+    
+    //#######################################################
+    //Card Creation section
+    //#######################################################
+    //TODO: Card creator
+    
+    private void createCards(){
+    }
+    
+    private void card_1(){
+        Day[] days = new Day[3];
+        
+        _Event event = new TrebuchetAttack_event(this);
+        
+        days[0] = new Day(1,3,event);
+        days[1] = new Day(2,2,event);
+        days[2] = new Day(3,1,event);
+        
+        Card card = new Card(1, days);
+        deck.add(card);
+    }
+    
+    private void card_2(){
+        Day[] days = new Day[3];
+        
+        days[0] = new Day(1,2,new Illness_event(this),enemies.getEnemies(true, false, false),false);
+        days[1] = new Day(2,2,new GuardsDistracted_event(this),enemies.getEnemies(true, true, true),true);
+        days[2] = new Day(3,1,new TrebuchetAttack_event(this));
+        
+        Card card = new Card(2, days);
+        deck.add(card);
+    }
+    
+    
+    private void card_3(){
+        Day[] days = new Day[3];
+        
+        days[0] = new Day(1,2,new SuppliesSpoiled_event(this),enemies.getEnemies(false, false, true),false);
+        days[1] = new Day(2,2,new BadWeather_event(this));
+        days[2] = new Day(3,2,new BoilingOil_event(this),enemies.getEnemies(false ,true, true),false);
+        
+        Card card = new Card(3, days);
+        deck.add(card);
+    }
+    
+    private void card_4(){
+        Day[] days = new Day[3];
+        
+        days[0] = new Day(1,2,new DeathOfALeader_event(this), enemies.getEnemies(true, false, true),false);
+        days[1] = new Day(2,2,new GateFortified_event(this),enemies.getEnemies(false, true, true),false);
+        days[2] = new Day(3,3,new FlamingArrows_event(this),enemies.getEnemies(true, false, false),false);
+        
+        Card card = new Card(4, days);
+        deck.add(card);
+    }
+    
+    private void card_5(){
+        Day[] days = new Day[3];
+        
+        days[0] = new Day(1,3,new VolleyOfArrows_event(this),enemies.getEnemies(false, true, false),false);
+        days[1] = new Day(2,2,new Collapsed_event(this),enemies.getEnemies(false, true, true),false);
+        days[2] = new Day(3,2,new RepairedTrebuchet_event(this),enemies.getEnemies(false, false, true),false);
+        
+        Card card = new Card(5, days);
+        deck.add(card);
+    }
+    
+    private void card_6(){
+        Day[] days = new Day[3];
+        
+        days[0] = new Day(1,3,new CoverOfDarkness_event(this),enemies.getEnemies(true, true, true),true);
+        days[1] = new Day(2,3,new EnemyFatigue_event(this),enemies.getEnemies(false, false, true),false);
+        days[2] = new Day(3,3,new Rally_event(this),enemies.getEnemies(true, true, false),false);
+        
+        Card card = new Card(6, days);
+        deck.add(card);
+    }
+    
+    private void card_7(){
+        Day[] days = new Day[3];
+        
+        days[0] = new Day(1,2,new DeterminedEnemy_events(this),enemies.getEnemies(false, true, false),false);
+        days[1] = new Day(2,2,new IronShields_events(this),enemies.getEnemies(true, false, false),false);
+        days[2] = new Day(3,3,new Faith(this),enemies.getEnemies(true, true, true),false);
+        
+        Card card = new Card(7, days);
+        deck.add(card);
     }
 }

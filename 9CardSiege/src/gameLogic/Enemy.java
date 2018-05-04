@@ -23,6 +23,9 @@ public class Enemy implements Serializable{
         if(pos > 3)
             return pos;
         
+        if(pos == 0)
+            leaveCloseCombat();
+        
         pos++;
         return pos;
     }
@@ -32,6 +35,10 @@ public class Enemy implements Serializable{
             return pos;
 
         pos--;
+        
+        if(pos == 0)
+            enterCloseCombat();
+            
         return pos;
     }
     
@@ -39,13 +46,12 @@ public class Enemy implements Serializable{
         return strength;
     }
 
-    public void enterCloseCombat() {
+    private void enterCloseCombat() {
         strength = 4;
-        
-        //TODO: reduce morale by 1
+        data.ReduceMorale();
     }
     
-    public void leaveCloseCombat(){
+    private void leaveCloseCombat(){
         strength = defaultStrength;
     }
 }

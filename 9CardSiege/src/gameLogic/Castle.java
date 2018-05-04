@@ -12,9 +12,9 @@ public class Castle implements Serializable{
     private int morale;
     private int wallStrength;
     
+    private boolean freeMoveUsed;
     private TunnelPos position;
     private int tunnelSupplies;
-    
     
     public Castle(){
         supplies = 4;
@@ -22,10 +22,18 @@ public class Castle implements Serializable{
         wallStrength = 4;
         position = TunnelPos.CASTLE;
         tunnelSupplies = 0;
+        freeMoveUsed = false;
     }
     
     
     //#### Tunnel Functions
+    public boolean isFreeMoveUsed() {
+        return freeMoveUsed;
+    }
+
+    public void setFreeMoveUsed(boolean freeMoveUsed) {
+        this.freeMoveUsed = freeMoveUsed;
+    }
     
     //Tunnel Supplies
     public void increaseTunnelSupplies()
@@ -52,6 +60,26 @@ public class Castle implements Serializable{
             morale--;
     }
     
+    private void tunnelForcesSafe()
+    {
+        position = TunnelPos.CASTLE;
+        
+        if(tunnelSupplies != 0 && supplies < 4)
+            if((supplies + tunnelSupplies) > 4)
+                supplies = 4;
+            else
+                supplies += tunnelSupplies;
+        
+        tunnelSupplies = 0;
+    }
+    
+    public void tunnelForcesEndOfDayAction()
+    {
+        if(position == TunnelPos.TUNNEL_1 || position == TunnelPos.TUNNEL_2)
+            tunnelForcesSafe();
+        else if(position == TunnelPos.ENEMY_LINES)
+            tunnelForcesCaptured();
+    }
     
     //Fast travel functions
     public void fastTravelToCastle()
@@ -93,6 +121,15 @@ public class Castle implements Serializable{
     {
         if(position.MoveTorwardsCastle() != null)
             position = position.MoveTorwardsCastle();
+        
+        if(position == TunnelPos.CASTLE)
+        {
+            if(tunnelSupplies > 0 && supplies < 4)
+                if((tunnelSupplies + supplies) > 4)
+                    supplies = 4;
+                else
+                    supplies += tunnelSupplies;
+        }
     }
     
     
