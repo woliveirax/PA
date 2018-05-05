@@ -1,6 +1,3 @@
-/*
-TODO: complete
- */
 package gameLogic.Events;
 
 import gameLogic.GameData;
