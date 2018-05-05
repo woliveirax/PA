@@ -11,11 +11,12 @@ public class StateAdapter implements IStates, Serializable{
     public StateAdapter(GameData gameData) {
         this.gameData = gameData;
     }
+
+    public StateAdapter(GameData gameData, IStates oldState) {
+        this.gameData = gameData;
+        this.oldState = oldState;
+    }
     
-//    @Override
-//    public IStates start(GameData gameData){
-//        return this;
-//    };
     @Override
     public IStates restart(){
         return this;
@@ -34,7 +35,7 @@ public class StateAdapter implements IStates, Serializable{
         return this;
     };
     @Override
-    public IStates endOfGame(){
+    public IStates endOfGame(Boolean ganhou){
         return this;
     };
     @Override
@@ -103,10 +104,6 @@ public class StateAdapter implements IStates, Serializable{
 
     public IStates getOldState() {
         return oldState;
-    }
-
-    public void setOldState(IStates oldState) {
-        this.oldState = oldState;
     }
 
     public GameData getGameData() {

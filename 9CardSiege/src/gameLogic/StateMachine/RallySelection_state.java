@@ -13,8 +13,8 @@ import gameLogic.GameData;
  */
 public class RallySelection_state extends StateAdapter{
 
-    public RallySelection_state(GameData gameData) {
-        super(gameData);
+    public RallySelection_state(GameData gameData,IStates state) {
+        super(gameData,state);
     }
     
     @Override

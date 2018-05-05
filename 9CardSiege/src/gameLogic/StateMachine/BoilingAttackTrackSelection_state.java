@@ -13,8 +13,8 @@ import gameLogic.GameData;
  */
 public class BoilingAttackTrackSelection_state extends StateAdapter{
 
-    public BoilingAttackTrackSelection_state(GameData gameData) {
-        super(gameData);
+    public BoilingAttackTrackSelection_state(GameData gameData,IStates state) {
+        super(gameData,state);
     }
     
     @Override

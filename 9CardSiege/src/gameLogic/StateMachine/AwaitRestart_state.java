@@ -12,9 +12,10 @@ import gameLogic.GameData;
  * @author Olympus
  */
 public class AwaitRestart_state extends StateAdapter{
-
-    public AwaitRestart_state(GameData gameData) {
+    Boolean ganhou;
+    public AwaitRestart_state(GameData gameData, Boolean ganhou) {
         super(gameData);
+        this.ganhou = ganhou;
     }
 
     @Override
@@ -26,6 +27,9 @@ public class AwaitRestart_state extends StateAdapter{
     
     @Override
     public String toString() {
-        return "(1)Restart game\t(2)Sair\n";
+        String st="(1)Restart game\t(2)Leave\n";
+        if(ganhou)
+            return "Congrats! (づ｡◕‿‿◕｡)づ You've beaten the system (ง'̀-'́)ง !!\n"+st;
+        return "Too bad! \\_( ° _ʖ °)_/ Better luck, next time ʕ•ᴥ•ʔ !" + st;
     }
 }

@@ -17,19 +17,21 @@ public class AwaitRestrictedAction_state extends StateAdapter{
         super(gameData);
     }
 
-//    @Override
-//    public IStates raid() {
-//            return this; //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Override
-//    public IStates sabotage() {
-//        return this; //To change body of generated methods, choose Tools | Templates.
-//    }
+    @Override
+    public IStates raid() {
+        //mandar fazer raid
+        return this; //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
-    public IStates endOfGame() {
-        return new AwaitRestart_state(getGameData());
+    public IStates sabotage() {
+        //mandar fazer sabotage
+        return this; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates endOfGame(Boolean ganhou) {
+        return new AwaitRestart_state(getGameData(),ganhou);
     }
 
     @Override
