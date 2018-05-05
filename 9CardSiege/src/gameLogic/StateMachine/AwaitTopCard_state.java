@@ -9,6 +9,10 @@ import gameLogic.GameData;
 
 public class AwaitTopCard_state extends StateAdapter{
 
+    public AwaitTopCard_state(GameData gameData,IStates state) {
+        super(gameData,state);
+    }
+
     public AwaitTopCard_state(GameData gameData) {
         super(gameData);
     }

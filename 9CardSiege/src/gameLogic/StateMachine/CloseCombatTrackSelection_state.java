@@ -13,8 +13,8 @@ import gameLogic.GameData;
  */
 public class CloseCombatTrackSelection_state extends StateAdapter{
 
-    public CloseCombatTrackSelection_state(GameData gameData) {
-        super(gameData);
+    public CloseCombatTrackSelection_state(GameData gameData,IStates state) {
+        super(gameData,state);
     }
     
     @Override

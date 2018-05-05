@@ -9,8 +9,8 @@ import gameLogic.GameData;
 
 public class ArcherAttackTrackSelection_state extends StateAdapter{
 
-    public ArcherAttackTrackSelection_state(GameData gameData) {
-        super(gameData);
+    public ArcherAttackTrackSelection_state(GameData gameData,IStates state) {
+        super(gameData,state);
     }
 
     @Override

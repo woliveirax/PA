@@ -13,8 +13,8 @@ import gameLogic.GameData;
  */
 public class StatusReductionSelection_state extends StateAdapter{
 
-    public StatusReductionSelection_state(GameData gameData) {
-        super(gameData);
+    public StatusReductionSelection_state(GameData gameData,IStates state) {
+        super(gameData,state);
     }
     
     @Override

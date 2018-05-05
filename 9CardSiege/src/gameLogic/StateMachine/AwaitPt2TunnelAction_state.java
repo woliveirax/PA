@@ -16,31 +16,69 @@ public class AwaitPt2TunnelAction_state extends StateAdapter{
     public AwaitPt2TunnelAction_state(GameData gameData) {
         super(gameData);
     }
+      ///////Precisam do estado anterior
+    @Override
+    public IStates closeCombat2() {
+        return new CloseCombatTrackSelection_state(getGameData(),this); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates boilingWater() {
+        return new BoilingAttackTrackSelection_state(getGameData(),this); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates rally() {
+        return new ArcherAttackTrackSelection_state(getGameData(),this); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates extraAction() {
+        return new StatusReductionSelection_state(getGameData(),this); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates archerAttack() {
+        return new ArcherAttackTrackSelection_state(getGameData(),this); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates endOfTurn() {
+        return new AwaitTopCard_state(getGameData(),this); //To change body of generated methods, choose Tools | Templates.
+    }
     
+    //////////
     @Override
     public IStates moveForward() {
-        setOldState(this);
+        //means go to Enemy Line
+        //s boolean do freemovetunnel_uSed estiver a falso 
+            //mudar estado p pos a seguir
+            //mudar pos no tunnel
+            //mudar bool p verdadeiro
         return new AwaitEnemyLineAction_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
     }
     
     @Override
     public IStates moveBackward() {
+        //means go to pt 1
+        //s boolean do freemovetunnel_uSed estiver a falso 
+            //mudar estado p pos a seguir
+            //mudar pos no tunnel
+            //mudar bool p verdadeiro
         return getOldState(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public IStates fastTravel() {
         //to Castle
-        setOldState(this);
+        //s action point > 0
+            //mudar pos p castle
+            //reduzir 1 action point
+            //ir p estado do castle
         return new AwaitGeneralAction_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public IStates closeCombat2() {
-        setOldState(this);
-        return new CloseCombatTrackSelection_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
-    }
-
+   
     @Override
     public IStates closeCombat1() {
         return this; //To change body of generated methods, choose Tools | Templates.
@@ -52,39 +90,8 @@ public class AwaitPt2TunnelAction_state extends StateAdapter{
     }
     
     @Override
-    public IStates boilingWater() {
-        setOldState(this);
-        return new BoilingAttackTrackSelection_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public IStates rally() {
-        setOldState(this);
-        return new ArcherAttackTrackSelection_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public IStates extraAction() {
-        setOldState(this);
-        return new StatusReductionSelection_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public IStates archerAttack() {
-        setOldState(this);
-        return new ArcherAttackTrackSelection_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public IStates endOfGame() {
-        setOldState(this);
-        return new AwaitRestart_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public IStates endOfTurn() {
-        setOldState(this);
-        return new AwaitTopCard_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
+    public IStates endOfGame(Boolean ganhou) {
+        return new AwaitRestart_state(getGameData(),ganhou); //To change body of generated methods, choose Tools | Templates.
     }
     
     @Override

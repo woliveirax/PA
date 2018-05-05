@@ -8,7 +8,7 @@ public interface IStates{
     //IStates exit();
     IStates drawCard();
     IStates endOfTurn();
-    IStates endOfGame();
+    IStates endOfGame(Boolean ganhou);
     IStates endOfAction();
     IStates archerAttack();
     IStates extraAction();
