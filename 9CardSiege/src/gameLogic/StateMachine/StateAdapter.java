@@ -38,7 +38,7 @@ public class StateAdapter implements IStates, Serializable{
         return this;
     };
     @Override
-    public IStates endOfGame(boolean ganhou,boolean restart){
+    public IStates endOfGame(boolean ganhou){
         return this;
     };
     @Override
@@ -46,23 +46,23 @@ public class StateAdapter implements IStates, Serializable{
         return this;
     };
     @Override
-    public IStates archerAttack(int trackSelection){
+    public IStates archerAttack(){
         return this;
     };
     @Override
-    public IStates extraAction(char supplyToReduce){
+    public IStates extraAction(){
         return this;
     };
     @Override
-    public IStates rally(boolean ReduceSupplies){
+    public IStates rally(){
         return this;
     };
     @Override
-    public IStates extraMoral(){
+    public IStates extraMoral(boolean reduceSupplies){
         return this;
     };
     @Override
-    public IStates boilingWater(int trackSelection){
+    public IStates boilingWater(){
         return this;
     };
     @Override
@@ -70,7 +70,7 @@ public class StateAdapter implements IStates, Serializable{
         return this;
     };
     @Override
-    public IStates closeCombat2(int trackSelection){
+    public IStates closeCombat2(){
         return this;
     };
     @Override

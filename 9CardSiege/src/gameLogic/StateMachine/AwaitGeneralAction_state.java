@@ -110,7 +110,7 @@ public class AwaitGeneralAction_state extends StateAdapter{
     
     
     @Override
-    public IStates endOfGame(Boolean ganhou) {
+    public IStates endOfGame(boolean ganhou) {
         
         return new AwaitRestart_state(getGameData(),ganhou); 
     }
