@@ -10,14 +10,16 @@ public class Enemy implements Serializable{
     private final int defaultStrength;
     private int strength;
     private int pos;
+    private boolean active;
 
     public Enemy(GameData data, int strength, String name) {
         this.name = name;
         this.pos = 4;
         this.data = data;
         this.strength = defaultStrength = strength;
+        this.active = true;
     }
-
+    
     public String getName() {
         return name;
     }
@@ -26,7 +28,14 @@ public class Enemy implements Serializable{
         return pos;
     }
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+    
     public int retreat() {
+        if(!active)
+            return -1;
+        
         if(pos > 3)
             return pos;
         
@@ -38,6 +47,9 @@ public class Enemy implements Serializable{
     }
     
     public int advance(){
+        if(!active)
+            return -1;
+        
         if(pos < 1)
             return pos;
 

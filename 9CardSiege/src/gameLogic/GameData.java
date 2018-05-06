@@ -557,7 +557,13 @@ public class GameData implements Serializable{
         s += "Dice: " + dice.getNumber() + "\n";
         s += "Deck cards: " + deck.size() + "\n";
         s += "Discarded Cards: " + discardedCards.size() + "\n";
-        s += "Enemies in Close Combat: " + closeCombatArea.size() + "\n";
+        s += "Enemies in Close Combat: " + closeCombatArea.size() + "\n\n";
+        
+        
+        s += "#### Enemy Movement ####\n";
+        s += "Tower: " + (isTowerInGame()? getTowerPosition() : "Tower Down") + "\n";
+        s += "BatteringRam: " + getBatteringRamPosition() + "\n";
+        s += "Ladder: " + getLadderPosition();
         
         s += "\n\n";
         s += "Boilling water available: ";
