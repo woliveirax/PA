@@ -18,11 +18,12 @@ public class EnemyForces implements Serializable {
     private Enemy batteringRam;
     private Enemy tower;
     private int trebuchets;
+    private ArrayList<Enemy> closeCombat;
     
     public EnemyForces(GameData data){
-        ladder = new Enemy(data,2);
-        batteringRam = new Enemy(data,3);
-        tower = new Enemy(data,4);
+        ladder = new Enemy(data,2,"Ladder");
+        batteringRam = new Enemy(data,3,"BatteringRam");
+        tower = new Enemy(data,4,"Tower");
         trebuchets = 3;
     }
     

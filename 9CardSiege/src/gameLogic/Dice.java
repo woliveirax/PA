@@ -8,19 +8,15 @@ import java.io.Serializable;
 
 public class Dice implements Serializable{
     
-    int number = 1;
+    private int number;
 
     public int getNumber() {
         return number;
     }
     
-    private void setNumber(int number){
-        this.number = number;
-    }
-    
-    public void DiceRollModification(int number)
-    {
-        int sum = this.number + number;
+    public int roll_dice(int drm){
+        
+        int sum = (int) (((Math.random() * 6) + 1 ) + drm);
         
         if(sum < 1)
             sum = 1;
@@ -28,7 +24,9 @@ public class Dice implements Serializable{
         else if(sum > 6)
             sum = 6;
         
-        setNumber(sum);
+        this.number = sum;
+        
+        return number;
     }
     
     public int roll_dice(){

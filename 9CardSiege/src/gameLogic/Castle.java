@@ -203,4 +203,18 @@ public class Castle implements Serializable{
         
         return true;
     }
+    
+    public int isCastleOutOfResources()
+    {
+        int a = 0;
+        
+        if(supplies == 0)
+            a++;
+        if(wallStrength == 0)
+            a++;
+        if(morale == 0)
+            a++;
+        
+        return a;
+    }
 }

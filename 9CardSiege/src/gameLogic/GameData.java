@@ -24,28 +24,43 @@ import java.util.Collections;
 import java.util.List;
 
 public class GameData implements Serializable{
-    int currentDay;
-    int actionPoints;
+    private int currentDay;
+    private int actionPoints;
     
-    Card currentCard;
-    List<Card> deck;
-    List<Card> discardedCards;
-    Dice dice;
+    private boolean extraActionUsed;
+    private boolean boillingWaterUsed;
+    private boolean freeTunnelMoveUsed;
     
-    Castle castle;
-    EnemyForces enemies;
+    private Card currentCard;
+    private List<Card> deck;
+    private List<Card> discardedCards;
+    private Dice dice;
+    
+    private Castle castle;
+    private EnemyForces enemies;
+    private ArrayList<Enemy> closeCombatArea;
+    
+    
     
     public GameData (){
         currentDay = 1;
+        currentCard = null;
         actionPoints = 0;
+        
         dice = new Dice();
         castle = new Castle();
         deck = new ArrayList<>();
         discardedCards = new ArrayList<>();
+        closeCombatArea = new ArrayList<>();
+        extraActionUsed = false;
+        boillingWaterUsed = false;
+        freeTunnelMoveUsed = false;
         enemies = new EnemyForces(this);
+        createCards();
     }
     
-    //Logic Functions
+    
+    //Data get functions
     public int getActionPoints(){
         return actionPoints;
     }
@@ -57,44 +72,87 @@ public class GameData implements Serializable{
     public Card getCurrentCard() {
         return currentCard;
     }
-    
-    public void initializeData(){
-        //TODO: restart
+
+    public ArrayList<Enemy> getCloseCombatArea() {
+        return closeCombatArea;
+    }
+
+    public boolean isExtraActionUsed() {
+        return extraActionUsed;
+    }
+
+    public void setExtraActionUsed(boolean extraActionUsed) {
+        this.extraActionUsed = extraActionUsed;
+    }
+
+    public boolean isBoillingWaterUsed() {
+        return boillingWaterUsed;
+    }
+
+    public void setBoillingWaterUsed(boolean boillingWaterUsed) {
+        this.boillingWaterUsed = boillingWaterUsed;
+    }
+
+    public boolean isFreeTunnelMoveUsed() {
+        return freeTunnelMoveUsed;
+    }
+
+    public void setFreeTunnelMoveUsed(boolean freeTunnelMoveUsed) {
+        this.freeTunnelMoveUsed = freeTunnelMoveUsed;
     }
     
+        
+    
+    
     //TODO:::, get one card from top, suffle, put current card on discardedCards after use
+    
+    
+    //Card Functions    
+    private void applyCurrentDayEvent(){
+        currentCard.getSpecificDay(currentDay).getEvent().triggerEvent();
+    }
+    
+    private void applyCurrentDayEnemyMovement(){
+        currentCard.getSpecificDay(currentDay).moveEnemies();
+    }
+    
+    private void setCurrentTurnActionPoints()
+    {
+        actionPoints = currentCard.getSpecificDay(currentDay).getAction_point();
+    }
+    
+    public boolean isActionRestricted()
+    {
+        return currentCard.getSpecificDay(currentDay).getEvent().actionRestriction();
+    }
+    
+    private void discardCurrentCard()
+    {
+        if(currentCard != null)
+            discardedCards.add(currentCard);
+        
+        currentCard = null;
+    }
+    
+    public void drawCardFromDeck()
+    {
+        discardCurrentCard();
+        currentCard = deck.remove(0);
+        applyCurrentDayEvent();
+        applyCurrentDayEnemyMovement();
+        setCurrentTurnActionPoints();
+    }
+    
+    
+    //Game Phase events
     public void enemyLineCheck()
     {
         if(dice.roll_dice() == 1)
             castle.tunnelForcesCaptured();
     }
     
-    public void applyEvent(){
-        currentCard.getSpecificDay(currentDay).runEvent();
-    }
-    
-    //TODO: if actionRestriction is true change state
-
-    public void dicardCurrentCard()
-    {
-        discardedCards.add(currentCard);
-    }
-    
-    public void drawCardFromDeck()
-    {
-        currentCard = deck.remove(0);
-    }
-    
-    public void endOfDay()
-    {
-        //Reduce supplies by 1
-        //check if soldiers on tunnel to castle and add tunnel supplies to castle
-        //Check if soldiers are on the enemy lines and capture them reducing morale by 1
-        //if not on 3 day shuffle cards else end game, WIN
-        //add + 1 on day
-    }
     //TODO: only called if day < 3
-    public void endOfDay_()
+    public void endOfDay()
     {
         castle.reduceSupplies();
         
@@ -108,31 +166,26 @@ public class GameData implements Serializable{
         currentDay++;
     }
     
-    public void drawCardFromDeck__()
+    public boolean endOfTurn_LoseCodition()
     {
-        //Remove top card from deck
-        //apply event
-        //Enemy movement
-        //add player action points
+        if(closeCombatArea.size() > 1 || castle.isCastleOutOfResources() == 1)
+            return true;
+        
+        return false;
     }
     
-    public void endOfTurn_LoseCodition()
+    public boolean inTurn_LoseCondition()
     {
-        //if 2 enemy on close combat
-        //One of status tracks are 0 in the end of the turn
+        if(closeCombatArea.size() > 2 || castle.isCastleOutOfResources() > 1)
+            return true;
+        
+        return false;
     }
     
-    public void inTurn_LoseCondition()
+    public int reduceActionPoints()
     {
-        //A third enemy cube enters close combat.
-        //Two status tracks reach 0
+        return actionPoints--;
     }
-    
-    public int getActionPoints();
-    
-    public void removeActionPoints();
-    
-    public void addActionPoints();
     
     public void InitializeData(){
         //recomeçar
@@ -144,7 +197,40 @@ public class GameData implements Serializable{
         return dice.roll_dice();
     }
     
+    public int diceRoll(int DRM)
+    {
+        return dice.roll_dice(DRM);
+    }
+    
+    //###Castle functions
+    public int getSupplies(){
+        return castle.getSupplies();
+    }
+    
+    public int getMorale(){
+        return castle.getMorale();
+    }
+    
+    public int getWallStrength(){
+        return castle.getWallStrength();
+    }
+    
+    
     //#### Enemy functions
+    public void enemyEnterCloseCombatArea(Enemy enemy)
+    {
+        if(closeCombatArea.contains(enemy))
+            return;
+        
+        closeCombatArea.add(enemy);
+    }
+    
+    public void enemyLeavesCloseCombatArea(Enemy enemy)
+    {
+        if(closeCombatArea.contains(enemy))
+            closeCombatArea.remove(enemy);
+    }
+    
     //Get units position funcs
     public int getLadderPosition()
     {
@@ -162,20 +248,10 @@ public class GameData implements Serializable{
     }
     
     
-    //Movement functions
-    public boolean enemyLadderAdvance()
-    {
-        return enemies.ladderAdvance();
-    }
-    
+    //Enemy retreat functions
     public boolean enemyLadderRetreat()
     {
         return enemies.ladderRetreat();
-    }
-    
-    public boolean enemyBatteringRamAdvance()
-    {
-        return enemies.batterringRamAdvance();
     }
     
     public boolean enemyBatteringRamRetreat()
@@ -183,16 +259,10 @@ public class GameData implements Serializable{
         return enemies.batteringRamRetreat();
     }
     
-    public boolean enemyTowerAdvance()
-    {
-        return enemies.towerAdvance();
-    }
-    
     public boolean enemyTowerRetreat()
     {
         return enemies.towerRetreat();
     }
-    
     
     //Treebuchets functions
     public int getActiveTrebuchets()
@@ -259,6 +329,11 @@ public class GameData implements Serializable{
     
     
     //Tunnel Functions
+    public void tunnelForcesCaptured()
+    {
+        castle.tunnelForcesCaptured();
+    }
+    
     public void increaseTunnelSupplies()
     {
         castle.increaseTunnelSupplies();
@@ -306,9 +381,15 @@ public class GameData implements Serializable{
     //#######################################################
     //Card Creation section
     //#######################################################
-    //TODO: Card creator
     
     private void createCards(){
+        card_1();
+        card_2();
+        card_3();
+        card_4();
+        card_5();
+        card_6();
+        card_7();
     }
     
     private void card_1(){
