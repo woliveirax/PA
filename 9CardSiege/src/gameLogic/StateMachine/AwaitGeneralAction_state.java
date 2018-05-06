@@ -66,7 +66,7 @@ public class AwaitGeneralAction_state extends StateAdapter{
     }
 
     @Override
-    public IStates rally() {
+    public IStates rally(boolean ReduceSupplies) {
         //caso supplies >= 1,  pode-se baixar 1 p obter +1 DRM
         return new RallySelection_state(getGameData(),this); 
     }
