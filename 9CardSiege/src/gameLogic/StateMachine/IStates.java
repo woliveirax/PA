@@ -1,13 +1,14 @@
 package gameLogic.StateMachine;
 
-import gameLogic.GameData;
-
 public interface IStates{
-    //IStates start();
-    IStates restart();
+    IStates start();//chama o estado drawCard
     //IStates exit();
+    //IStates saveAndExit();
+    
+    IStates getOldState();
+    IStates restart();
     IStates drawCard();
-    IStates endOfTurn();
+    IStates endOfTurn(IStates oldstate);
     IStates endOfGame(Boolean ganhou);
     IStates endOfAction();
     IStates archerAttack();

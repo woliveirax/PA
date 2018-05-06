@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gameLogic.StateMachine;
 
 import gameLogic.GameData;
 
-/**
- *
- * @author Olympus
- */
+
 public class AwaitGeneralAction_state extends StateAdapter{
 
     public AwaitGeneralAction_state(GameData gameData) {
@@ -93,17 +85,30 @@ public class AwaitGeneralAction_state extends StateAdapter{
     }
 
     @Override
-    public IStates endOfTurn() {
+    public IStates endOfTurn(IStates oldstate) {
         //É sempre chamado pelas outras funções, quando AP == 0
+        
+        if(getGameData().endOfTurn_LoseCodition())
+            return new AwaitRestart_state(getGameData(),false);
+        
+        if(!getGameData().getSizeOfDeck()){
+            if(getGameData().getCurrentDay()==2)
+                return new AwaitRestart_state(getGameData(),true);
+
+            getGameData().endOfDay();
+        }
+        //restaurar dados antes de retirar nova carta
         getGameData().setExtraActionUsed(false);
         getGameData().setBoillingWaterUsed(false);
         getGameData().setFreeTunnelMoveUsed(false);
-        return new AwaitTopCard_state(getGameData(),this); 
+        //
+        return new AwaitTopCard_state(getGameData(),oldstate); 
     }
     
     
     @Override
     public IStates endOfGame(Boolean ganhou) {
+        
         return new AwaitRestart_state(getGameData(),ganhou); 
     }
 
