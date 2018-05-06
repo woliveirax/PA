@@ -106,6 +106,11 @@ public class GameData implements Serializable{
         this.freeTunnelMoveUsed = freeTunnelMoveUsed;
     }
     
+    public int getSizeOfDeck(){
+        return deck.size();
+    }
+    
+    
     
    //#######################################################
     //Enemy functions
@@ -136,6 +141,9 @@ public class GameData implements Serializable{
     {
         discardCurrentCard();
         currentCard = deck.remove(0);
+        if(deck.size() == 0)
+            discardedCards.add(currentCard);
+        enemyLineCheck();
         applyCurrentDayEvent();
         applyCurrentDayEnemyMovement();
         setCurrentTurnActionPoints();
@@ -147,7 +155,7 @@ public class GameData implements Serializable{
 
     public void enemyLineCheck()
     {
-        if(dice.roll_dice() == 1)
+        if(dice.roll_dice() == 1 && castle.getTunnelPosition() == TunnelPos.ENEMY_LINES)
             castle.tunnelForcesCaptured();
     }
     
@@ -159,6 +167,7 @@ public class GameData implements Serializable{
         for(Card card : discardedCards)
             deck.add(card);
         
+        discardedCards.clear();
         Collections.shuffle(deck);
         currentCard = null;
         currentDay++;

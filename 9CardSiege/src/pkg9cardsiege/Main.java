@@ -6,6 +6,9 @@
 package pkg9cardsiege;
 
 import gameLogic.GameData;
+import gameLogic.StateMachine._StateMachine;
+import gameLogic.Typewriter;
+import java.io.IOException;
 
 /**
  *
@@ -22,13 +25,21 @@ public class Main {
         //data.endOfDay();
         
         //data.removeTowerFromGame();
-        //data.drawCardFromDeck();
+//        data.drawCardFromDeck();
+//        System.out.println(""+data+"\n\n\n");
+//      
+    
         
+        _StateMachine x = new _StateMachine();
         
-        //System.out.println("Is Tower in game? -> " + (data.isTowerInGame()? "yes" : "no"));
+        Typewriter a = new Typewriter();
+        try{
+           a.loadGame(x,"C:\\Users\\Skully\\Desktop\\test");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         
-        System.out.println(""+data);
-        
+        x.drawCard();
         
     }
 }
