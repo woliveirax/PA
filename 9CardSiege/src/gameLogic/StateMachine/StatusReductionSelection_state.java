@@ -20,7 +20,7 @@ public class StatusReductionSelection_state extends StateAdapter{
     @Override
     public IStates endOfAction() {
         getGameData().setExtraActionUsed(true);
-        return getOldState(); //To change body of generated methods, choose Tools | Templates.
+        return getOldState();
     }
     
     @Override

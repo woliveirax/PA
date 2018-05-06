@@ -54,8 +54,9 @@ public class Typewriter {
         }
     }
     
-    public _StateMachine loadGame(_StateMachine data, String file) throws Exception {
+    public _StateMachine loadGame(String file) throws Exception {
         ObjectInputStream in = null;
+        _StateMachine data = null;
         try {
             in = OpenReadRegister(file);
             data = (_StateMachine)in.readObject();

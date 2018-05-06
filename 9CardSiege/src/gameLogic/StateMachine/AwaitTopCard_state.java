@@ -17,6 +17,12 @@ public class AwaitTopCard_state extends StateAdapter{
     public IStates drawCard(){
         getGameData().drawCardFromDeck();
         
+        if(getGameData().inTurn_LoseCondition())
+            return new AwaitRestart_state(getGameData(), false);
+        
+        if(getGameData().getCloseCombatArea().size() == 2)
+            return new CloseCombatTrackSelection_state(getGameData(), this);
+        
         if (getOldState() == null)
             return new AwaitGeneralAction_state(getGameData());
 

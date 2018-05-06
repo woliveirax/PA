@@ -20,9 +20,7 @@ public class AwaitRestart_state extends StateAdapter{
 
     @Override
     public IStates restart() {
-        //TODO: Re-init GameData
-        //getGameData().InitializeData();
-        return new AwaitTopCard_state(getGameData());
+        return new AwaitTopCard_state(new GameData());
     }
     
     

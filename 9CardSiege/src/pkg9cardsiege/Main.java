@@ -31,15 +31,32 @@ public class Main {
     
         
         _StateMachine x = new _StateMachine();
+        _StateMachine b = new _StateMachine();
+        
+//        x.drawCard();
+//        System.out.println(""+ x.getGamedata().toString());
+//        
+//        Typewriter a = new Typewriter();
+//        try{
+//           a.saveGame(x,"C:\\Users\\Skully\\Desktop\\test2");
+//        }catch(IOException e){
+//            e.printStackTrace();
+//        }
+        
+        
         
         Typewriter a = new Typewriter();
         try{
-           a.loadGame(x,"C:\\Users\\Skully\\Desktop\\test");
+           b = a.loadGame("C:\\Users\\Skully\\Desktop\\test2");
         }catch(Exception e){
             e.printStackTrace();
         }
         
-        x.drawCard();
+        //b.drawCard();
+        
+        System.out.println(""+ b.getGamedata().toString());
+//        
+//        x.drawCard();
         
     }
 }
