@@ -10,6 +10,7 @@ public class StateAdapter implements IStates, Serializable{
     
     public StateAdapter(GameData gameData) {
         this.gameData = gameData;
+        this.oldState = null;
     }
 
     public StateAdapter(GameData gameData, IStates oldState) {

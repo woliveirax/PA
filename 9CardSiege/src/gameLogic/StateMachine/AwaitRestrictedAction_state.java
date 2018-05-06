@@ -7,10 +7,6 @@ package gameLogic.StateMachine;
 
 import gameLogic.GameData;
 
-/**
- *
- * @author Olympus
- */
 public class AwaitRestrictedAction_state extends StateAdapter{
 
     public AwaitRestrictedAction_state(GameData gameData) {
@@ -18,27 +14,44 @@ public class AwaitRestrictedAction_state extends StateAdapter{
     }
 
     @Override
+    //TODO: if restricted action and oldstate instanceof enemyline
     public IStates raid() {
-        //mandar fazer raid
-        return this; //To change body of generated methods, choose Tools | Templates.
+        switch (getGameData().diceRoll(getGameData().getDRMRaid())){
+            case 1:
+                getGameData().tunnelForcesCaptured();
+                break;
+                
+            case 2:
+                break;
+                
+            case 6:
+                getGameData().increaseTunnelSupplies();
+                getGameData().increaseTunnelSupplies();
+                break;
+                
+            default:
+                getGameData().increaseTunnelSupplies();
+                break;
+            
+        }
+        getGameData().reduceActionPoints();//TODO: Estado verificar sempre action points ser = 0 
+        return this; 
     }
 
     @Override
     public IStates sabotage() {
-        //mandar fazer sabotage
-        return this; //To change body of generated methods, choose Tools | Templates.
-    }
+        int diceResult= getGameData().diceRoll(getGameData().getDRMSabotage());
+        
+        if (diceResult==1)
+            getGameData().tunnelForcesCaptured();
+        else if(diceResult==5||diceResult==6)
+            getGameData().destroyTrebuchets();
 
-    @Override
-    public IStates endOfGame(Boolean ganhou) {
-        return new AwaitRestart_state(getGameData(),ganhou);
+        
+        getGameData().reduceActionPoints();//TODO: Estado verificar sempre action points ser = 0 
+        
+        return this;
     }
-
-    @Override
-    public IStates endOfTurn() {
-        return new AwaitTopCard_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     
     @Override
     public String toString() {
