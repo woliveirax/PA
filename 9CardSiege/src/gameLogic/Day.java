@@ -84,5 +84,14 @@ public class Day implements Serializable{
         
         return temp;
     }
+
+    @Override
+    public String toString() {
+        return "Day: " + dayNumber + "\t" +
+               "Action Points: " + action_point + "\n\n" +
+               event.toString();
+                
+                
+    }
 }
 

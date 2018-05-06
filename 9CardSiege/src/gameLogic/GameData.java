@@ -43,7 +43,7 @@ public class GameData implements Serializable{
     
     
     public GameData (){
-        currentDay = 1;
+        currentDay = 0;
         currentCard = null;
         actionPoints = 0;
         
@@ -56,7 +56,9 @@ public class GameData implements Serializable{
         boillingWaterUsed = false;
         freeTunnelMoveUsed = false;
         enemies = new EnemyForces(this);
+        
         createCards();
+        Collections.shuffle(deck);
     }
     
     
@@ -158,6 +160,7 @@ public class GameData implements Serializable{
             deck.add(card);
         
         Collections.shuffle(deck);
+        currentCard = null;
         currentDay++;
     }
     
@@ -520,7 +523,7 @@ public class GameData implements Serializable{
         
         Card card = new Card(6, days);
         deck.add(card);
-    }
+    } 
     
     private void card_7(){
         Day[] days = new Day[3];
@@ -532,4 +535,45 @@ public class GameData implements Serializable{
         Card card = new Card(7, days);
         deck.add(card);
     }
+
+
+
+    //#######################################################
+    //Astetics section
+    //#######################################################
+
+    @Override
+    public String toString() {
+        String s = "\tAction Points: " + actionPoints + "\t" +"Current day: " + (currentDay+1) + "\n";
+        
+        s += "     ############################################\n\n";
+        s += "#### Status ####\n";
+        s += "Supplies: " + getSupplies()+ "\n" +
+             "Morale: " + getMorale() + "\n" +
+             "WallStrength: " + getWallStrength() + "\n";
+        s += "\n";
+        
+        s += "#### Table ####\n";
+        s += "Dice: " + dice.getNumber() + "\n";
+        s += "Deck cards: " + deck.size() + "\n";
+        s += "Discarded Cards: " + discardedCards.size() + "\n";
+        s += "Enemies in Close Combat: " + closeCombatArea.size() + "\n";
+        
+        s += "\n\n";
+        s += "Boilling water available: ";
+        s += !boillingWaterUsed? "yes" : "no";
+        s += "\nExtra action available:   ";
+        s += !extraActionUsed? "yes" : "no";
+        s += "\nExtra action available:   ";
+        s += !freeTunnelMoveUsed? "yes" : "no";
+        
+        s += "\n\n";
+        s += "\n\t\t     Current Card\n";
+        s += "     ############################################\n\n";
+        s += currentCard.toStringCardOnly() + "\n" +currentCard.getSpecificDay(currentDay);
+        
+        
+        return s;
+    }
+    
 }

@@ -74,7 +74,8 @@ public abstract class _Event implements Serializable{
 
     @Override
     public String toString() {
-        return "" + name + "\ndescription:\n" + description;
+        //return "" + name + "\ndescription:\n" + description;
+        return "" + name + "\n----------------------\n" + description;
     }
     
 }

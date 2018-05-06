@@ -19,11 +19,12 @@ public class Main {
     public static void main(String[] args) {
         GameData data = new GameData();
         
-        data.drawCardFromDeck();
+        //data.endOfDay();
+        
         data.drawCardFromDeck();
         
-        System.out.println("output - " + data.getCurrentCard().getSpecificDay(data.getCurrentDay()).getEvent());
-        System.out.println("\nDRM -> " + data.getDRMSabotage());
+        
+        System.out.println(""+data);
         
         
     }
