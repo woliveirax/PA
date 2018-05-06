@@ -14,6 +14,8 @@ public class AwaitGeneralAction_state extends StateAdapter{
         return "Actions allowed:\n(1)Archer Attack\t(2)Boiling Attack\t(3)Status Reduction\t"+""
                 + "(4)Rally\t(5)EnterTunnel";
     }
+    
+    
 @Override
     public IStates closeCombat1() {
         int diceResult= getGameData().diceRoll(getGameData().getDRMAttackCloseCombat());
@@ -23,22 +25,23 @@ public class AwaitGeneralAction_state extends StateAdapter{
         else if(diceResult > 4)
             getGameData().getCloseCombatArea().get(0).retreat();
         
+        if(getGameData().inTurn_LoseCondition())
+            return new AwaitRestart_state(getGameData(), false);
+        
         getGameData().reduceActionPoints();
         return this; 
     }
     
     @Override
     public IStates coupure() {
-        //verificar q a força da wall <4
         int diceResult= getGameData().diceRoll(getGameData().getDRMCoupure());
         if(diceResult >4)
             getGameData().increaseWallStrength();
    
         getGameData().reduceActionPoints();
         return this; 
-    }  
+    }
     
-    ///////Precisam do estado anterior
     @Override
     public IStates closeCombat2() {
         //quando houverem 2 inimigos em close quarters remeter obrigatoriamente jogador para estado de closecombat2
@@ -47,7 +50,7 @@ public class AwaitGeneralAction_state extends StateAdapter{
         //Inibir eventos DRM
         //baixar 1 d moral, caso saia 1 no dice
         //TODO: remover closecombat 2 e meter a mudar d estado automaticamente
-        return new CloseCombatTrackSelection_state(getGameData(),this); 
+        return new CloseCombatTrackSelection_state(getGameData(),this);
     }
 
     @Override
@@ -114,11 +117,6 @@ public class AwaitGeneralAction_state extends StateAdapter{
 
     @Override
     public IStates enterTunnel() {
-        //means go to tunnel pt 1
-        //s action point > 0
-        //mudar pos p tunnel 1
-        //ir p estado respetivo
-        // action point -1
         getGameData().moveSoldiersTorwardsEnemyLines();
         getGameData().reduceActionPoints();
 

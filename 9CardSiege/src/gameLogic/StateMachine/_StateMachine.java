@@ -14,6 +14,15 @@ public class _StateMachine implements Serializable {
         state = new AwaitTopCard_state(gamedata);
         
     }
+
+    public GameData getGamedata() {
+        return gamedata;
+    }
+    
+    public IStates getState()
+    {
+        return state;
+    }
     
     public void setState(IStates state) { 
         this.state = state;
@@ -31,7 +40,7 @@ public class _StateMachine implements Serializable {
     public void restart(){setState(state.restart());};
 //
 //Açoes escolhidas pelo jogador:    
-    public void closeCombat1(){
+    public void closeCombat1(){        
         setState(state.closeCombat1());
         if(gamedata.getActionPoints()==0)
             endOfTurn();
@@ -94,5 +103,11 @@ public class _StateMachine implements Serializable {
         if(gamedata.getActionPoints()==0)
             endOfTurn();
     };
-//    
+    
+    @Override
+    public String toString() {
+        String s = gamedata.toString();
+        s += "\n\n______________________"+"\n"+state.toString();
+        return s;
+    }
 }

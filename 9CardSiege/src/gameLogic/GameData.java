@@ -159,7 +159,6 @@ public class GameData implements Serializable{
             castle.tunnelForcesCaptured();
     }
     
-    //TODO: only called if day < 3
     public void endOfDay()
     {
         castle.reduceSupplies();

@@ -19,7 +19,7 @@ public class CloseCombatTrackSelection_state extends StateAdapter{
     
     @Override
     public IStates endOfAction() {
-        return getOldState(); //To change body of generated methods, choose Tools | Templates.
+        return getOldState();
     }
     
     @Override

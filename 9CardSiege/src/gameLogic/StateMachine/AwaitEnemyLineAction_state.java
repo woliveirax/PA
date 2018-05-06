@@ -7,7 +7,6 @@ package gameLogic.StateMachine;
 
 import gameLogic.GameData;
 
-//EM todos os estados verificar AP, se estiver == 0
 public class AwaitEnemyLineAction_state extends AwaitGeneralAction_state{
 
     public AwaitEnemyLineAction_state(GameData gameData) {
@@ -15,7 +14,6 @@ public class AwaitEnemyLineAction_state extends AwaitGeneralAction_state{
     }
 
     @Override
-    //TODO: if restricted action and oldstate instanceof enemyline
     public IStates raid() {
         switch (getGameData().diceRoll(getGameData().getDRMRaid())){
             case 1:
@@ -35,7 +33,10 @@ public class AwaitEnemyLineAction_state extends AwaitGeneralAction_state{
                 break;
             
         }
-        getGameData().reduceActionPoints();//TODO: Estado verificar sempre action points ser = 0 
+        if(getGameData().inTurn_LoseCondition())
+            new AwaitRestart_state(getGameData(), false);
+        
+        getGameData().reduceActionPoints();
         return this; 
     }
 
@@ -47,15 +48,17 @@ public class AwaitEnemyLineAction_state extends AwaitGeneralAction_state{
             getGameData().tunnelForcesCaptured();
         else if(diceResult==5||diceResult==6)
             getGameData().destroyTrebuchets();
-
         
-        getGameData().reduceActionPoints();//TODO: Estado verificar sempre action points ser = 0 
+        if(getGameData().inTurn_LoseCondition())
+            new AwaitRestart_state(getGameData(), false);
+        
+        getGameData().reduceActionPoints();
         
         return this;
     }
     
     @Override
-    public IStates enterTunnel() {//TODO:change name to enterTunnel
+    public IStates enterTunnel() {
         getGameData().moveSoldiersTorwardsCastle();
         getGameData().reduceActionPoints();
         

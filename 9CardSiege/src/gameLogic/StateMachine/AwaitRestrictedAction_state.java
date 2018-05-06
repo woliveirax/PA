@@ -14,7 +14,6 @@ public class AwaitRestrictedAction_state extends StateAdapter{
     }
 
     @Override
-    //TODO: if restricted action and oldstate instanceof enemyline
     public IStates raid() {
         switch (getGameData().diceRoll(getGameData().getDRMRaid())){
             case 1:
@@ -32,9 +31,12 @@ public class AwaitRestrictedAction_state extends StateAdapter{
             default:
                 getGameData().increaseTunnelSupplies();
                 break;
-            
         }
-        getGameData().reduceActionPoints();//TODO: Estado verificar sempre action points ser = 0 
+        
+        if(getGameData().inTurn_LoseCondition())
+            return new AwaitRestart_state(getGameData(), false);
+        
+        getGameData().reduceActionPoints();
         return this; 
     }
 
@@ -48,7 +50,10 @@ public class AwaitRestrictedAction_state extends StateAdapter{
             getGameData().destroyTrebuchets();
 
         
-        getGameData().reduceActionPoints();//TODO: Estado verificar sempre action points ser = 0 
+        if(getGameData().inTurn_LoseCondition())
+            return new AwaitRestart_state(getGameData(), false);
+        
+        getGameData().reduceActionPoints();
         
         return this;
     }
