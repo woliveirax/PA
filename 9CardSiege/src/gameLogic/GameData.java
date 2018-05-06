@@ -60,7 +60,10 @@ public class GameData implements Serializable{
     }
     
     
-    //Data get functions
+    //#######################################################
+    //Get Data functions
+    //#######################################################
+
     public int getActionPoints(){
         return actionPoints;
     }
@@ -101,13 +104,11 @@ public class GameData implements Serializable{
         this.freeTunnelMoveUsed = freeTunnelMoveUsed;
     }
     
-        
     
+   //#######################################################
+    //Enemy functions
+    //#######################################################
     
-    //TODO:::, get one card from top, suffle, put current card on discardedCards after use
-    
-    
-    //Card Functions    
     private void applyCurrentDayEvent(){
         currentCard.getSpecificDay(currentDay).getEvent().triggerEvent();
     }
@@ -119,11 +120,6 @@ public class GameData implements Serializable{
     private void setCurrentTurnActionPoints()
     {
         actionPoints = currentCard.getSpecificDay(currentDay).getAction_point();
-    }
-    
-    public boolean isActionRestricted()
-    {
-        return currentCard.getSpecificDay(currentDay).getEvent().actionRestriction();
     }
     
     private void discardCurrentCard()
@@ -143,8 +139,10 @@ public class GameData implements Serializable{
         setCurrentTurnActionPoints();
     }
     
-    
-    //Game Phase events
+    //#######################################################
+    //Game phase functions
+    //#######################################################
+
     public void enemyLineCheck()
     {
         if(dice.roll_dice() == 1)
@@ -155,14 +153,11 @@ public class GameData implements Serializable{
     public void endOfDay()
     {
         castle.reduceSupplies();
-        
         castle.tunnelForcesEndOfDayAction();
-        
         for(Card card : discardedCards)
             deck.add(card);
-
-        Collections.shuffle(deck);
         
+        Collections.shuffle(deck);
         currentDay++;
     }
     
@@ -187,11 +182,10 @@ public class GameData implements Serializable{
         return actionPoints--;
     }
     
-    public void InitializeData(){
-        //recomeçar
-    }
-    
+    //#######################################################
     //Dice functions
+    //#######################################################
+    
     public int diceRoll()
     {
         return dice.roll_dice();
@@ -202,21 +196,11 @@ public class GameData implements Serializable{
         return dice.roll_dice(DRM);
     }
     
-    //###Castle functions
-    public int getSupplies(){
-        return castle.getSupplies();
-    }
     
-    public int getMorale(){
-        return castle.getMorale();
-    }
-    
-    public int getWallStrength(){
-        return castle.getWallStrength();
-    }
-    
-    
-    //#### Enemy functions
+    //#######################################################
+    //Enemy functions
+    //#######################################################
+
     public void enemyEnterCloseCombatArea(Enemy enemy)
     {
         if(closeCombatArea.contains(enemy))
@@ -231,7 +215,6 @@ public class GameData implements Serializable{
             closeCombatArea.remove(enemy);
     }
     
-    //Get units position funcs
     public int getLadderPosition()
     {
         return enemies.getLadderPOS();
@@ -247,8 +230,6 @@ public class GameData implements Serializable{
         return enemies.getTowerPOS();
     }
     
-    
-    //Enemy retreat functions
     public boolean enemyLadderRetreat()
     {
         return enemies.ladderRetreat();
@@ -264,7 +245,11 @@ public class GameData implements Serializable{
         return enemies.towerRetreat();
     }
     
-    //Treebuchets functions
+    
+    //#######################################################
+    //Trebuchets functions
+    //#######################################################
+    
     public int getActiveTrebuchets()
     {
         return enemies.getTrebuchets();
@@ -293,7 +278,25 @@ public class GameData implements Serializable{
     }
     
     
-    //#### Castle Functions
+    //#######################################################
+    //Castle functions
+    //#######################################################
+    
+    
+    //Get Functions
+    public int getSupplies(){
+        return castle.getSupplies();
+    }
+    
+    public int getMorale(){
+        return castle.getMorale();
+    }
+    
+    public int getWallStrength(){
+        return castle.getWallStrength();
+    }
+    
+    
     //Decrese point functions
     public boolean ReduceMorale()
     {
@@ -328,7 +331,10 @@ public class GameData implements Serializable{
     }
     
     
-    //Tunnel Functions
+    //#######################################################
+    //Tunnel functions
+    //#######################################################
+    
     public void tunnelForcesCaptured()
     {
         castle.tunnelForcesCaptured();
@@ -352,7 +358,7 @@ public class GameData implements Serializable{
     }
     
     
-    //Movement functions
+    //Tunnel Movement functions
     public TunnelPos getTunnelPosition()
     {
         return castle.getTunnelPosition();
@@ -377,6 +383,52 @@ public class GameData implements Serializable{
     {
         castle.moveSoldiersTorwardsEnemyLines();
     }
+    
+    
+    //#######################################################
+    //DRM functions
+    //#######################################################
+    
+    public int getDRMSabotage(){
+        return currentCard.getSpecificDay(currentDay).getEvent().getDRMSabotage();
+    }
+    
+    public int getDRMRaid(){
+        return currentCard.getSpecificDay(currentDay).getEvent().getDRMRaid();
+    }
+    
+    public int getDRMMorale(){
+        return currentCard.getSpecificDay(currentDay).getEvent().getDRMMorale();
+    }
+    
+    public int getDRMCoupure(){
+        return currentCard.getSpecificDay(currentDay).getEvent().getDRMCoupure();
+    }
+    
+    public int getDRMCircleSpaces(){
+        return currentCard.getSpecificDay(currentDay).getEvent().getDRMCircleSpaces();
+    }
+    
+    public int getDRMAttackLadders(){
+        return currentCard.getSpecificDay(currentDay).getEvent().getDRMAttackLadders();
+    }
+    
+    public int getDRMAttackBatteringRam(){
+        return currentCard.getSpecificDay(currentDay).getEvent().getDRMAttackBatteringRam();
+    }
+    
+    public int getDRMAttackSiegeTower(){
+        return currentCard.getSpecificDay(currentDay).getEvent().getDRMAttackSiegeTower();
+    }
+    
+    public int getDRMAttackCloseCombat(){
+        return currentCard.getSpecificDay(currentDay).getEvent().getDRMAttackCloseCombat();
+    }
+    
+    public boolean isActionRestricted(){
+        return currentCard.getSpecificDay(currentDay).getEvent().actionRestriction();
+    }
+    
     
     //#######################################################
     //Card Creation section
