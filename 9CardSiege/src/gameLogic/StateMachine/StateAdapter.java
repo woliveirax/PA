@@ -18,17 +18,19 @@ public class StateAdapter implements IStates, Serializable{
         this.oldState = oldState;
     }
     
+    
+    @Override
+    public IStates start(){
+        return this;
+    }
+    
     @Override
     public IStates restart(){
         return this;
     };
-    /*
+   
     @Override
-    public IStates exit(){
-        return this;
-    };*/
-    @Override
-    public IStates endOfTurn(){
+    public IStates endOfTurn(IStates oldstate){
         return this;
     };
     @Override
@@ -102,11 +104,12 @@ public class StateAdapter implements IStates, Serializable{
     public IStates fastTravel(){
         return this;
     };
-
+    
+    @Override
     public IStates getOldState() {
         return oldState;
     }
-
+    
     public GameData getGameData() {
         return gameData;
     }
