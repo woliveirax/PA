@@ -29,7 +29,7 @@ public class AwaitGeneralAction_state extends StateAdapter{
         if (diceResult==1)
             getGameData().ReduceMorale();
         else if(diceResult > 4)
-            getGameData().getCloseCombatArea()[0].retreat();
+            getGameData().getCloseCombatArea().get(0).retreat();
         
         getGameData().reduceActionPoints();
         return this; 
@@ -64,7 +64,10 @@ public class AwaitGeneralAction_state extends StateAdapter{
         //verificar q o boiling Water ainda n foi utilizado no turno
         //caso saia 1 no dice, s n houver DRM q o aumentem, moral -1
         //meter flag indicadora de utilização do ataque e na mudança de turno remover
-        return new BoilingAttackTrackSelection_state(getGameData(),this); 
+        if(getGameData().isAnyEnemyIn(1).size() > 0)
+            return new BoilingAttackTrackSelection_state(getGameData(),this);
+        
+        return this;
     }
 
     @Override
@@ -79,7 +82,7 @@ public class AwaitGeneralAction_state extends StateAdapter{
         //s boolean d actionIncreasedUsed == false
             //mudar p estado d escolha d istataus
             //meter boolean a true
-        if (!getGameData().getExtraActionUsed())  
+        if (!getGameData().isExtraActionUsed())  
             return new StatusReductionSelection_state(getGameData(),this); 
         return this;
     }
@@ -93,12 +96,12 @@ public class AwaitGeneralAction_state extends StateAdapter{
     public IStates endOfTurn() {
         //É sempre chamado pelas outras funções, quando AP == 0
         getGameData().setExtraActionUsed(false);
-        getGameData().setBoilingWaterUsed(false);
+        getGameData().setBoillingWaterUsed(false);
         getGameData().setFreeTunnelMoveUsed(false);
         return new AwaitTopCard_state(getGameData(),this); 
     }
     
-    //////////
+    
     @Override
     public IStates endOfGame(Boolean ganhou) {
         return new AwaitRestart_state(getGameData(),ganhou); 
@@ -114,7 +117,7 @@ public class AwaitGeneralAction_state extends StateAdapter{
         getGameData().moveSoldiersTorwardsEnemyLines();
         getGameData().reduceActionPoints();
 
-        return new AwaitPt1TunnelAction_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
+        return new AwaitPt1TunnelAction_state(getGameData());
     }
 
 }

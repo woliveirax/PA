@@ -16,11 +16,13 @@ public class AwaitTopCard_state extends StateAdapter{
     @Override
     public IStates drawCard(){
         //Acrescentei getCurrentDay and Card to GameData
-        if(getGameData().getCurrentCard().getSpecificDay(getGameData().getCurrentDay()).getCurrentEvent(0).actionRestriction())
+
+        if(getGameData().isActionRestricted())
             return new AwaitRestrictedAction_state(getGameData());
-        
+        else if(getOldState() != null)
+            return getOldState();
         else
-            return getOldState();       
+            return new AwaitGeneralAction_state(getGameData());
     }    
     
     @Override

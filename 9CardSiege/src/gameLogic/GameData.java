@@ -230,6 +230,15 @@ public class GameData implements Serializable{
         return enemies.getTowerPOS();
     }
     
+    public ArrayList<Enemy> isAnyEnemyIn(int pos)
+    {
+        
+        return enemies.getEnemies(getTowerPosition() == pos,
+                           getBatteringRamPosition() == pos,
+                           getTowerPosition() == pos
+                           );
+    }
+    
     public boolean enemyLadderRetreat()
     {
         return enemies.ladderRetreat();
