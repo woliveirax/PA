@@ -21,8 +21,11 @@ public class Main {
         
         //data.endOfDay();
         
-        data.drawCardFromDeck();
+        //data.removeTowerFromGame();
+        //data.drawCardFromDeck();
         
+        
+        //System.out.println("Is Tower in game? -> " + (data.isTowerInGame()? "yes" : "no"));
         
         System.out.println(""+data);
         

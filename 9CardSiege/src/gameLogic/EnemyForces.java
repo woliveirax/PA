@@ -73,7 +73,6 @@ public class EnemyForces implements Serializable {
         return ladder.getPos();
     }
     
-    
     //### Enemy movement functions
     
     public boolean ladderAdvance(){
@@ -104,7 +103,10 @@ public class EnemyForces implements Serializable {
     //Tower Functions
     public void removeTowerFromGame(){
         if(tower != null)
+        {
+            tower.setActive(false);
             tower = null;
+        }
     }
     
     public boolean isTowerInGame(){
