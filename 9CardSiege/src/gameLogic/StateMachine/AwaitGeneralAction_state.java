@@ -91,7 +91,7 @@ public class AwaitGeneralAction_state extends StateAdapter{
         if(getGameData().endOfTurn_LoseCodition())
             return new AwaitRestart_state(getGameData(),false);
         
-        if(!getGameData().getSizeOfDeck()){
+        if(getGameData().getSizeOfDeck() == 0){
             if(getGameData().getCurrentDay()==2)
                 return new AwaitRestart_state(getGameData(),true);
 
