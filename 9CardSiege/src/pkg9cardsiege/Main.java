@@ -6,6 +6,7 @@
 package pkg9cardsiege;
 
 import IU.text.IUTexto;
+import gameLogic.GameData;
 import gameLogic.StateMachine._StateMachine;
 
 /**

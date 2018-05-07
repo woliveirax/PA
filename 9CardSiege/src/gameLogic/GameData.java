@@ -571,28 +571,17 @@ public class GameData implements Serializable{
 
     @Override
     public String toString() {
-        String s = "\tAction Points: " + actionPoints + "\t" +"Current day: " + (currentDay+1) + "\n";
+        String s = "\t\tAction Points: " + actionPoints + "\t" +"Current day: " + (currentDay+1) + "\n";
         
-        s += "     ############################################\n\n";
-        s += "#### Status ####\n";
-        s += "Supplies: " + getSupplies()+ "\n" +
-             "Morale: " + getMorale() + "\n" +
-             "WallStrength: " + getWallStrength() + "\n";
+        s += "\t     ############################################\n\n";
+        s += "#### Status ####"                                  + "\t" + "#### Table ####"                                                       +  "\t\t\t"    + "#### Enemy Forces ####\n";
+        s += "Supplies: " + getSupplies()                        + "\t\t" + "Dice: " + dice.getNumber()                                           +  "\t\t\t\t"  + "Tower: " + (isTowerInGame()? getTowerPosition() : "Tower Down") + "\n" +
+             "Morale: " + getMorale()                            + "\t\t" + "Deck cards: " + deck.size()                                          +  "\t\t\t"    + "BatteringRam: " + getBatteringRamPosition() + "\n" +
+             "WallStrength: " + getWallStrength()                + "\t\t" + "Discarded Cards: " + discardedCards.size()                           +  "\t\t"      + "Ladder: " + getLadderPosition() + "\n" +
+             "Tunnel Sup.: " + getTunnelSupplies()               + "\t\t" + "Enemies in Close Combat: " + closeCombatArea.size()                  +  "\t"        + "Trebuchets: " + getActiveTrebuchets() +"\n\n";
+        
         s += "\n";
         
-        s += "#### Table ####\n";
-        s += "Dice: " + dice.getNumber() + "\n";
-        s += "Deck cards: " + deck.size() + "\n";
-        s += "Discarded Cards: " + discardedCards.size() + "\n";
-        s += "Enemies in Close Combat: " + closeCombatArea.size() + "\n\n";
-        
-        
-        s += "#### Enemy Movement ####\n";
-        s += "Tower: " + (isTowerInGame()? getTowerPosition() : "Tower Down") + "\n";
-        s += "BatteringRam: " + getBatteringRamPosition() + "\n";
-        s += "Ladder: " + getLadderPosition();
-        
-        s += "\n\n";
         s += "Boilling water available: ";
         s += !boillingWaterUsed? "yes" : "no";
         s += "\nExtra action available:   ";

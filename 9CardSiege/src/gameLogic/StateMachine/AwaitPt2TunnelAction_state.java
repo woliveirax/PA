@@ -52,6 +52,6 @@ public class AwaitPt2TunnelAction_state extends AwaitGeneralAction_state{
     @Override
     public String toString() {
         return "Actions allowed:\n(1)Archer Attack\t(2)Boiling Attack\t(3)Status Reduction\t"+""
-                + "(4)Rally\t(5)move to tunnel pt 1(6)Fast travel to Castle(7)exit tunnel to enemy line\n";
+                + "(4)Rally\t(5)move to tunnel pt 1\t(6)Fast travel to Castle\t(7)exit tunnel to enemy line\n";
     }
 }

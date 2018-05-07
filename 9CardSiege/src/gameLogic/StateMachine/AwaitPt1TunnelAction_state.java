@@ -19,17 +19,21 @@ public class AwaitPt1TunnelAction_state extends AwaitGeneralAction_state{
    
         if(!getGameData().isFreeTunnelMoveUsed()){
             getGameData().moveSoldiersTorwardsEnemyLines();
-            
-            return new AwaitPt2TunnelAction_state(getGameData()); 
+            return new AwaitPt2TunnelAction_state(getGameData());
         }
-        return this;
+        else
+        {
+            getGameData().moveSoldiersTorwardsEnemyLines();
+            getGameData().reduceActionPoints();
+            return new AwaitPt2TunnelAction_state(getGameData());
+        }
     }
     
     @Override
     public IStates moveBackward() {
         
         getGameData().moveSoldiersTorwardsCastle();
-        return getOldState(); 
+        return new AwaitGeneralAction_state(getGameData());
     }
 
     @Override
@@ -49,6 +53,6 @@ public class AwaitPt1TunnelAction_state extends AwaitGeneralAction_state{
     @Override
     public String toString() {
         return "Actions allowed:\n(1)Archer Attack\t(2)Boiling Attack\t(3)Status Reduction\t"+""
-                + "(4)Rally\t(5)Move to tunnel pt 2(6)Fast travel to enemy line\t(7)Exit tunnel\n";
+                + "(4)Rally\t(5)Move to tunnel pt 2\t(6)Fast travel to enemy line\t(7)Exit tunnel\n";
     }
 }

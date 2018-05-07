@@ -35,14 +35,14 @@ public class IUTexto {
                iuMachineRestart();
            else if(state instanceof AwaitEnemyLineAction_state)
                iuMachineEnemyLine();
-           else if(state instanceof AwaitGeneralAction_state)
-               iuMachineGeneralAction();
-           else if (state instanceof AwaitRestrictedAction_state)
-               iuMachineEventRestricted();
            else if (state instanceof AwaitPt1TunnelAction_state)
                iuMachineTunnelPt1();
            else if (state instanceof AwaitPt2TunnelAction_state)
                iuMachineTunnelPt2();
+           else if(state instanceof AwaitGeneralAction_state)
+               iuMachineGeneralAction();
+           else if (state instanceof AwaitRestrictedAction_state)
+               iuMachineEventRestricted();
            else if (state instanceof ArcherAttackTrackSelection_state)
                iuMachineArcherAttack();
            else if (state instanceof BoilingAttackTrackSelection_state)
@@ -80,6 +80,7 @@ public class IUTexto {
    
   private void iuMachineAwaitTopCard(){
         System.out.println(game.getState().toString());
+        System.out.println("> ");
         int answer = getInt();
         game.drawCard();
    }
@@ -100,8 +101,9 @@ public class IUTexto {
    }
   
    private void iuMachineEnemyLine(){
+       System.out.println(game.getGamedata()+"\n\n");
        System.out.println(game.getState().toString());
-
+       System.out.println("> ");
        int answer=getInt();
            
         switch(answer){
@@ -136,8 +138,10 @@ public class IUTexto {
    }
    
    private void iuMachineGeneralAction(){
+       System.out.println(game.getGamedata()+"\n\n");
        System.out.println(game.getState().toString());
-
+       System.out.println("> ");
+       
        int answer=getInt();
        switch(answer){
            case 1:
@@ -160,6 +164,10 @@ public class IUTexto {
    }
    
    private void iuMachineEventRestricted(){
+       System.out.println(game.getGamedata()+"\n\n");
+       System.out.println(game.getState().toString());
+       System.out.println("> ");
+       
        int answer=getInt();
            
         switch(answer){
@@ -173,7 +181,10 @@ public class IUTexto {
    }
    
    private void iuMachineTunnelPt1(){
+       System.out.println(game.getGamedata()+"\n\n");
        System.out.println(game.getState().toString());
+       System.out.println("> ");
+       
        int answer=getInt();
        switch(answer){
            case 1:
@@ -197,11 +208,14 @@ public class IUTexto {
            case 7:
                game.moveBackward();
                break;
-               
         }
+       
    }
    private void iuMachineTunnelPt2(){
+       System.out.println(game.getGamedata()+"\n\n");
        System.out.println(game.getState().toString());
+       System.out.println("> ");
+       
        int answer=getInt();
        
        switch(answer){
@@ -230,7 +244,10 @@ public class IUTexto {
         }
    }
    private void iuMachineArcherAttack(){
+       System.out.println(game.getGamedata()+"\n\n");
        System.out.println(game.getState().toString());
+       System.out.println("> ");
+       
        int answer=getInt();
        
        game.trackSelection(answer);
@@ -238,27 +255,39 @@ public class IUTexto {
    }
     
    private void iuMachineCloseCombat(){
+       System.out.println(game.getGamedata()+"\n\n");
        System.out.println(game.getState().toString());
+       System.out.println("> ");
+       
        int answer=getInt();
 
        game.positionSelection(answer);
    }
    
    private void iuMachineBoilingWater(){
+       System.out.println(game.getGamedata()+"\n\n");
        System.out.println(game.getState().toString());
+       System.out.println("> ");
+       
        int answer=getInt();
 
        game.trackSelection(answer);
    }
    private void iuMachineExtraAction(){
+       System.out.println(game.getGamedata()+"\n\n");
        System.out.println(game.getState().toString());
+       System.out.println("> ");
+       
        int answer=getInt();
 
        game.statusSelection(getCharFromAnswer(answer));
    }
    
    private void iuMachineRally(){
+       System.out.println(game.getGamedata()+"\n\n");
        System.out.println(game.getState().toString());
+       System.out.println("> ");
+       
        int answer=getInt();
 
        game.extraMoral(getBooleanFromAnswer(answer));
