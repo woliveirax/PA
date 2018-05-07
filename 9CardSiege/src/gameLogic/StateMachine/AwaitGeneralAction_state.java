@@ -44,29 +44,19 @@ public class AwaitGeneralAction_state extends StateAdapter{
     
     @Override
     public IStates closeCombat2() {
-        //quando houverem 2 inimigos em close quarters remeter obrigatoriamente jogador para estado de closecombat2
-        //enquanto houverem 2 inimigos ficar sempre neste estado
-        //no terceiro inimigo chamar gameOver com string q perdeu
-        //Inibir eventos DRM
-        //baixar 1 d moral, caso saia 1 no dice
-        //TODO: remover closecombat 2 e meter a mudar d estado automaticamente
         return new CloseCombatTrackSelection_state(getGameData(),this);
     }
 
     @Override
     public IStates boilingWater() {
-        //verificar q existem inimigos na pos 1
-        //verificar q o boiling Water ainda n foi utilizado no turno
-        //caso saia 1 no dice, s n houver DRM q o aumentem, moral -1
-        //meter flag indicadora de utilização do ataque e na mudança de turno remover
-        if(getGameData().isAnyEnemyIn(1).size() > 0)
+        if(getGameData().isAnyEnemyIn(1).size() > 0 && !getGameData().isBoillingWaterUsed())
             return new BoilingAttackTrackSelection_state(getGameData(),this);
         
         return this;
     }
 
     @Override
-    public IStates rally(boolean ReduceSupplies) {
+    public IStates rally() {
         //caso supplies >= 1,  pode-se baixar 1 p obter +1 DRM
         return new RallySelection_state(getGameData(),this); 
     }

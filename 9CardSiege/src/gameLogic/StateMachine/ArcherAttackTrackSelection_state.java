@@ -9,6 +9,33 @@ public class ArcherAttackTrackSelection_state extends StateAdapter{
     }
 
     @Override
+    public IStates trackSelection(int track) {
+        GameData data = getGameData();
+        
+        switch (track){
+            case 1:
+                if(data.diceRoll(data.getDRMAttackLadders()) > 2)
+                    data.enemyLadderRetreat();
+                break;
+                
+            case 2:
+                if(data.diceRoll(data.getDRMAttackBatteringRam()) > 3)
+                    data.enemyBatteringRamRetreat();
+                break;
+                
+            case 3:
+                if(data.isTowerInGame())
+                    if(data.diceRoll(data.getDRMAttackSiegeTower()) > 4)
+                        data.enemyTowerRetreat();
+                break;
+        }
+        
+        data.reduceActionPoints();
+        
+        return getOldState();
+    }
+
+    @Override
     public IStates endOfAction() {
         return getOldState();
     }

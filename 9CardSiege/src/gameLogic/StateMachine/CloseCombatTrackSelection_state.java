@@ -5,7 +5,9 @@
  */
 package gameLogic.StateMachine;
 
+import gameLogic.Enemy;
 import gameLogic.GameData;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,6 +17,35 @@ public class CloseCombatTrackSelection_state extends StateAdapter{
 
     public CloseCombatTrackSelection_state(GameData gameData,IStates state) {
         super(gameData,state);
+    }
+
+    @Override
+    public IStates PositionSelection(int pos) {
+        ArrayList<Enemy> temp;
+        int res = 0;
+        
+        if((temp = getGameData().isAnyEnemyIn(0)).size() == 2)
+            if(pos == 1)
+            {
+                if((res = getGameData().diceRoll(getGameData().getDRMAttackCloseCombat())) > 4)
+                    temp.get(0).retreat();
+                else if(res == 1)
+                    getGameData().ReduceMorale();
+            }
+            else if(pos == 2)
+            {
+                if((res = getGameData().diceRoll(getGameData().getDRMAttackCloseCombat())) > 4)
+                    temp.get(1).retreat();
+                else if(res == 1)
+                    getGameData().ReduceMorale();
+            }
+        
+        if(getGameData().inTurn_LoseCondition())
+            return new AwaitRestart_state(getGameData(), false);
+        
+        getGameData().reduceActionPoints();
+        
+        return getOldState();
     }
     
     @Override

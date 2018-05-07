@@ -78,7 +78,11 @@ public class _StateMachine implements Serializable {
         if(gamedata.getActionPoints()==0)
             endOfTurn();
     };
-    public void extraMoral(){setState(state.extraMoral());};
+    
+    public void extraMoral(boolean extra){
+        setState(state.extraMoral(extra));
+    };
+    
     public void boilingWater(){
         setState(state.boilingWater());
         if(gamedata.getActionPoints()==0)

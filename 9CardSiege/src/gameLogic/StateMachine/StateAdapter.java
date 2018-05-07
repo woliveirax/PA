@@ -17,7 +17,21 @@ public class StateAdapter implements IStates, Serializable{
         this.gameData = gameData;
         this.oldState = oldState;
     }
+
+    @Override
+    public IStates PositionSelection(int pos) {
+        return this;
+    }
     
+    @Override
+    public IStates statusSelection(char stats) {
+        return this;
+    }
+    
+    @Override
+    public IStates trackSelection(int track) {
+        return this;
+    }
     
     @Override
     public IStates start(){

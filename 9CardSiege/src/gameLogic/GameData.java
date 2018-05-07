@@ -110,6 +110,11 @@ public class GameData implements Serializable{
         return deck.size();
     }
     
+    public void increaseActionPoints()
+    {
+        actionPoints++;
+    }
+    
     
     
    //#######################################################
@@ -408,6 +413,20 @@ public class GameData implements Serializable{
     //#######################################################
     //DRM functions
     //#######################################################
+    
+    public int getDRMBoillingWater(){
+        return 1;
+    }
+    
+    public int exchangeSuppliesForMorale()
+    {
+        if(castle.getSupplies() > 0)
+        {
+            castle.reduceSupplies();
+            return 1;
+        }
+        return 0;
+    }
     
     public int getDRMSabotage(){
         return currentCard.getSpecificDay(currentDay).getEvent().getDRMSabotage();
