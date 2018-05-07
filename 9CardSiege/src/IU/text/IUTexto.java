@@ -80,6 +80,8 @@ public class IUTexto {
    
   private void iuMachineAwaitTopCard(){
         System.out.println(game.getState().toString());
+        int answer = getInt();
+        game.drawCard();
    }
   
   private void iuMachineRestart(){
@@ -128,7 +130,7 @@ public class IUTexto {
                game.saveGame();
                break;
            case 9:
-               game.loadGamee();
+               game.loadGame();
                break;   
         }
    }
@@ -230,7 +232,7 @@ public class IUTexto {
    private void iuMachineArcherAttack(){
        System.out.println(game.getState().toString());
        int answer=getInt();
-
+       
        game.trackSelection(answer);
           
    }

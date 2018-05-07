@@ -108,6 +108,24 @@ public class _StateMachine implements Serializable {
             endOfTurn();
     };
     
+    public void trackSelection(int track){
+        setState(state.trackSelection(track));
+        if(gamedata.getActionPoints()==0)
+            endOfTurn();
+    }
+    
+    public void positionSelection(int pos){
+        setState(state.PositionSelection(pos));
+        if(gamedata.getActionPoints()==0)
+            endOfTurn();
+    }
+    
+    public void statusSelection(char choice){
+        setState(state.statusSelection(choice));
+        if(gamedata.getActionPoints()==0)
+            endOfTurn();
+    }
+    
     public void saveGame()
     {
         Typewriter save = new Typewriter();
