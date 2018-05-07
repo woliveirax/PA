@@ -1,6 +1,8 @@
 package gameLogic.StateMachine;
 
 import gameLogic.GameData;
+import gameLogic.Typewriter;
+import java.io.IOException;
 import java.io.Serializable;
 
 
@@ -107,6 +109,32 @@ public class _StateMachine implements Serializable {
         if(gamedata.getActionPoints()==0)
             endOfTurn();
     };
+    
+    public void saveGame()
+    {
+        Typewriter save = new Typewriter();
+        
+        try{
+            save.saveGame(this,System.getProperty("user.home") + "/Desktop/save");
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void loadGame()
+    {
+        Typewriter load = new Typewriter();
+        _StateMachine temp = new _StateMachine();
+        
+        try{
+            temp = load.loadGame(System.getProperty("user.home") + "/Desktop/save");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        gamedata = temp.getGamedata();
+        state = temp.getState();
+    }
     
     @Override
     public String toString() {
