@@ -68,7 +68,7 @@ public class AwaitEnemyLineAction_state extends AwaitGeneralAction_state{
     @Override
     public String toString() {
         return "Actions allowed:\n(1)Archer Attack\t(2)Boiling Attack\t(3)Status Reduction\t"+""
-                + "(4)Rally\t(5)Sabotage\t(6)Sabotage\t(7)Raid(8)EnterTunnel\n";
+                + "(4)Rally\t(5)Sabotage\t(6)Raid\t(7)EnterTunnel\n";
     }
 
 }

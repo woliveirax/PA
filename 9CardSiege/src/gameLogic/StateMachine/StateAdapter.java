@@ -128,5 +128,10 @@ public class StateAdapter implements IStates, Serializable{
         return gameData;
     }
     
-    
+    @Override
+    public IStates trackSelection(int track){return this;}
+    @Override
+    public IStates PositionSelection(int pos){return this;}
+    @Override
+    public IStates statusSelection(char stats){return this;}
 }
