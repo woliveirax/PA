@@ -140,7 +140,7 @@ public class IUTexto {
 
     private void iuMachineGeneralAction() {
         System.out.println(game.getGamedata() + "\n\n");
-        System.out.println(game.getState().toString());
+        System.out.println(game.getState().toString() + "\t(6)Save Game\t(7)Load Game");
         System.out.println("> ");
 
         int answer = getInt();
