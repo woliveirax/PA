@@ -6,9 +6,9 @@ import gameLogic.GameData;
  *
  * @author Olympus
  */
-public class Faith extends _Event{
+public class Faith_event extends _Event{
 
-    public Faith(GameData gameData) {
+    public Faith_event(GameData gameData) {
         super("Faith","+1 to attacks on the Battering Ram, Ladders, and Morale action", gameData);
     }
 
