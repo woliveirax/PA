@@ -62,6 +62,7 @@ public class Day implements Serializable{
     }
     
     private void moveSlowestEnemies(){
+        System.out.println("SLOWEST !!! : " + getSlowestEnemies() + "");
         for(Enemy each : getSlowestEnemies())
             each.advance();
     }

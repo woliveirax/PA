@@ -6,7 +6,7 @@ import gameLogic.Events.CoverOfDarkness_event;
 import gameLogic.Events.DeathOfALeader_event;
 import gameLogic.Events.DeterminedEnemy_events;
 import gameLogic.Events.EnemyFatigue_event;
-import gameLogic.Events.Faith;
+import gameLogic.Events.Faith_event;
 import gameLogic.Events.FlamingArrows_event;
 import gameLogic.Events.GateFortified_event;
 import gameLogic.Events.GuardsDistracted_event;
@@ -148,6 +148,7 @@ public class GameData implements Serializable{
         currentCard = deck.remove(0);
         if(deck.size() == 0)
             discardedCards.add(currentCard);
+        
         enemyLineCheck();
         applyCurrentDayEvent();
         applyCurrentDayEnemyMovement();
@@ -219,9 +220,6 @@ public class GameData implements Serializable{
 
     public void enemyEnterCloseCombatArea(Enemy enemy)
     {
-        if(closeCombatArea.contains(enemy))
-            return;
-        
         closeCombatArea.add(enemy);
     }
     
@@ -557,7 +555,7 @@ public class GameData implements Serializable{
         
         days[0] = new Day(1,2,new DeterminedEnemy_events(this),enemies.getEnemies(false, true, false),false);
         days[1] = new Day(2,2,new IronShields_events(this),enemies.getEnemies(true, false, false),false);
-        days[2] = new Day(3,3,new Faith(this),enemies.getEnemies(true, true, true),false);
+        days[2] = new Day(3,3,new Faith_event(this),enemies.getEnemies(true, true, true),false);
         
         Card card = new Card(7, days);
         deck.add(card);

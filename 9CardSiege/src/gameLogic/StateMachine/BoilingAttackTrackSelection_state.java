@@ -25,7 +25,10 @@ public class BoilingAttackTrackSelection_state extends StateAdapter{
         
         switch(track){
             case 1:
-                if(d.getLadderPosition() == 1)
+                if(d.getLadderPosition() != 1)
+                    return getOldState();
+                else
+                {
                     if((res = d.diceRoll(d.getDRMBoillingWater() + d.getDRMCircleSpaces() + d.getDRMAttackLadders())) > 2){
                         d.enemyLadderRetreat();
                         d.setBoillingWaterUsed(true);
@@ -34,11 +37,15 @@ public class BoilingAttackTrackSelection_state extends StateAdapter{
                     {
                         d.ReduceMorale();
                         d.setBoillingWaterUsed(true);
-                    }        
+                    }
+                }
                 break;
                 
             case 2:
-                if(d.getBatteringRamPosition() == 1)
+                if(d.getBatteringRamPosition() != 1)
+                    return getOldState();
+                else
+                {
                     if((res = d.diceRoll(d.getDRMBoillingWater() + d.getDRMCircleSpaces() + d.getDRMAttackBatteringRam())) > 3){
                         d.enemyBatteringRamRetreat();
                         d.setBoillingWaterUsed(true);
@@ -48,10 +55,17 @@ public class BoilingAttackTrackSelection_state extends StateAdapter{
                         d.ReduceMorale();
                         d.setBoillingWaterUsed(true);
                     }
+                }
                 break;
                 
             case 3:
-                if(d.getTowerPosition() == 1)
+                if(!d.isTowerInGame())
+                    return getOldState();
+                
+                if(d.getTowerPosition() != 1)
+                    return getOldState();
+                else
+                {
                     if((res = d.diceRoll(d.getDRMBoillingWater() + d.getDRMCircleSpaces() + d.getDRMAttackSiegeTower())) > 4){
                         d.enemyTowerRetreat();
                         d.setBoillingWaterUsed(true);
@@ -61,6 +75,8 @@ public class BoilingAttackTrackSelection_state extends StateAdapter{
                         d.ReduceMorale();
                         d.setBoillingWaterUsed(true);
                     }
+                }
+                
                 break;
         }
         

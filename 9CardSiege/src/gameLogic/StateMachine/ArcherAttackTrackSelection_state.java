@@ -25,10 +25,16 @@ public class ArcherAttackTrackSelection_state extends StateAdapter{
                 
             case 3:
                 if(data.isTowerInGame())
+                {
                     if(data.diceRoll(data.getDRMAttackSiegeTower()) > 4)
                         data.enemyTowerRetreat();
+                }
+                else
+                    return getOldState();
+                
                 break;
         }
+        
         
         data.reduceActionPoints();
         

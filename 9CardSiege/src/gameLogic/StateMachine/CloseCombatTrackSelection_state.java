@@ -21,24 +21,22 @@ public class CloseCombatTrackSelection_state extends StateAdapter{
 
     @Override
     public IStates PositionSelection(int pos) {
-        ArrayList<Enemy> temp;
         int res = 0;
         
-        if((temp = getGameData().isAnyEnemyIn(0)).size() == 2)
-            if(pos == 1)
-            {
-                if((res = getGameData().diceRoll(getGameData().getDRMAttackCloseCombat())) > 4)
-                    temp.get(0).retreat();
-                else if(res == 1)
-                    getGameData().ReduceMorale();
-            }
-            else if(pos == 2)
-            {
-                if((res = getGameData().diceRoll(getGameData().getDRMAttackCloseCombat())) > 4)
-                    temp.get(1).retreat();
-                else if(res == 1)
-                    getGameData().ReduceMorale();
-            }
+        if(pos == 1)
+        {
+            if((res = getGameData().diceRoll(getGameData().getDRMAttackCloseCombat())) > 4)
+                getGameData().getCloseCombatArea().get(0).retreat();
+            else if(res == 1)
+                getGameData().ReduceMorale();
+        }
+        else if(pos == 2)
+        {
+            if((res = getGameData().diceRoll(getGameData().getDRMAttackCloseCombat())) > 4)
+                getGameData().getCloseCombatArea().get(1).retreat();
+            else if(res == 1)
+                getGameData().ReduceMorale();
+        }
         
         if(getGameData().inTurn_LoseCondition())
             return new AwaitRestart_state(getGameData(), false);
@@ -55,6 +53,6 @@ public class CloseCombatTrackSelection_state extends StateAdapter{
     
     @Override
     public String toString() {
-        return "Close Combat:\n\tTrack selection: (1)Left\t(2)Right\n";
+            return "Close Combat:\n\tTrack selection: (1)Left\t(2)Right";
     }
 }

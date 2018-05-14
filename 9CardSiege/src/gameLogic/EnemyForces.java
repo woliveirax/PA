@@ -18,7 +18,6 @@ public class EnemyForces implements Serializable {
     private Enemy batteringRam;
     private Enemy tower;
     private int trebuchets;
-    private ArrayList<Enemy> closeCombat;
     
     public EnemyForces(GameData data){
         ladder = new Enemy(data,2,"Ladder");
@@ -62,7 +61,9 @@ public class EnemyForces implements Serializable {
      
     //### Get positions functions
     public int getTowerPOS(){
-        return tower.getPos();
+        if(isTowerInGame())
+            return tower.getPos();
+        return -1;
     }
     
     public int getBatteringRamPOS(){
