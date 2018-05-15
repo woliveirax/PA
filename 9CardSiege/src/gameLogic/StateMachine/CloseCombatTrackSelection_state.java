@@ -41,6 +41,9 @@ public class CloseCombatTrackSelection_state extends StateAdapter{
         if(getGameData().inTurn_LoseCondition())
             return new AwaitRestart_state(getGameData(), false);
         
+        if(getGameData().getCloseCombatArea().size() == 2) //TODO: Fix in presentation
+            return this;
+        
         getGameData().reduceActionPoints();
         
         return getOldState();

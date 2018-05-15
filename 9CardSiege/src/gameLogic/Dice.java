@@ -30,6 +30,6 @@ public class Dice implements Serializable{
     }
     
     public int roll_dice(){
-        return number = (int) ((Math.random() * 6) + 1 );
+        return number = ((int) ((Math.random() * 6) + 1 ));
     }
 }

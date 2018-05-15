@@ -39,7 +39,13 @@ public class _StateMachine implements Serializable {
     public void drawCard(){setState(state.drawCard());};  
     public void endOfGame(){setState(state.endOfGame(true));};
     public void endOfAction(){setState(state.endOfAction());};
-    public void restart(){setState(state.restart());};
+    public void restart(){
+        //TODO: Fix Restart here
+        GameData new_game = new GameData();
+        gamedata = new_game;
+        state = new AwaitTopCard_state(new_game);
+        //setState(state.restart());
+    };
 //
 //Açoes escolhidas pelo jogador:    
     public void closeCombat1(){        

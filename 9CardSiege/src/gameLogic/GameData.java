@@ -472,13 +472,13 @@ public class GameData implements Serializable{
     //#######################################################
     
     private void createCards(){
-        card_1();
-        card_2();
+        //card_1();
+        //card_2();
         card_3();
         card_4();
-        card_5();
-        card_6();
-        card_7();
+        //card_5();
+        //card_6();
+        //card_7();
     }
     
     private void card_1(){

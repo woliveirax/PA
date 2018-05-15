@@ -44,6 +44,9 @@ public class AwaitRestrictedAction_state extends StateAdapter{
     public IStates sabotage() {
         int diceResult= getGameData().diceRoll(getGameData().getDRMSabotage());
         
+        if(getGameData().getActiveTrebuchets() == 0) //TODO: trebuchets verifications here
+            return this;
+        
         if (diceResult==1)
             getGameData().tunnelForcesCaptured();
         else if(diceResult==5||diceResult==6)
@@ -57,6 +60,28 @@ public class AwaitRestrictedAction_state extends StateAdapter{
         
         return this;
     }
+    
+    @Override
+    public IStates endOfTurn(IStates oldstate) {
+        //É sempre chamado pelas outras funções, quando AP == 0
+        
+        if(getGameData().endOfTurn_LoseCodition())
+            return new AwaitRestart_state(getGameData(),false);
+        
+        if(getGameData().getSizeOfDeck() == 0){
+            if(getGameData().getCurrentDay()==2)
+                return new AwaitRestart_state(getGameData(),true);
+
+            getGameData().endOfDay();
+        }
+        //restaurar dados antes de retirar nova carta
+        getGameData().setExtraActionUsed(false);
+        getGameData().setBoillingWaterUsed(false);
+        getGameData().setFreeTunnelMoveUsed(false);
+        //
+        return new AwaitTopCard_state(getGameData(),oldstate); 
+    }
+    
     
     @Override
     public String toString() {
