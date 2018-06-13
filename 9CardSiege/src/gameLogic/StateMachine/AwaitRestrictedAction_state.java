@@ -44,7 +44,7 @@ public class AwaitRestrictedAction_state extends StateAdapter{
     public IStates sabotage() {
         int diceResult= getGameData().diceRoll(getGameData().getDRMSabotage());
         
-        if(getGameData().getActiveTrebuchets() == 0) //TODO: trebuchets verifications here
+        if(getGameData().getActiveTrebuchets() == 0)
             return this;
         
         if (diceResult==1)
@@ -63,7 +63,6 @@ public class AwaitRestrictedAction_state extends StateAdapter{
     
     @Override
     public IStates endOfTurn(IStates oldstate) {
-        //É sempre chamado pelas outras funções, quando AP == 0
         
         if(getGameData().endOfTurn_LoseCodition())
             return new AwaitRestart_state(getGameData(),false);

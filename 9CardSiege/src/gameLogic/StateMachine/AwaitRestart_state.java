@@ -20,6 +20,7 @@ public class AwaitRestart_state extends StateAdapter{
 
     @Override
     public IStates restart() {
+        getGameData().initializeData();
         return new AwaitTopCard_state(new GameData());
     }
     

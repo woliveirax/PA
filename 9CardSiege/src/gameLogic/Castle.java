@@ -94,6 +94,8 @@ public class Castle implements Serializable{
                 supplies = 4;
             else
                 supplies += tunnelSupplies;
+        
+        tunnelSupplies = 0;
     }
     
     public void fastTravelToEnemyLines()

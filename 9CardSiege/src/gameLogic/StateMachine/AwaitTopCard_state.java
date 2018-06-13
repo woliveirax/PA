@@ -24,7 +24,7 @@ public class AwaitTopCard_state extends StateAdapter{
             return new CloseCombatTrackSelection_state(getGameData(), getOldState());
         }
         
-        if(getGameData().isActionRestricted()){ //TODO: Fix action restricted end of day
+        if(getGameData().isActionRestricted()){
             if(getOldState() instanceof AwaitEnemyLineAction_state)
                 return new AwaitRestrictedAction_state(getGameData());
             

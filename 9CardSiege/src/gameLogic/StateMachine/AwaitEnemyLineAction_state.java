@@ -44,7 +44,7 @@ public class AwaitEnemyLineAction_state extends AwaitGeneralAction_state{
     public IStates sabotage() {
         int diceResult= getGameData().diceRoll(getGameData().getDRMSabotage());
         
-        if(getGameData().getActiveTrebuchets() == 0) //TODO: trebuchets verifications here
+        if(getGameData().getActiveTrebuchets() == 0)
             return this;
         
         if (diceResult==1)

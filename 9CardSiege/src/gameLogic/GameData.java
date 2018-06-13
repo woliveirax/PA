@@ -43,6 +43,10 @@ public class GameData implements Serializable{
     
     
     public GameData (){
+        initializeData();
+    }
+    
+    public void initializeData(){
         currentDay = 0;
         currentCard = null;
         actionPoints = 0;
@@ -60,7 +64,6 @@ public class GameData implements Serializable{
         createCards();
         Collections.shuffle(deck);
     }
-    
     
     //#######################################################
     //Get Data functions
@@ -584,7 +587,7 @@ public class GameData implements Serializable{
         s += !boillingWaterUsed? "yes" : "no";
         s += "\nExtra action available:   ";
         s += !extraActionUsed? "yes" : "no";
-        s += "\nExtra action available:   ";
+        s += "\nFree Tunnel move available:   ";
         s += !freeTunnelMoveUsed? "yes" : "no";
         
         s += "\n\n";

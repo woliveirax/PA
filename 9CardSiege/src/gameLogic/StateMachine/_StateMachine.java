@@ -28,8 +28,9 @@ public class _StateMachine implements Serializable {
     
     public void setState(IStates state) { 
         this.state = state;
-    }    
-//Acoes q n implicam o jogador:
+    }
+    
+    //Acoes q n implicam o jogador:
     public void start(){
         if(state instanceof AwaitTopCard_state)
             setState(state.start());
@@ -40,14 +41,11 @@ public class _StateMachine implements Serializable {
     public void endOfGame(){setState(state.endOfGame(true));};
     public void endOfAction(){setState(state.endOfAction());};
     public void restart(){
-        //TODO: Fix Restart here
-        GameData new_game = new GameData();
-        gamedata = new_game;
-        state = new AwaitTopCard_state(new_game);
-        //setState(state.restart());
+        getGamedata().initializeData();
+        state = new AwaitTopCard_state(getGamedata());
     };
-//
-//Açoes escolhidas pelo jogador:    
+    
+    //Açoes escolhidas pelo jogador:    
     public void closeCombat1(){        
         setState(state.closeCombat1());
         if(gamedata.getActionPoints()==0)
