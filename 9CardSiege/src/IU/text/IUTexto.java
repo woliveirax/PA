@@ -87,7 +87,7 @@ public class IUTexto {
 
     private void iuMachineAwaitTopCard() {
         System.out.println(game.getState().toString());
-        System.out.println("> ");
+        System.out.print("\n> ");
         int answer = getInt();
         game.drawCard();
     }
@@ -110,7 +110,7 @@ public class IUTexto {
     private void iuMachineEnemyLine() {
         System.out.println(game.getGamedata() + "\n\n");
         System.out.println(game.getState().toString() + "\t(8)Exit");
-        System.out.println("> ");
+        System.out.print("\n> ");
         int answer = getInt();
 
         switch (answer) {
@@ -143,7 +143,7 @@ public class IUTexto {
     private void iuMachineGeneralAction() {
         System.out.println(game.getGamedata() + "\n\n");
         System.out.println(game.getState().toString() + "\t(6)Save Game\t(7)Load Game\t(8)Exit");
-        System.out.println("> ");
+        System.out.print("\n> ");
 
         int answer = getInt();
         switch (answer) {
@@ -178,7 +178,7 @@ public class IUTexto {
     private void iuMachineEventRestricted() {
         System.out.println(game.getGamedata() + "\n\n");
         System.out.println(game.getState().toString()+ "\t(3)Exit");
-        System.out.println("> ");
+        System.out.print("\n> ");
 
         int answer = getInt();
 
@@ -197,7 +197,7 @@ public class IUTexto {
     private void iuMachineTunnelPt1() {
         System.out.println(game.getGamedata() + "\n\n");
         System.out.println(game.getState().toString() + "\t(8)Exit");
-        System.out.println("> ");
+        System.out.print("\n> ");
 
         int answer = getInt();
         switch (answer) {
@@ -231,7 +231,7 @@ public class IUTexto {
     private void iuMachineTunnelPt2() {
         System.out.println(game.getGamedata() + "\n\n");
         System.out.println(game.getState().toString() + "\t(8)Exit");
-        System.out.println("> ");
+        System.out.print("\n> ");
 
         int answer = getInt();
 
@@ -265,7 +265,7 @@ public class IUTexto {
     private void iuMachineArcherAttack() {
         System.out.println(game.getGamedata() + "\n\n");
         System.out.println(game.getState().toString() + "\t(4)Exit");
-        System.out.println("> ");
+        System.out.print("\n> ");
 
         int answer = getInt();
         
@@ -278,7 +278,7 @@ public class IUTexto {
     private void iuMachineCloseCombat() {
         System.out.println(game.getGamedata() + "\n\n");
         System.out.println(game.getState().toString() + "\t(4)Exit");
-        System.out.println("> ");
+        System.out.print("\n> ");
 
         int answer = getInt();
         
@@ -291,7 +291,7 @@ public class IUTexto {
     private void iuMachineBoilingWater() {
         System.out.println(game.getGamedata() + "\n\n");
         System.out.println(game.getState().toString() + "\t(4)Exit");
-        System.out.println("> ");
+        System.out.print("\n> ");
 
         int answer = getInt();
 
@@ -304,7 +304,7 @@ public class IUTexto {
     private void iuMachineExtraAction() {
         System.out.println(game.getGamedata() + "\n\n");
         System.out.println(game.getState().toString() + "\t(3)Exit");
-        System.out.println("> ");
+        System.out.print("\n> ");
 
         int answer = getInt();
         
@@ -317,7 +317,7 @@ public class IUTexto {
     private void iuMachineRally() {
         System.out.println(game.getGamedata() + "\n\n");
         System.out.println(game.getState().toString() + "\t(3)Exit");
-        System.out.println("> ");
+        System.out.print("\n> ");
 
         int answer = getInt();
         

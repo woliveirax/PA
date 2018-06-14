@@ -2,10 +2,6 @@ package gameLogic.Events;
 
 import gameLogic.GameData;
 
-/**
- *
- * @author Olympus
- */
 public class Faith_event extends _Event{
 
     public Faith_event(GameData gameData) {

@@ -2,10 +2,7 @@ package gameLogic.Events;
 
 import gameLogic.GameData;
 
-/**
- *
- * @author Olympus
- */
+
 public class RepairedTrebuchet_event extends _Event{
 
     public RepairedTrebuchet_event(GameData gameData) {

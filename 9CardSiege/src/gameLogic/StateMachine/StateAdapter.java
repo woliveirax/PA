@@ -1,4 +1,3 @@
-
 package gameLogic.StateMachine;
 
 import gameLogic.GameData;

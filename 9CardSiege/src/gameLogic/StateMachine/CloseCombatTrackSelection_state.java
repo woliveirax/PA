@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gameLogic.StateMachine;
 
-import gameLogic.Enemy;
 import gameLogic.GameData;
-import java.util.ArrayList;
 
-/**
- *
- * @author Olympus
- */
+
 public class CloseCombatTrackSelection_state extends StateAdapter{
 
     public CloseCombatTrackSelection_state(GameData gameData,IStates state) {
