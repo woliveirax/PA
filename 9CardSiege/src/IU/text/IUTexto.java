@@ -14,6 +14,8 @@ import gameLogic.StateMachine.IStates;
 import gameLogic.StateMachine.RallySelection_state;
 import gameLogic.StateMachine.StatusReductionSelection_state;
 import gameLogic.StateMachine._StateMachine;
+import gameLogic.Typewriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class IUTexto {
@@ -23,6 +25,31 @@ public class IUTexto {
 
     public IUTexto(_StateMachine game) {
         this.game = game;
+    }
+    
+     public void saveGame()
+    {
+        Typewriter save = new Typewriter();
+        
+        try{
+            save.saveGame(game,System.getProperty("user.home") + "/Desktop/save");
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void loadGame()
+    {
+        Typewriter load = new Typewriter();
+        _StateMachine temp = new _StateMachine();
+        
+        try{
+            temp = load.loadGame(System.getProperty("user.home") + "/Desktop/save");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        game = temp;
     }
 
     public void run() {
@@ -164,11 +191,11 @@ public class IUTexto {
                 break;
                 
             case 6:
-                game.saveGame();
+                saveGame();
                 break;
                 
             case 7:
-                game.loadGame();
+                loadGame();
                 break;
             case 8:
                 sair = true;

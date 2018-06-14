@@ -130,32 +130,6 @@ public class _StateMachine implements Serializable {
             endOfTurn();
     }
     
-    public void saveGame()
-    {
-        Typewriter save = new Typewriter();
-        
-        try{
-            save.saveGame(this,System.getProperty("user.home") + "/Desktop/save");
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-    
-    public void loadGame()
-    {
-        Typewriter load = new Typewriter();
-        _StateMachine temp = new _StateMachine();
-        
-        try{
-            temp = load.loadGame(System.getProperty("user.home") + "/Desktop/save");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        
-        gamedata = temp.getGamedata();
-        state = temp.getState();
-    }
-    
     @Override
     public String toString() {
         String s = gamedata.toString();
