@@ -21,6 +21,10 @@ public class ObservableGame extends Observable{
         return game.getState();
     }
     
+    public _StateMachine getStateMachine(){
+        return game;
+    }
+    
     //Acoes q n implicam o jogador:
     public void start(){
         game.start();

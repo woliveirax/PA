@@ -14,7 +14,7 @@ import gameLogic.StateMachine.IStates;
 import gameLogic.StateMachine.RallySelection_state;
 import gameLogic.StateMachine.StatusReductionSelection_state;
 import gameLogic.StateMachine._StateMachine;
-import gameLogic.Typewriter;
+import FileManager.Typewriter;
 import java.io.IOException;
 import java.util.Scanner;
 
