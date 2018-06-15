@@ -1,8 +1,6 @@
 package gameLogic.StateMachine;
 
 import gameLogic.GameData;
-import gameLogic.Typewriter;
-import java.io.IOException;
 import java.io.Serializable;
 
 
