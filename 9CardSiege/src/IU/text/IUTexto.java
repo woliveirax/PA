@@ -142,7 +142,7 @@ public class IUTexto {
 
         switch (answer) {
             case 1:
-                game.archerAttack();
+                game.archerAttack(); 
                 break;
             case 2:
                 game.boilingWater();
