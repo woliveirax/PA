@@ -11,8 +11,13 @@ public class AwaitGeneralAction_state extends StateAdapter{
     
     @Override
     public String toString() {
-        return "Actions allowed:\n(1)Archer Attack\t(2)Boiling Attack\t(3)Status Reduction\t"+""
+        String str ="Actions allowed:\n(1)Archer Attack\t(2)Boiling Attack\t(3)Status Reduction\t"+""
                 + "(4)Rally\t(5)EnterTunnel";
+        
+        if(getGameData().getCloseCombatArea().size()==1)
+            str += "\t(6)Close Combat";
+        
+        return str;
     }
     
     
