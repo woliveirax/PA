@@ -9,7 +9,7 @@ public class AwaitEnemyLineAction_state extends AwaitGeneralAction_state{
     }
 
     @Override
-    public IStates raid() {
+    public IStates raid() {      
         switch (getGameData().diceRoll(getGameData().getDRMRaid())){
             case 1:
                 getGameData().tunnelForcesCaptured();
@@ -29,7 +29,7 @@ public class AwaitEnemyLineAction_state extends AwaitGeneralAction_state{
             
         }
         if(getGameData().inTurn_LoseCondition())
-            new AwaitRestart_state(getGameData(), false);
+            return new AwaitRestart_state(getGameData(), false);
         
         getGameData().reduceActionPoints();
         return this; 
@@ -48,7 +48,7 @@ public class AwaitEnemyLineAction_state extends AwaitGeneralAction_state{
             getGameData().destroyTrebuchets();
         
         if(getGameData().inTurn_LoseCondition())
-            new AwaitRestart_state(getGameData(), false);
+           return new AwaitRestart_state(getGameData(), false);
         
         getGameData().reduceActionPoints();
         
