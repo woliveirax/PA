@@ -6,7 +6,7 @@ import gameLogic.StateMachine._StateMachine;
 import java.util.Observable;
 
 public class ObservableGame extends Observable{
-    _StateMachine game = null;
+    private _StateMachine game = null;
 
     public ObservableGame(_StateMachine game) {
         this.game = game;

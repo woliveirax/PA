@@ -13,7 +13,7 @@ public class RallySelection_state extends StateAdapter{
 
     @Override
     public IStates extraMoral(boolean reduceSupplies) {
-        if(reduceSupplies)
+        if(reduceSupplies && getGameData().getSupplies() > 0)
         {
            getGameData().ReduceSupplies();
            num++;
