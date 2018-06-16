@@ -1,7 +1,6 @@
 package GUI.Views;
 
 import gameLogic.Model.ObservableGame;
-import gameLogic.StateMachine.ArcherAttackTrackSelection_state;
 import gameLogic.StateMachine.BoilingAttackTrackSelection_state;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,11 +9,11 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class TrackSelection_Panel extends JPanel implements Observer{
+public class BoilingWaterTrackSelection_Panel extends JPanel implements Observer{
     private ObservableGame observableGame;
     private JButton ladders, battering_ram, siege_tower;
     
-    public TrackSelection_Panel(ObservableGame observableGame) {
+    public BoilingWaterTrackSelection_Panel(ObservableGame observableGame) {
         
         this.observableGame = observableGame;
         this.observableGame.addObserver(this);
@@ -58,17 +57,14 @@ public class TrackSelection_Panel extends JPanel implements Observer{
     @Override
     public void update(Observable o,Object obj) {
         
-        ladders.setEnabled(observableGame.getGamedata().getLadderPosition()>0);
-        battering_ram.setEnabled(observableGame.getGamedata().getBatteringRamPosition()>0);
+        ladders.setEnabled(observableGame.getGamedata().getLadderPosition()==1);
+        battering_ram.setEnabled(observableGame.getGamedata().getBatteringRamPosition()==1);
+        siege_tower.setEnabled(observableGame.getGamedata().isTowerInGame() && 
+                observableGame.getGamedata().getTowerPosition()==1);
         
-        if(observableGame.getGamedata().isTowerInGame())
-            siege_tower.setEnabled(observableGame.getGamedata().getTowerPosition()>0);
-        else
-            siege_tower.setEnabled(false);
-        
-        setVisible((observableGame.getState() instanceof ArcherAttackTrackSelection_state) ||
-                (observableGame.getState() instanceof BoilingAttackTrackSelection_state));
+        setVisible(observableGame.getState() instanceof BoilingAttackTrackSelection_state);
     }
     
     
 }
+ 

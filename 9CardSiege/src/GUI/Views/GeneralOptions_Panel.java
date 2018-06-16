@@ -114,9 +114,7 @@ public class GeneralOptions_Panel extends JPanel implements Observer{
    @Override
    public void update(Observable o, Object bjo){
        boiling_attack.setEnabled(!observableGame.getGamedata().isBoillingWaterUsed() &&
-               (observableGame.getGamedata().getLadderPosition()==1 ||
-               observableGame.getGamedata().getBatteringRamPosition()==1 ||
-               observableGame.getGamedata().getTowerPosition()==1));
+               observableGame.getGamedata().isAnyEnemyIn(1).size()>0);
        close_combat.setEnabled(observableGame.getGamedata().getCloseCombatArea().size()==1);
        extra_action.setEnabled(!observableGame.getGamedata().isExtraActionUsed());
        
