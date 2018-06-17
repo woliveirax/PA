@@ -1,17 +1,17 @@
 package GUI;
 
 import GUI.Views.ArcherAttackTrackSelection_Panel;
-import GUI.Views.AwaitRestartPanel;
-import GUI.Views.AwaitRestrictedActionPanel;
-import GUI.Views.AwaitTopCardPanel;
+import GUI.Views.AwaitRestart_Panel;
+import GUI.Views.AwaitRestrictedAction_Panel;
+import GUI.Views.AwaitTopCard_Panel;
 import GUI.Views.BoilingWaterTrackSelection_Panel;
-import GUI.Views.CloseCombatTrackSelectionPanel;
+import GUI.Views.CloseCombatTrackSelection_Panel;
 import GUI.Views.EnemyLineOptions_Panel;
 import GUI.Views.GeneralOptions_Panel;
 import GUI.Views.Pt1TunnelOptions_Panel;
 import GUI.Views.Pt2TunnelOptions_Panel;
-import GUI.Views.RallySelectionPanel;
-import GUI.Views.StatusReductionSelectionPanel;
+import GUI.Views.RallySelection_Panel;
+import GUI.Views.StatusReductionSelection_Panel;
 import gameLogic.Model.ObservableGame;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -27,17 +27,17 @@ public class GamePanel extends JPanel implements Observer{
     
     //Menu Panels
     private ArcherAttackTrackSelection_Panel    archerPanel;
-    private AwaitRestartPanel                   restartPanel;
-    private AwaitRestrictedActionPanel          restrictedPanel;
-    private AwaitTopCardPanel                   drawCardPanel;
+    private AwaitRestart_Panel                   restartPanel;
+    private AwaitRestrictedAction_Panel          restrictedPanel;
+    private AwaitTopCard_Panel                   drawCardPanel;
     private BoilingWaterTrackSelection_Panel    boilingWaterPanel;
-    private CloseCombatTrackSelectionPanel      closeCombatTrackSelectionPanel;
+    private CloseCombatTrackSelection_Panel      closeCombatTrackSelectionPanel;
     private EnemyLineOptions_Panel              enemyLineOptPanel;
     private GeneralOptions_Panel                generalOptPanel;
     private Pt1TunnelOptions_Panel              tunnel_pt1_panel;
     private Pt2TunnelOptions_Panel              tunnel_pt2_panel;
-    private RallySelectionPanel                 rallyPanel;
-    private StatusReductionSelectionPanel       statusReductionPanel;
+    private RallySelection_Panel                 rallyPanel;
+    private StatusReductionSelection_Panel       statusReductionPanel;
     
     
     //Panels
@@ -63,17 +63,17 @@ public class GamePanel extends JPanel implements Observer{
     
     private void CreateMenuPanels(){
         archerPanel = new ArcherAttackTrackSelection_Panel(observable);
-        restartPanel = new AwaitRestartPanel(observable);
-        restrictedPanel = new AwaitRestrictedActionPanel(observable);
-        drawCardPanel = new AwaitTopCardPanel(observable);
+        restartPanel = new AwaitRestart_Panel(observable);
+        restrictedPanel = new AwaitRestrictedAction_Panel(observable);
+        drawCardPanel = new AwaitTopCard_Panel(observable);
         boilingWaterPanel = new BoilingWaterTrackSelection_Panel(observable);
-        closeCombatTrackSelectionPanel = new CloseCombatTrackSelectionPanel(observable);
+        closeCombatTrackSelectionPanel = new CloseCombatTrackSelection_Panel(observable);
         enemyLineOptPanel = new EnemyLineOptions_Panel(observable);
         generalOptPanel = new GeneralOptions_Panel(observable);
         tunnel_pt1_panel = new Pt1TunnelOptions_Panel(observable);
         tunnel_pt2_panel = new Pt2TunnelOptions_Panel(observable);
-        rallyPanel = new RallySelectionPanel(observable);
-        statusReductionPanel = new StatusReductionSelectionPanel(observable);
+        rallyPanel = new RallySelection_Panel(observable);
+        statusReductionPanel = new StatusReductionSelection_Panel(observable);
         
         panelBottom = new JPanel();
         panelBottom.add(archerPanel);        
