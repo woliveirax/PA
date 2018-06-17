@@ -28,9 +28,14 @@ public interface ImageConstants {
     public static final String path_background  = "Images/misc/background.jpg";
     
     //TOKENS
-    public static final String path_castleToken          = "Images/tokens/crown.png";
+    public static final String path_ladderToken    = "Images/tokens/ladder.png";
+    public static final String path_towerToken       = "Images/tokens/tower.png";
+    public static final String path_ramToken         = "Images/tokens/battering_ram.png";
+    public static final String path_trebuchetsToken     = "Images/tokens/trebuchet.png";
+    
+    public static final String path_suppliesToken       = "Images/tokens/supplies.png";
+    public static final String path_wallStrengthToken   = "Images/tokens/wall.png";
+    public static final String path_moraleToken         = "Images/tokens/crown.png";
     public static final String path_tunnelSuppliesToken = "Images/tokens/ham.png";
     public static final String path_tunnelPosToken      = "Images/tokens/horn.png";
-    public static final String path_enemyPosToken       = "Images/tokens/shield.png";
-    public static final String path_trebuchetsToken     = "Images/tokens/trebuchet.png";
 }

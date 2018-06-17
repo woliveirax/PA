@@ -35,10 +35,10 @@ public class Resources implements ImageConstants{
     private static List<Image> card_images = new ArrayList();
     private static List<Image> dice_faces = new ArrayList();
     private static Image background = null;
-    private static Image winPopUp, loosePopUp;
-    private static Image castleToken,tunnelSuppliesToken;
-    private static Image tunnelPosToken,trebuchetToken;
-    
+    private static Image winPopUp = null, loosePopUp = null;
+    private static Image ladderToken = null,towerToken = null, ramToken = null, trebuchetToken;
+    private static Image suppliesToken = null,wallStrengthToken = null,moraleToken = null;
+    private static Image tunnelPosToken = null,tunnelSuppliesToken = null;
     
     
     //Load Background
@@ -63,9 +63,15 @@ public class Resources implements ImageConstants{
     //Load Tokens
     static {
         try {
-            castleToken         = ImageIO.read(Resources.getResourceFile(path_castleToken));
+            suppliesToken       = ImageIO.read(Resources.getResourceFile(path_suppliesToken));
+            wallStrengthToken   = ImageIO.read(Resources.getResourceFile(path_wallStrengthToken));
+            moraleToken         = ImageIO.read(Resources.getResourceFile(path_moraleToken));
             tunnelSuppliesToken = ImageIO.read(Resources.getResourceFile(path_tunnelSuppliesToken));
             tunnelPosToken      = ImageIO.read(Resources.getResourceFile(path_tunnelPosToken));
+            
+            ladderToken         = ImageIO.read(Resources.getResourceFile(path_ladderToken));
+            towerToken          = ImageIO.read(Resources.getResourceFile(path_towerToken));
+            ramToken            = ImageIO.read(Resources.getResourceFile(path_ramToken));
             trebuchetToken      = ImageIO.read(Resources.getResourceFile(path_trebuchetsToken));
             
         } catch (IOException e) {
@@ -135,10 +141,30 @@ public class Resources implements ImageConstants{
         return loosePopUp;
     }
 
-    public static Image getCastleToken() {
-        return castleToken;
+    public static Image getLadderToken() {
+        return ladderToken;
     }
 
+    public static Image getTowerToken() {
+        return towerToken;
+    }
+
+    public static Image getRamToken() {
+        return ramToken;
+    }
+
+    public static Image getSuppliesToken() {
+        return suppliesToken;
+    }
+
+    public static Image getWallStrengthToken() {
+        return wallStrengthToken;
+    }
+
+    public static Image getMoraleToken() {
+        return moraleToken;
+    }
+    
     public static Image getTunnelSuppliesToken() {
         return tunnelSuppliesToken;
     }
