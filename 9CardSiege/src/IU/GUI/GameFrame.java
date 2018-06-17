@@ -1,8 +1,6 @@
-package GUI;
+package IU.GUI;
 
-import FileManager.Typewriter;
 import gameLogic.Model.ObservableGame;
-import gameLogic.StateMachine.IStates;
 import gameLogic.StateMachine._StateMachine;
 import FileManager.Typewriter;
 import java.awt.BorderLayout;

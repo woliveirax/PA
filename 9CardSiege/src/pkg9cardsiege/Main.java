@@ -1,6 +1,6 @@
 package pkg9cardsiege;
 
-import GUI.GameFrame;
+import IU.GUI.GameFrame;
 import IU.text.IUTexto;
 import gameLogic.Model.ObservableGame;
 import gameLogic.StateMachine._StateMachine;
