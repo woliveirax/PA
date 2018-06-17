@@ -29,11 +29,11 @@ public class GameFrame extends JFrame implements Observer{
     private GamePanel gamePanel;
     
     public GameFrame( ObservableGame j) {
-        this(j, 200,100, 500, 400);
+        this(j, 200,100, 1050, 600);
     }
 
     public GameFrame( ObservableGame j, int x, int y ) {
-        this(j, x,y, 500, 400);
+        this(j, x,y, 1050, 600);
     }
 
     public GameFrame(ObservableGame obs, int x, int y, int width, int height) {
