@@ -65,19 +65,25 @@ public class GameFrame extends JFrame implements Observer{
         JMenu gameMenu = new JMenu("Game");
         gameMenu.setMnemonic(KeyEvent.VK_G);
         
+        //Restart game Item
+        JMenuItem restartItem = new JMenuItem("Restart Game");
+        restartItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
+        
         //LOAD game Item
-        JMenuItem loadItem = new JMenuItem("Load");
+        JMenuItem loadItem = new JMenuItem("Load Game");
         loadItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
         
         //SAVE game Item
-        JMenuItem saveItem = new JMenuItem("Save");
+        JMenuItem saveItem = new JMenuItem("Save Game");
         saveItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
         
         //EXIT game Item
-        JMenuItem exitItem = new JMenuItem("Exit");
-        exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+        JMenuItem exitItem = new JMenuItem("Quit Game");
+        exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
         
         //Building up Game DropDown List
+        gameMenu.add(restartItem);
+        gameMenu.addSeparator();
         gameMenu.add(loadItem);
         gameMenu.add(saveItem);
         gameMenu.addSeparator();
@@ -85,6 +91,7 @@ public class GameFrame extends JFrame implements Observer{
         menuBar.add(gameMenu);
         
         //Assigning listeners to Each Drop down item
+        restartItem.addActionListener(new RestartGameListener());
         loadItem.addActionListener(new LoadGameListener());
         saveItem.addActionListener(new SaveGameListener());
         exitItem.addActionListener(new ExitListener());
@@ -114,8 +121,15 @@ public class GameFrame extends JFrame implements Observer{
 
     }
     
-    //TODO: add a new game menu item so the user can play a new game whenever
+    class RestartGameListener implements ActionListener {
 
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(JOptionPane.showConfirmDialog(GameFrame.this,"Are you sure you want to RESTART the game?","Restart?", JOptionPane.YES_NO_OPTION) == 0)
+                observable.restart();
+        }
+    }
+    
     class LoadGameListener implements ActionListener {
 
         @Override

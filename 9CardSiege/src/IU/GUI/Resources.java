@@ -23,8 +23,8 @@ public class Resources implements ImageConstants{
             dice_faces.add(ImageIO.read(Resources.getResourceFile(path_dice6)));
        
             } catch (IOException e) {
-            System.out.println("Error loading dice images");
-           }
+                System.out.println("Error loading dice images");
+            }
     }
         
     static {
@@ -41,8 +41,8 @@ public class Resources implements ImageConstants{
             card_images.add(ImageIO.read(Resources.getResourceFile(path_backCard)));                                                                                                                    
                        
             } catch (IOException e) {
-            System.out.println("Error loading card images");
-           }
+                System.out.println("Error loading card images");
+            }
     }
 
     public static List<Image> getCard_images() {
