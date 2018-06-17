@@ -1,4 +1,4 @@
-package GUI.Constants;
+package IU.GUI.Constants;
 
 public interface ImageConstants {
     

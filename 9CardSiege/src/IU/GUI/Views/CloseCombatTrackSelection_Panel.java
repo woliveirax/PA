@@ -1,4 +1,4 @@
-package GUI.Views;
+package IU.GUI.Views;
 
 import gameLogic.Model.ObservableGame;
 import gameLogic.StateMachine.CloseCombatTrackSelection_state;
