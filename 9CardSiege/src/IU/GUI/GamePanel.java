@@ -17,9 +17,12 @@ import IU.GUI.Views.StatusReductionSelection_Panel;
 import gameLogic.Model.ObservableGame;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JLabel;
@@ -30,21 +33,22 @@ public class GamePanel extends JPanel implements Observer{
     private ObservableGame observable;
     
     //Menu Panels
-    private ArcherAttackTrackSelection_Panel    archerPanel;
-    private AwaitRestart_Panel                   restartPanel;
-    private AwaitRestrictedAction_Panel          restrictedPanel;
-    private AwaitTopCard_Panel                   drawCardPanel;
-    private BoilingWaterTrackSelection_Panel    boilingWaterPanel;
-    private CloseCombatTrackSelection_Panel      closeCombatTrackSelectionPanel;
-    private EnemyLineOptions_Panel              enemyLineOptPanel;
-    private GeneralOptions_Panel                generalOptPanel;
-    private Pt1TunnelOptions_Panel              tunnel_pt1_panel;
-    private Pt2TunnelOptions_Panel              tunnel_pt2_panel;
-    private RallySelection_Panel                 rallyPanel;
-    private StatusReductionSelection_Panel       statusReductionPanel;
+    private ArcherAttackTrackSelection_Panel   archerPanel;
+    private AwaitRestart_Panel                 restartPanel;
+    private AwaitRestrictedAction_Panel        restrictedPanel;
+    private AwaitTopCard_Panel                 drawCardPanel;
+    private BoilingWaterTrackSelection_Panel   boilingWaterPanel;
+    private CloseCombatTrackSelection_Panel    closeCombatTrackSelectionPanel;
+    private EnemyLineOptions_Panel             enemyLineOptPanel;
+    private GeneralOptions_Panel               generalOptPanel;
+    private Pt1TunnelOptions_Panel             tunnel_pt1_panel;
+    private Pt2TunnelOptions_Panel             tunnel_pt2_panel;
+    private RallySelection_Panel               rallyPanel;
+    private StatusReductionSelection_Panel     statusReductionPanel;
     
     //Deck Panel
-    private Deck_Panel deckPanel;//ALTEREI
+    private Deck_Panel deckPanel;
+    
     //dice panel
     private DiceFaces_Panel dicePanel;
     
@@ -55,11 +59,11 @@ public class GamePanel extends JPanel implements Observer{
     private JPanel panelLeft;
     private JPanel panelRight;
     
-    
     //Labels info
     private JLabel days;
     private JLabel actionPoints;
     
+    private Image backgroundImage; 
     
     public GamePanel(ObservableGame observable){
         this.observable = observable;
@@ -70,18 +74,18 @@ public class GamePanel extends JPanel implements Observer{
     }
     
     private void CreateMenuPanels(){
-        archerPanel = new ArcherAttackTrackSelection_Panel(observable);
-        restartPanel = new AwaitRestart_Panel(observable);
-        restrictedPanel = new AwaitRestrictedAction_Panel(observable);
-        drawCardPanel = new AwaitTopCard_Panel(observable);
-        boilingWaterPanel = new BoilingWaterTrackSelection_Panel(observable);
-        closeCombatTrackSelectionPanel = new CloseCombatTrackSelection_Panel(observable);
-        enemyLineOptPanel = new EnemyLineOptions_Panel(observable);
-        generalOptPanel = new GeneralOptions_Panel(observable);
-        tunnel_pt1_panel = new Pt1TunnelOptions_Panel(observable);
-        tunnel_pt2_panel = new Pt2TunnelOptions_Panel(observable);
-        rallyPanel = new RallySelection_Panel(observable);
-        statusReductionPanel = new StatusReductionSelection_Panel(observable);
+        archerPanel                     = new ArcherAttackTrackSelection_Panel(observable);
+        restartPanel                    = new AwaitRestart_Panel(observable);
+        restrictedPanel                 = new AwaitRestrictedAction_Panel(observable);
+        drawCardPanel                   = new AwaitTopCard_Panel(observable);
+        boilingWaterPanel               = new BoilingWaterTrackSelection_Panel(observable);
+        closeCombatTrackSelectionPanel  = new CloseCombatTrackSelection_Panel(observable);
+        enemyLineOptPanel               = new EnemyLineOptions_Panel(observable);
+        generalOptPanel                 = new GeneralOptions_Panel(observable);
+        tunnel_pt1_panel                = new Pt1TunnelOptions_Panel(observable);
+        tunnel_pt2_panel                = new Pt2TunnelOptions_Panel(observable);
+        rallyPanel                      = new RallySelection_Panel(observable);
+        statusReductionPanel            = new StatusReductionSelection_Panel(observable);
         
         panelBottom = new JPanel();
         panelBottom.add(archerPanel);        
@@ -101,44 +105,54 @@ public class GamePanel extends JPanel implements Observer{
     private void CreateComponents(){
         panelCenter = new JPanel();
         
-        deckPanel = new Deck_Panel(observable);//ALTEREI
+        deckPanel = new Deck_Panel(observable);
         dicePanel = new DiceFaces_Panel(observable);
-        panelCenter.add(deckPanel);//ALTEREI
+        panelCenter.add(deckPanel);
         panelCenter.add(dicePanel);
         
         //falta criar views de cada carta de status
-        //Criar view para baralho
         //Criar view para dado
         //Criar View para Carta atual
     }
     
     private void CreateTopInfo(){
-        //TODO: make this bold and with more spacing in between
+       Dimension d = new Dimension(150,20);
         days = new JLabel("Days: n/d");
         days.setFont(new Font("Arial", Font.BOLD, 18));
         days.setAlignmentX(Component.CENTER_ALIGNMENT);
+        days.setMaximumSize(d);
+        days.setPreferredSize(d);
+        days.setMinimumSize(d);
         
+        
+        d = new Dimension(200,20);
         actionPoints = new JLabel("Action Points: n/d");
         actionPoints.setFont(new Font("Arial", Font.BOLD, 18));
         actionPoints.setAlignmentX(Component.CENTER_ALIGNMENT);
+        actionPoints.setMaximumSize(d);
+        actionPoints.setMinimumSize(d);
+        actionPoints.setPreferredSize(d);
         
         panelTop = new JPanel();
         panelTop.add(days);
         panelTop.add(actionPoints);
+        panelTop.setOpaque(true);
     }
     
     private void SetupComponents(){
+        backgroundImage = Resources.getBackground();
+        
         CreateMenuPanels();
         CreateTopInfo();
         CreateComponents();
     }
     
+    
     private void SetupLayout(){
-        
         setLayout(new BorderLayout());        
         add(panelTop, BorderLayout.NORTH);        
         add(panelBottom,BorderLayout.SOUTH);
-        add(panelCenter,BorderLayout.WEST);//ALTEREI
+        add(panelCenter,BorderLayout.WEST);
     }
 
     @Override
@@ -149,4 +163,10 @@ public class GamePanel extends JPanel implements Observer{
         days.setText("Days: " + day);
         actionPoints.setText("Action Points: " + ap);
     }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        g.drawImage(backgroundImage,0,0,this.getWidth(), this.getHeight(),this);
+    }
+    
 }
