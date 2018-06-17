@@ -3,12 +3,12 @@ package IU.GUI.Constants;
 public interface ImageConstants {
     
     //DICE
-    public static final String path_dice1 = "Images/dice/dice1.jpg";
-    public static final String path_dice2 = "Images/dice/dice2.jpg";
-    public static final String path_dice3 = "Images/dice/dice3.jpg";
-    public static final String path_dice4 = "Images/dice/dice4.jpg";
-    public static final String path_dice5 = "Images/dice/dice5.jpg";
-    public static final String path_dice6 = "Images/dice/dice6.jpg";
+    public static final String path_dice1 = "Images/dice/dice1.png";
+    public static final String path_dice2 = "Images/dice/dice2.png";
+    public static final String path_dice3 = "Images/dice/dice3.png";
+    public static final String path_dice4 = "Images/dice/dice4.png";
+    public static final String path_dice5 = "Images/dice/dice5.png";
+    public static final String path_dice6 = "Images/dice/dice6.png";
     
     //CARDS
     public static final String path_card1       = "Images/cards/Card1.jpg";

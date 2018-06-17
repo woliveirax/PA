@@ -12,8 +12,8 @@ public class Resources implements ImageConstants{
     
     private static List<Image> card_images = new ArrayList();
     private static List<Image> dice_faces = new ArrayList();
-
-     static {
+        
+    static {
         try {
             dice_faces.add(ImageIO.read(Resources.getResourceFile(path_dice1)));
             dice_faces.add(ImageIO.read(Resources.getResourceFile(path_dice2)));
@@ -21,14 +21,6 @@ public class Resources implements ImageConstants{
             dice_faces.add(ImageIO.read(Resources.getResourceFile(path_dice4)));
             dice_faces.add(ImageIO.read(Resources.getResourceFile(path_dice5)));
             dice_faces.add(ImageIO.read(Resources.getResourceFile(path_dice6)));
-       
-            } catch (IOException e) {
-                System.out.println("Error loading dice images");
-            }
-    }
-        
-    static {
-        try {
             card_images.add(ImageIO.read(Resources.getResourceFile(path_card1)));
             card_images.add(ImageIO.read(Resources.getResourceFile(path_card2)));                                                                                                                    
             card_images.add(ImageIO.read(Resources.getResourceFile(path_card3)));                                                                                                                    

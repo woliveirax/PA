@@ -217,7 +217,9 @@ public class GameData implements Serializable{
         return dice.roll_dice(DRM);
     }
     
-    
+    public int getDiceNumber() {
+        return dice.getNumber();
+    }
     //#######################################################
     //Enemy functions
     //#######################################################

@@ -3,7 +3,7 @@ import java.io.Serializable;
 
 public class Dice implements Serializable{
     
-    private int number;
+    private int number = 1;
 
     public int getNumber() {
         return number;

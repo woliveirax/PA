@@ -6,6 +6,8 @@ import IU.GUI.Views.AwaitRestrictedAction_Panel;
 import IU.GUI.Views.AwaitTopCard_Panel;
 import IU.GUI.Views.BoilingWaterTrackSelection_Panel;
 import IU.GUI.Views.CloseCombatTrackSelection_Panel;
+import IU.GUI.Views.Deck_Panel;
+import IU.GUI.Views.DiceFaces_Panel;
 import IU.GUI.Views.EnemyLineOptions_Panel;
 import IU.GUI.Views.GeneralOptions_Panel;
 import IU.GUI.Views.Pt1TunnelOptions_Panel;
@@ -15,7 +17,9 @@ import IU.GUI.Views.StatusReductionSelection_Panel;
 import gameLogic.Model.ObservableGame;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JLabel;
@@ -39,6 +43,10 @@ public class GamePanel extends JPanel implements Observer{
     private RallySelection_Panel                 rallyPanel;
     private StatusReductionSelection_Panel       statusReductionPanel;
     
+    //Deck Panel
+    private Deck_Panel deckPanel;//ALTEREI
+    //dice panel
+    private DiceFaces_Panel dicePanel;
     
     //Panels
     private JPanel panelCenter;
@@ -91,6 +99,13 @@ public class GamePanel extends JPanel implements Observer{
     }
     
     private void CreateComponents(){
+        panelCenter = new JPanel();
+        
+        deckPanel = new Deck_Panel(observable);//ALTEREI
+        dicePanel = new DiceFaces_Panel(observable);
+        panelCenter.add(deckPanel);//ALTEREI
+        panelCenter.add(dicePanel);
+        
         //falta criar views de cada carta de status
         //Criar view para baralho
         //Criar view para dado
@@ -115,6 +130,7 @@ public class GamePanel extends JPanel implements Observer{
     private void SetupComponents(){
         CreateMenuPanels();
         CreateTopInfo();
+        CreateComponents();
     }
     
     private void SetupLayout(){
@@ -122,6 +138,7 @@ public class GamePanel extends JPanel implements Observer{
         setLayout(new BorderLayout());        
         add(panelTop, BorderLayout.NORTH);        
         add(panelBottom,BorderLayout.SOUTH);
+        add(panelCenter,BorderLayout.WEST);//ALTEREI
     }
 
     @Override
