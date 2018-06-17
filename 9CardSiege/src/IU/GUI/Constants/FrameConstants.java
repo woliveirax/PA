@@ -18,5 +18,8 @@ public interface FrameConstants {
 //Gamedata to string sizes:
     public static final int DIM_FRAME_TOSTRING_X = 450;
     public static final int DIM_FRAME_TOSTRING_Y = 180;
-    
+
+//board panel dimensions
+    public static final int DIM_BOARD_PANEL_X=400;
+    public static final int DIM_BOARD_PANEL_Y=650;
 }
