@@ -25,10 +25,10 @@ public interface ImageConstants {
     //MISC
     public static final String path_winPopUp    = "Images/misc/WinPopUp.png";
     public static final String path_loosePopUp  = "Images/misc/LoosePopUp.png";
-    public static final String path_background  = "Images/misc/background.png";
+    public static final String path_background  = "Images/misc/background.jpg";
     
     //TOKENS
-    public static final String path_catleToken          = "Images/tokens/crown.png";
+    public static final String path_castleToken          = "Images/tokens/crown.png";
     public static final String path_tunnelSuppliesToken = "Images/tokens/ham.png";
     public static final String path_tunnelPosToken      = "Images/tokens/horn.png";
     public static final String path_enemyPosToken       = "Images/tokens/shield.png";

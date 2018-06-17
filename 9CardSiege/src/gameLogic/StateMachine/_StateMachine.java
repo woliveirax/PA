@@ -38,6 +38,7 @@ public class _StateMachine implements Serializable {
     public void drawCard(){setState(state.drawCard());};  
     public void endOfGame(){setState(state.endOfGame(true));};
     public void endOfAction(){setState(state.endOfAction());};
+    
     public void restart(){
         getGamedata().initializeData();
         state = new AwaitTopCard_state(getGamedata());
@@ -72,24 +73,31 @@ public class _StateMachine implements Serializable {
         if(gamedata.getActionPoints()==0)
             endOfTurn();
     };
+    
     public void extraAction(){
         setState(state.extraAction());
         if(gamedata.getActionPoints()==0)
             endOfTurn();
     };
+    
     public void rally(){
         setState(state.rally());
         if(gamedata.getActionPoints()==0)
             endOfTurn();
     };
+    
     public void extraMoral(boolean reduceSupplies){
         setState(state.extraMoral(reduceSupplies));
+        if(gamedata.getActionPoints()==0)
+            endOfTurn();
     };
+    
     public void boilingWater(){
         setState(state.boilingWater());
         if(gamedata.getActionPoints()==0)
             endOfTurn();
     };
+    
     public void closeCombat2(){
         setState(state.closeCombat2());
         if(gamedata.getActionPoints()==0)
@@ -101,6 +109,7 @@ public class _StateMachine implements Serializable {
         if(gamedata.getActionPoints()==0)
             endOfTurn();
     };
+    
     public void moveForward(){setState(state.moveForward()); };
     public void moveBackward(){setState(state.moveBackward()); };
     

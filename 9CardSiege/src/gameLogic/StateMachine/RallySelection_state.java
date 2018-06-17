@@ -27,7 +27,8 @@ public class RallySelection_state extends StateAdapter{
         if(getGameData().inTurn_LoseCondition())
             return new AwaitRestart_state(getGameData(), false);
         
-        return endOfAction();
+               
+        return getOldState();
     }
     
     @Override

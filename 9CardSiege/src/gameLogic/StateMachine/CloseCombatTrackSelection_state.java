@@ -29,13 +29,13 @@ public class CloseCombatTrackSelection_state extends StateAdapter{
                 getGameData().ReduceMorale();
         }
         
+        getGameData().reduceActionPoints();
+        
         if(getGameData().inTurn_LoseCondition())
             return new AwaitRestart_state(getGameData(), false);
         
-        if(getGameData().getCloseCombatArea().size() == 2)
+        if(getGameData().getCloseCombatArea().size() == 2 && getGameData().getActionPoints() > 0)
             return this;
-        
-        getGameData().reduceActionPoints();
         
         return getOldState();
     }
