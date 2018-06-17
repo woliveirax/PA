@@ -14,4 +14,9 @@ public interface FrameConstants {
 //diceframes max sizes:
     public static final int DIM_FRAME_DICE_X = 80;
     public static final int DIM_FRAME_DICE_Y = 80;
+    
+//Gamedata to string sizes:
+    public static final int DIM_FRAME_TOSTRING_X = 450;
+    public static final int DIM_FRAME_TOSTRING_Y = 180;
+    
 }
