@@ -5,6 +5,7 @@ import gameLogic.Model.ObservableGame;
 import gameLogic.StateMachine.IStates;
 import gameLogic.StateMachine._StateMachine;
 import FileManager.Typewriter;
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -45,11 +46,10 @@ public class GameFrame extends JFrame implements Observer{
         Container cp = getContentPane();
 
         createBarMenus();
+        gamePanel = new GamePanel(observable);
+        cp.add(gamePanel,BorderLayout.CENTER);
         
-        //TODO: Remove
-        //blackAndWhitePanel = new BlackAndWhitePanel(observableGame);
-        //cp.add(blackAndWhitePanel, BorderLayout.CENTER);
-
+        
         setLocation(x, y);
         setSize(width,height);
         setMinimumSize(new Dimension(width,height));

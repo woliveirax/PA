@@ -141,6 +141,7 @@ public class Pt1TunnelOptions_Panel extends JPanel implements Observer{
        close_combat.setEnabled(observableGame.getGamedata().getCloseCombatArea().size()==1);
        extra_action.setEnabled(!observableGame.getGamedata().isExtraActionUsed());
        move_pt2.setEnabled(!observableGame.getGamedata().isFreeTunnelMoveUsed());
+       exit_tunnel.setEnabled(!observableGame.getGamedata().isFreeTunnelMoveUsed());
        
        setVisible(observableGame.getState() instanceof AwaitPt1TunnelAction_state);
    }

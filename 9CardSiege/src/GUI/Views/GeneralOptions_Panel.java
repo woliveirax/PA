@@ -118,7 +118,7 @@ public class GeneralOptions_Panel extends JPanel implements Observer{
        close_combat.setEnabled(observableGame.getGamedata().getCloseCombatArea().size()==1);
        extra_action.setEnabled(!observableGame.getGamedata().isExtraActionUsed());
        
-       setVisible(observableGame.getClass().equals(AwaitGeneralAction_state.class));
+       setVisible(observableGame.getState().getClass() == AwaitGeneralAction_state.class);
    }
     
 }

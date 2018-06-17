@@ -23,8 +23,12 @@ public class AwaitPt1TunnelAction_state extends AwaitGeneralAction_state{
     @Override
     public IStates moveBackward() {
         
-        getGameData().moveSoldiersTorwardsCastle();
-        return new AwaitGeneralAction_state(getGameData());
+        if(!getGameData().isFreeTunnelMoveUsed()){
+            getGameData().moveSoldiersTorwardsCastle();
+            getGameData().setFreeTunnelMoveUsed(true);
+            return new AwaitGeneralAction_state(getGameData());
+        }
+        return this;
     }
 
     @Override

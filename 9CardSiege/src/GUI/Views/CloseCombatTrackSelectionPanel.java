@@ -21,8 +21,8 @@ public class CloseCombatTrackSelectionPanel extends JPanel implements Observer {
         
         setOpaque(false);
         
-        enemy1 = new JButton(this.observable.getGamedata().getCloseCombatArea().get(0).toString());
-        enemy2 = new JButton(this.observable.getGamedata().getCloseCombatArea().get(1).toString());
+        enemy1 = new JButton("n.d.");
+        enemy2 = new JButton("n.d.");
         
         add(enemy1);
         add(enemy2);
@@ -35,6 +35,11 @@ public class CloseCombatTrackSelectionPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        if(this.observable.getGamedata().getCloseCombatArea().size() == 2)
+        {
+            enemy1.setText(this.observable.getGamedata().getCloseCombatArea().get(0).toString());
+            enemy2.setText(this.observable.getGamedata().getCloseCombatArea().get(1).toString());
+        }
         setVisible(observable.getState() instanceof CloseCombatTrackSelection_state);
     }
     
