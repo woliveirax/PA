@@ -1,4 +1,4 @@
-package GUI.Constants;
+package IU.GUI.Constants;
 
 public interface FrameConstants {
     public static final int POS_FRAME_X = 300;
