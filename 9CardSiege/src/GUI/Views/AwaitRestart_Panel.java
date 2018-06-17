@@ -10,12 +10,12 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class AwaitRestartPanel extends JPanel implements Observer {
+public class AwaitRestart_Panel extends JPanel implements Observer {
     
     private ObservableGame observable;
     private JButton restart, leave;
 
-    public AwaitRestartPanel(ObservableGame observable) {
+    public AwaitRestart_Panel(ObservableGame observable) {
         this.observable = observable;
         observable.addObserver(this);
         
@@ -50,7 +50,7 @@ public class AwaitRestartPanel extends JPanel implements Observer {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if( JOptionPane.showConfirmDialog(AwaitRestartPanel.this, "Do you realy want to LEAVE the game?", "Leave?", JOptionPane.YES_NO_OPTION) == 0)
+            if( JOptionPane.showConfirmDialog(AwaitRestart_Panel.this, "Do you realy want to LEAVE the game?", "Leave?", JOptionPane.YES_NO_OPTION) == 0)
             {
                 System.exit(0);
             }

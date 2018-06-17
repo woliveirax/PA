@@ -1,5 +1,5 @@
 package GUI;
-
+//TODO: change imgs paths
 public interface ImageConstants {
     String path_dice1="cardImages/dice1.jpg";
     String path_dice2="cardImages/dice2.jpg";

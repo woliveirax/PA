@@ -9,12 +9,12 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class AwaitTopCardPanel extends JPanel implements Observer {
+public class AwaitTopCard_Panel extends JPanel implements Observer {
     
     private ObservableGame observable;
     private JButton drawCard;
 
-    public AwaitTopCardPanel(ObservableGame observable) {
+    public AwaitTopCard_Panel(ObservableGame observable) {
         this.observable = observable;
         observable.addObserver(this);
         

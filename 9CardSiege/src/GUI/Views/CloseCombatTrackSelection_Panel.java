@@ -9,13 +9,13 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class CloseCombatTrackSelectionPanel extends JPanel implements Observer {
+public class CloseCombatTrackSelection_Panel extends JPanel implements Observer {
     
     private ObservableGame observable;
     private JButton enemy1, enemy2;
     
     
-    public CloseCombatTrackSelectionPanel(ObservableGame observable) {
+    public CloseCombatTrackSelection_Panel(ObservableGame observable) {
         this.observable = observable;
         observable.addObserver(this);
         

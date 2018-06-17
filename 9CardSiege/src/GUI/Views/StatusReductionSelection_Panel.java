@@ -11,13 +11,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class StatusReductionSelectionPanel extends JPanel implements Observer {
+public class StatusReductionSelection_Panel extends JPanel implements Observer {
     
     private ObservableGame observable;
     private JButton morale, supplies;
     private JLabel desc;
 
-    public StatusReductionSelectionPanel(ObservableGame observable) {
+    public StatusReductionSelection_Panel(ObservableGame observable) {
         this.observable = observable;
         observable.addObserver(this);
         

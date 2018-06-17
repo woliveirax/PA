@@ -9,12 +9,12 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class AwaitRestrictedActionPanel extends JPanel implements Observer {
+public class AwaitRestrictedAction_Panel extends JPanel implements Observer {
     
     private ObservableGame observable;
     private JButton sabotage, raid;
 
-    public AwaitRestrictedActionPanel(ObservableGame observable) {
+    public AwaitRestrictedAction_Panel(ObservableGame observable) {
         this.observable = observable;
         observable.addObserver(this);
         

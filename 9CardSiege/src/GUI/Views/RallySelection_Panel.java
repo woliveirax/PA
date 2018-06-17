@@ -10,12 +10,12 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class RallySelectionPanel extends JPanel implements Observer {
+public class RallySelection_Panel extends JPanel implements Observer {
     
     private ObservableGame observable;
     private JButton normalRoll, rollWithExtraDRM;
 
-    public RallySelectionPanel(ObservableGame observable) {
+    public RallySelection_Panel(ObservableGame observable) {
         this.observable = observable;
         observable.addObserver(this);
         
