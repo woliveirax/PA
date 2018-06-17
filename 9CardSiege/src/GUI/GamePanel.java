@@ -98,12 +98,13 @@ public class GamePanel extends JPanel implements Observer{
     }
     
     private void CreateTopInfo(){
+        //TODO: make this bold and with more spacing in between
         days = new JLabel("Days: n/d");
-        days.setFont(new Font("Arial", Font.ITALIC, 12));
+        days.setFont(new Font("Arial", Font.BOLD, 18));
         days.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         actionPoints = new JLabel("Action Points: n/d");
-        actionPoints.setFont(new Font("Arial", Font.ITALIC, 12));
+        actionPoints.setFont(new Font("Arial", Font.BOLD, 18));
         actionPoints.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         panelTop = new JPanel();

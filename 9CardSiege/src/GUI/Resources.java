@@ -1,5 +1,6 @@
 package GUI;
 
+import GUI.Constants.ImageConstants;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
