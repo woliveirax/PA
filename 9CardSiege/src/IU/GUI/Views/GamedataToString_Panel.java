@@ -8,7 +8,6 @@ import java.awt.Dimension;
 import java.awt.TextArea;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class GamedataToString_Panel extends JPanel implements Observer, ImageConstants,FrameConstants {

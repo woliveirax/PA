@@ -33,7 +33,6 @@ public class AwaitPt1TunnelAction_state extends AwaitGeneralAction_state{
 
     @Override
     public IStates fastTravel() {
-        //to enemy line
         getGameData().fastTravelToEnemyLines();
         getGameData().reduceActionPoints();
 

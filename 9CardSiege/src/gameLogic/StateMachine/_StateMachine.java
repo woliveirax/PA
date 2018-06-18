@@ -82,8 +82,8 @@ public class _StateMachine implements Serializable {
     
     public void rally(){
         setState(state.rally());
-        if(gamedata.getActionPoints()==0)
-            endOfTurn();
+//        if(gamedata.getActionPoints()==0)
+//            endOfTurn();
     };
     
     public void extraMoral(boolean reduceSupplies){

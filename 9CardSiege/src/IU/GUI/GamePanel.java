@@ -1,20 +1,22 @@
 package IU.GUI;
 
+import gameLogic.Model.ObservableGame;
 import IU.GUI.Views.ArcherAttackTrackSelection_Panel;
 import IU.GUI.Views.AwaitRestart_Panel;
 import IU.GUI.Views.AwaitRestrictedAction_Panel;
 import IU.GUI.Views.AwaitTopCard_Panel;
 import IU.GUI.Views.BoilingWaterTrackSelection_Panel;
+import IU.GUI.Views.CastleBoardPanel;
 import IU.GUI.Views.CloseCombatTrackSelection_Panel;
 import IU.GUI.Views.Deck_Panel;
 import IU.GUI.Views.DiceFaces_Panel;
 import IU.GUI.Views.EnemyLineOptions_Panel;
+import IU.GUI.Views.GamedataToString_Panel;
 import IU.GUI.Views.GeneralOptions_Panel;
 import IU.GUI.Views.Pt1TunnelOptions_Panel;
 import IU.GUI.Views.Pt2TunnelOptions_Panel;
 import IU.GUI.Views.RallySelection_Panel;
 import IU.GUI.Views.StatusReductionSelection_Panel;
-import gameLogic.Model.ObservableGame;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -110,6 +112,10 @@ public class GamePanel extends JPanel implements Observer{
         panelCenter.add(deckPanel);
         panelCenter.add(dicePanel);
         
+        
+        panelRight = new JPanel();
+        panelRight.setOpaque(false);
+        panelRight.add(new CastleBoardPanel(observable));
         //falta criar views de cada carta de status
         //Criar view para dado
         //Criar View para Carta atual
@@ -153,6 +159,8 @@ public class GamePanel extends JPanel implements Observer{
         add(panelTop, BorderLayout.NORTH);        
         add(panelBottom,BorderLayout.SOUTH);
         add(panelCenter,BorderLayout.WEST);
+        add(panelRight,BorderLayout.EAST);
+        add(new GamedataToString_Panel(observable),BorderLayout.CENTER);
     }
 
     @Override

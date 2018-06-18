@@ -31,11 +31,10 @@ public class AwaitPt2TunnelAction_state extends AwaitGeneralAction_state{
 
     @Override
     public IStates fastTravel() {
-        
         getGameData().fastTravelToCastle();
         getGameData().reduceActionPoints();
 
-        return new AwaitGeneralAction_state(getGameData()); //To change body of generated methods, choose Tools | Templates.
+        return new AwaitGeneralAction_state(getGameData());
     }
 
     @Override

@@ -13,7 +13,12 @@ public class AwaitEnemyLineAction_state extends AwaitGeneralAction_state{
         switch (getGameData().diceRoll(getGameData().getDRMRaid())){
             case 1:
                 getGameData().tunnelForcesCaptured();
-                break;
+                
+                if(getGameData().inTurn_LoseCondition())
+                    return new AwaitRestart_state(getGameData(), false);
+        
+                getGameData().reduceActionPoints();
+                return new AwaitGeneralAction_state(getGameData());
                 
             case 2:
                 break;

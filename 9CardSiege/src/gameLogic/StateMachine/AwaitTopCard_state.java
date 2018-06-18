@@ -15,6 +15,7 @@ public class AwaitTopCard_state extends StateAdapter{
     
     @Override
     public IStates drawCard(){
+        
         getGameData().drawCardFromDeck();
         
         if(getGameData().inTurn_LoseCondition())
@@ -41,7 +42,7 @@ public class AwaitTopCard_state extends StateAdapter{
             }
         }
         
-        if (getOldState() == null)
+        if (getOldState() == null || getGameData().enemyLineCheck())
             return new AwaitGeneralAction_state(getGameData());
            
         
