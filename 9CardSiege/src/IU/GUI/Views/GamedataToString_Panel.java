@@ -28,7 +28,7 @@ public class GamedataToString_Panel extends JPanel implements Observer, ImageCon
     
     @Override
     public void update(Observable o, Object arg) {
-        String str = "";
-        textGameData.append(str + observableGame.getGamedata().toString());
+//        String str = "";
+//        textGameData.append(str + observableGame.getGamedata().toString());
     }
 }
