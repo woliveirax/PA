@@ -36,7 +36,7 @@ public class EnemyBoard_Panel extends JPanel implements Observer, ImageConstants
 //
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+//        super.paintComponent(g);
         
          g.drawImage(enemyBoard,0,0, DIM_BOARD_PANEL_X-2, DIM_BOARD_PANEL_Y-2, this);
          int posLadders = observableGame.getGamedata().getLadderPosition() - 1;
@@ -44,19 +44,19 @@ public class EnemyBoard_Panel extends JPanel implements Observer, ImageConstants
          int posTower = observableGame.getGamedata().getTowerPosition() - 1;
          int posTrebuchet = observableGame.getGamedata().getActiveTrebuchets()-1;
          
-         if(posLadders > -1)
+         if(observableGame.getGamedata().getActiveTrebuchets()>0)
             g.drawImage(trebuchets,initialPosX+posTrebuchet*separateSpaceX,initialPosY*5-12, DIM_TOKEN_X, DIM_TOKEN_Y, this);
          
-         if(posRam > -1)
+         if(posLadders> -1)
             g.drawImage(ladders,initialPosX,initialPosY+posLadders*separateSpaceY, DIM_TOKEN_X, DIM_TOKEN_Y, this);
          
-         if(posTrebuchet > -1)
+         if(posRam > -1)
             g.drawImage(batering_ram,initialPosX+separateSpaceX,initialPosY+posRam*separateSpaceY, DIM_TOKEN_X, DIM_TOKEN_Y, this);
          
          if(observableGame.getGamedata().isTowerInGame() && posTower > -1)
             g.drawImage(tower,initialPosX+separateSpaceX*2,initialPosY+posTower*separateSpaceY, DIM_TOKEN_X, DIM_TOKEN_Y, this);
          
-         if(observableGame.getGamedata().getCloseCombatArea().size()>0){
+         if(observableGame.getGamedata().getCloseCombatArea().size()==1){
             switch(observableGame.getGamedata().getCloseCombatArea().get(0).getName()){
                 case "Ladder":
                     g.drawImage(ladders,initialPosX+separateSpaceX-25,initialPosY-separateSpaceY+5, DIM_TOKEN_X, DIM_TOKEN_Y, this);
@@ -68,9 +68,34 @@ public class EnemyBoard_Panel extends JPanel implements Observer, ImageConstants
                     g.drawImage(tower,initialPosX+separateSpaceX-25,initialPosY-separateSpaceY+5, DIM_TOKEN_X, DIM_TOKEN_Y, this);
                     break;
             };
-            
-            
          }
+            if(observableGame.getGamedata().getCloseCombatArea().size()==2){
+                switch(observableGame.getGamedata().getCloseCombatArea().get(0).getName()){
+                case "Ladder":
+                    g.drawImage(ladders,initialPosX+separateSpaceX-25,initialPosY-separateSpaceY+5, DIM_TOKEN_X, DIM_TOKEN_Y, this);
+                    break;
+                case "BatteringRam":
+                    g.drawImage(batering_ram,initialPosX+separateSpaceX-25,initialPosY-separateSpaceY+5, DIM_TOKEN_X, DIM_TOKEN_Y, this);
+                    break;
+                case "Tower":
+                    g.drawImage(tower,initialPosX+separateSpaceX-25,initialPosY-separateSpaceY+5, DIM_TOKEN_X, DIM_TOKEN_Y, this);
+                    break;
+                };
+            
+                switch(observableGame.getGamedata().getCloseCombatArea().get(1).getName()){
+                case "Ladder":
+                    g.drawImage(ladders,initialPosX+separateSpaceX+25,initialPosY-separateSpaceY+5, DIM_TOKEN_X, DIM_TOKEN_Y, this);
+                    break;
+                case "BatteringRam":
+                    g.drawImage(batering_ram,initialPosX+separateSpaceX+25,initialPosY-separateSpaceY+5, DIM_TOKEN_X, DIM_TOKEN_Y, this);
+                    break;
+                case "Tower":
+                    g.drawImage(tower,initialPosX+separateSpaceX+25,initialPosY-separateSpaceY+5, DIM_TOKEN_X, DIM_TOKEN_Y, this);
+                    break;
+            };
+            }
+            
+         
               
     }
     

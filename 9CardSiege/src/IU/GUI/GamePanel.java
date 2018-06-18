@@ -115,6 +115,7 @@ public class GamePanel extends JPanel implements Observer{
         enemyPanel = new EnemyBoard_Panel(observable);
         panelCenter.add(deckPanel);
         panelCenter.add(dicePanel);
+        panelCenter.add(enemyPanel);
         
         
         panelRight = new JPanel();
