@@ -14,7 +14,7 @@ public class GamedataToString_Panel extends JPanel implements Observer, ImageCon
     
     private ObservableGame observableGame;
     private TextArea textGameData; 
-;
+
     public GamedataToString_Panel(ObservableGame observableGame) {
         this.observableGame = observableGame;
         this.observableGame.addObserver(this);
