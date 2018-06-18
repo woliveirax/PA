@@ -29,25 +29,31 @@ public class GameEnding_Panel extends JPanel implements Observer, ImageConstants
         this.observableGame = observableGame;
         this.observableGame.addObserver(this);
         
-        setMinimumSize(new Dimension(DIM_FRAME_DECK_X, DIM_FRAME_DECK_Y));
-        setPreferredSize(new Dimension(DIM_FRAME_DECK_X, DIM_FRAME_DECK_Y));
-        setMaximumSize(new Dimension(DIM_FRAME_DECK_X, DIM_FRAME_DECK_Y));
+        
+        Dimension x = new Dimension(700,600);
+        setMinimumSize(new Dimension(x));
+        setPreferredSize(new Dimension(x));
+        setMaximumSize(new Dimension(x));
           
         text = new JLabel();
         text.setLocation(300,1100/2 - POPUP_DIM_Y/2);
         text.setFont(new Font("Arial", Font.BOLD, 68));
-        endingStringOutput();
+        
         add(text);
         
-        setOpaque(true);
+        setOpaque(false);
 
         update(observableGame, null);
     }
     //TODO
     @Override
     public void update(Observable o, Object arg) {
+          endingStringOutput();
         setVisible(observableGame.getState() instanceof AwaitRestart_state);
-        repaint();//check if its for before or after
+       // setVisible(true);
+       if(observableGame.getState() instanceof AwaitRestart_state)
+           repaint();
+      
     }
     
     private void endingStringOutput(){
@@ -80,6 +86,8 @@ public class GameEnding_Panel extends JPanel implements Observer, ImageConstants
         int SuperiorBorder_x = getWidth()/2 - POPUP_DIM_X/2;
         int SuperiorBorder_y = getHeight()/2 - POPUP_DIM_Y/2;
         super.paintComponent(g);
+        
+        g.dispose();
         
         if(haveWon)
             g.drawImage(winPopUp,SuperiorBorder_x,SuperiorBorder_y + 20, POPUP_DIM_X, POPUP_DIM_Y, this);

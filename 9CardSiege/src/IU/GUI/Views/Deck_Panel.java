@@ -4,7 +4,6 @@ import IU.GUI.Constants.FrameConstants;
 import IU.GUI.Constants.ImageConstants;
 import IU.GUI.Resources;
 import gameLogic.Model.ObservableGame;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -20,18 +19,19 @@ public class Deck_Panel extends JPanel implements Observer, ImageConstants,Frame
 {
     private ObservableGame observableGame;
     private JLabel deck_size;
-    private Image image = Resources.getCard_image(9);
+    private Image image = Resources.getBackHorizontal();
     
     public Deck_Panel(ObservableGame observableGame) {
         this.observableGame = observableGame;
         this.observableGame.addObserver(this);
         
-        setMaximumSize(new Dimension(DIM_FRAME_DECK_X, DIM_FRAME_DECK_Y));
-        setPreferredSize(new Dimension(DIM_FRAME_DECK_X, DIM_FRAME_DECK_Y));
-        setMinimumSize(new Dimension(DIM_FRAME_DECK_X, DIM_FRAME_DECK_Y));
+        Dimension x = new Dimension(DIM_FRAME_DECK_X, DIM_FRAME_DECK_Y);
+        setMaximumSize(new Dimension(x));
+        setPreferredSize(new Dimension(x));
+        setMinimumSize(new Dimension(x));
                 
         deck_size = new JLabel();
-        deck_size.setFont(new Font("Arial", Font.PLAIN, 44));
+        deck_size.setFont(new Font("Arial", Font.BOLD, 44));
         deck_size.setForeground(Color.WHITE);
 
         setLayout(new GridBagLayout());
@@ -51,6 +51,9 @@ public class Deck_Panel extends JPanel implements Observer, ImageConstants,Frame
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        g.drawImage(image,0,0, DIM_FRAME_DECK_X-2, DIM_FRAME_DECK_Y-2, this);  
+        g.drawImage(image,0,0, DIM_FRAME_DECK_X, DIM_FRAME_DECK_Y, this);  
+        g.drawImage(image,0,3, DIM_FRAME_DECK_X, DIM_FRAME_DECK_Y, this);  
+        g.drawImage(image,0,6, DIM_FRAME_DECK_X, DIM_FRAME_DECK_Y, this);  
+        g.drawImage(image,0,9, DIM_FRAME_DECK_X, DIM_FRAME_DECK_Y, this);  
     }
 }

@@ -8,7 +8,7 @@ public interface FrameConstants {
     public static final int DIM_FRAME_Y = 800;
 
 //deckframe max sizes:    
-    public static final int DIM_FRAME_DECK_X = 80;
+    public static final int DIM_FRAME_DECK_X = 160;
     public static final int DIM_FRAME_DECK_Y = 120;
     
 //diceframes max sizes:

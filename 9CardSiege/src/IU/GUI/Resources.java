@@ -39,6 +39,7 @@ public class Resources implements ImageConstants{
     private static Image ladderToken = null,towerToken = null, ramToken = null, trebuchetToken;
     private static Image suppliesToken = null,wallStrengthToken = null,moraleToken = null;
     private static Image tunnelPosToken = null,tunnelSuppliesToken = null;
+    private static Image backHorizontal = null;
     
     
     //Load Background
@@ -106,7 +107,9 @@ public class Resources implements ImageConstants{
             card_images.add(ImageIO.read(Resources.getResourceFile(path_card7)));
             card_images.add(ImageIO.read(Resources.getResourceFile(path_cardCastle)));                                                                                                                    
             card_images.add(ImageIO.read(Resources.getResourceFile(path_cardEnemies)));                                                                                                                    
-            card_images.add(ImageIO.read(Resources.getResourceFile(path_backCard)));                                                                                                                    
+            card_images.add(ImageIO.read(Resources.getResourceFile(path_backCard)));
+            
+            backHorizontal = ImageIO.read(Resources.getResourceFile(path_backCardH));                                                                                                             
                        
             } catch (IOException e) {
                 System.out.println("Error loading card images");
@@ -115,6 +118,10 @@ public class Resources implements ImageConstants{
 
     public static List<Image> getCard_images() {
         return card_images;
+    }
+
+    public static Image getBackHorizontal() {
+        return backHorizontal;
     }
 
     public static List<Image> getDice_faces() {

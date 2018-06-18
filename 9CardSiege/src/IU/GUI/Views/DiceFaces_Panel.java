@@ -8,12 +8,10 @@ import IU.GUI.Resources;
 import gameLogic.Model.ObservableGame;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class DiceFaces_Panel extends JPanel implements Observer, ImageConstants,FrameConstants {
@@ -41,6 +39,6 @@ public class DiceFaces_Panel extends JPanel implements Observer, ImageConstants,
     {
         int index = observableGame.getGamedata().getDiceNumber() -1;
         super.paintComponent(g);
-        g.drawImage(images.get(index),0,0, DIM_FRAME_DICE_X-2, DIM_FRAME_DICE_Y-2, this);  
+        g.drawImage(images.get(index),0,0, DIM_FRAME_DICE_X-2, DIM_FRAME_DICE_Y-2, this);
     }
 }

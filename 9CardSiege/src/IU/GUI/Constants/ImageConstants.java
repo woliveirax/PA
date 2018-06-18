@@ -21,6 +21,7 @@ public interface ImageConstants {
     public static final String path_cardCastle  = "Images/cards/Castle.jpg";
     public static final String path_cardEnemies = "Images/cards/EnemyPos.jpg";
     public static final String path_backCard    = "Images/cards/Back.jpg";
+    public static final String path_backCardH   = "Images/cards/back_horizontal.jpg";
     
     //MISC
     public static final String path_winPopUp    = "Images/misc/WinPopUp.png";
