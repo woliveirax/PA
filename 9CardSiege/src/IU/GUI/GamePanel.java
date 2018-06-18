@@ -12,6 +12,7 @@ import IU.GUI.Views.Deck_Panel;
 import IU.GUI.Views.DiceFaces_Panel;
 import IU.GUI.Views.EnemyBoard_Panel;
 import IU.GUI.Views.EnemyLineOptions_Panel;
+import IU.GUI.Views.GameEnding_Panel;
 import IU.GUI.Views.GamedataToString_Panel;
 import IU.GUI.Views.GeneralOptions_Panel;
 import IU.GUI.Views.Pt1TunnelOptions_Panel;
@@ -56,6 +57,8 @@ public class GamePanel extends JPanel implements Observer{
     private DiceFaces_Panel dicePanel;
     
     private EnemyBoard_Panel enemyPanel;
+    
+    private GameEnding_Panel endingPanel;
     
     //Panels
     private JPanel panelCenter;
@@ -113,10 +116,11 @@ public class GamePanel extends JPanel implements Observer{
         deckPanel = new Deck_Panel(observable);
         dicePanel = new DiceFaces_Panel(observable);
         enemyPanel = new EnemyBoard_Panel(observable);
+        endingPanel= new GameEnding_Panel(observable);
         panelCenter.add(deckPanel);
         panelCenter.add(dicePanel);
         panelCenter.add(enemyPanel);
-        
+        panelCenter.add(endingPanel);        
         
         panelRight = new JPanel();
         panelRight.setOpaque(false);
@@ -165,7 +169,7 @@ public class GamePanel extends JPanel implements Observer{
         add(panelBottom,BorderLayout.SOUTH);
         add(panelCenter,BorderLayout.WEST);
         add(panelRight,BorderLayout.EAST);
-        add(new GamedataToString_Panel(observable),BorderLayout.CENTER);
+        //add(new GamedataToString_Panel(observable),BorderLayout.CENTER);
     }
 
     @Override
