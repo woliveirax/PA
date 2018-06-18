@@ -3,6 +3,7 @@ package IU.GUI;
 import gameLogic.Model.ObservableGame;
 import gameLogic.StateMachine._StateMachine;
 import FileManager.Typewriter;
+import IU.GUI.Constants.FrameConstants;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -27,7 +28,7 @@ public class GameFrame extends JFrame implements Observer{
     private GamePanel gamePanel;
     
     public GameFrame( ObservableGame j) {
-        this(j, 200,100, 1050, 600);
+        this(j, 200,100, FrameConstants.DIM_FRAME_X,FrameConstants.DIM_FRAME_Y);
     }
 
     public GameFrame( ObservableGame j, int x, int y ) {

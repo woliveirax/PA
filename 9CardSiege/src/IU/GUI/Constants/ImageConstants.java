@@ -25,7 +25,7 @@ public interface ImageConstants {
     //MISC
     public static final String path_winPopUp    = "Images/misc/WinPopUp.png";
     public static final String path_loosePopUp  = "Images/misc/LoosePopUp.png";
-    public static final String path_background  = "Images/misc/background.jpg";
+    public static final String path_background  = "Images/misc/background.png";
     
     //TOKENS
     public static final String path_ladderToken    = "Images/tokens/ladder.png";

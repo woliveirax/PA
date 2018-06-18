@@ -35,7 +35,6 @@ public class Deck_Panel extends JPanel implements Observer, ImageConstants,Frame
 
         setLayout(new GridBagLayout());
         add(deck_size);
-        setVisible(true);
         setOpaque(false);
     }
 
