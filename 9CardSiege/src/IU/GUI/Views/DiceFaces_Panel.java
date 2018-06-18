@@ -28,7 +28,6 @@ public class DiceFaces_Panel extends JPanel implements Observer, ImageConstants,
         setPreferredSize(new Dimension(DIM_FRAME_DICE_X, DIM_FRAME_DICE_Y));
 //        setMinimumSize(new Dimension(DIM_FRAME_DECK_X, DIM_FRAME_DECK_Y));
 
-        setVisible(true);
         setOpaque(false);
     }
     

@@ -8,6 +8,7 @@ import IU.GUI.Views.BoilingWaterTrackSelection_Panel;
 import IU.GUI.Views.CloseCombatTrackSelection_Panel;
 import IU.GUI.Views.Deck_Panel;
 import IU.GUI.Views.DiceFaces_Panel;
+import IU.GUI.Views.EnemyBoard_Panel;
 import IU.GUI.Views.EnemyLineOptions_Panel;
 import IU.GUI.Views.GeneralOptions_Panel;
 import IU.GUI.Views.Pt1TunnelOptions_Panel;
@@ -51,6 +52,8 @@ public class GamePanel extends JPanel implements Observer{
     
     //dice panel
     private DiceFaces_Panel dicePanel;
+    
+    private EnemyBoard_Panel enemyPanel;
     
     //Panels
     private JPanel panelCenter;
@@ -107,9 +110,10 @@ public class GamePanel extends JPanel implements Observer{
         
         deckPanel = new Deck_Panel(observable);
         dicePanel = new DiceFaces_Panel(observable);
+        enemyPanel = new EnemyBoard_Panel(observable);
         panelCenter.add(deckPanel);
         panelCenter.add(dicePanel);
-        
+        panelCenter.add(enemyPanel);
         //falta criar views de cada carta de status
         //Criar view para dado
         //Criar View para Carta atual
