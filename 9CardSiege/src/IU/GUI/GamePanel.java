@@ -6,7 +6,7 @@ import IU.GUI.Views.AwaitRestart_Panel;
 import IU.GUI.Views.AwaitRestrictedAction_Panel;
 import IU.GUI.Views.AwaitTopCard_Panel;
 import IU.GUI.Views.BoilingWaterTrackSelection_Panel;
-import IU.GUI.Views.CastleBoardPanel;
+import IU.GUI.Views.CastleBoard_Panel;
 import IU.GUI.Views.CloseCombatTrackSelection_Panel;
 import IU.GUI.Views.Deck_Panel;
 import IU.GUI.Views.DiceFaces_Panel;
@@ -119,7 +119,7 @@ public class GamePanel extends JPanel implements Observer{
         
         panelRight = new JPanel();
         panelRight.setOpaque(false);
-        panelRight.add(new CastleBoardPanel(observable));
+        panelRight.add(new CastleBoard_Panel(observable));
         //falta criar views de cada carta de status
         //Criar view para dado
         //Criar View para Carta atual

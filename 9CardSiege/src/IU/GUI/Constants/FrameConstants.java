@@ -26,5 +26,9 @@ public interface FrameConstants {
 //token dimensions
     public static final int DIM_TOKEN_X=40;
     public static final int DIM_TOKEN_Y=40;
+ 
+//Image Dimensions
+    public static final int CARD_DIM_X = 200;
+    public static final int CARD_DIM_Y = 300;
     
 }

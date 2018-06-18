@@ -10,7 +10,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
 
-public class CastleBoardPanel extends JPanel implements FrameConstants, Observer {
+public class CastleBoard_Panel extends JPanel implements FrameConstants, Observer {
     private ObservableGame observable;
     private Image supplies,wallStrength,morale;
     private Image tunnelSupplies, tunnelSoldiers;
@@ -27,7 +27,7 @@ public class CastleBoardPanel extends JPanel implements FrameConstants, Observer
     private static final int TUNNEL_X_ALLINGMENT = 10;
     
     
-    public CastleBoardPanel(ObservableGame observable){
+    public CastleBoard_Panel(ObservableGame observable){
         this.observable = observable;
         observable.addObserver(this);
         
