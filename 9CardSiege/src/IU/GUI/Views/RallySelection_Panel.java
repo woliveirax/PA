@@ -1,5 +1,6 @@
 package IU.GUI.Views;
 
+import IU.GUI.Constants.GameConstants;
 import gameLogic.Model.ObservableGame;
 import gameLogic.StateMachine.AwaitRestrictedAction_state;
 import gameLogic.StateMachine.RallySelection_state;
@@ -10,14 +11,14 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class RallySelection_Panel extends JPanel implements Observer {
+public class RallySelection_Panel extends JPanel implements Observer,GameConstants {
     
     private ObservableGame observable;
     private JButton normalRoll, rollWithExtraDRM;
 
     public RallySelection_Panel(ObservableGame observable) {
         this.observable = observable;
-        observable.addObserver(this);
+        this.observable.addObserver(this);
         
         setOpaque(false);
         
@@ -35,7 +36,9 @@ public class RallySelection_Panel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        rollWithExtraDRM.setEnabled(observable.getGamedata().getSupplies() > 0);
+        rollWithExtraDRM.setEnabled(observable.getGamedata().getSupplies() > 0 &&
+                observable.getGamedata().getMorale() < MAX_STATUS);
+        
         setVisible(observable.getState() instanceof RallySelection_state);
     }
     
@@ -54,6 +57,4 @@ public class RallySelection_Panel extends JPanel implements Observer {
             observable.extraMoral(true);
         }
     }
-    
-    
 }

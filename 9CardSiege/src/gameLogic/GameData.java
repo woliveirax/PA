@@ -153,7 +153,7 @@ public class GameData implements Serializable{
         if(deck.size() == 0)
             discardedCards.add(currentCard);
         
-        enemyLineCheck();
+        //enemyLineCheck();
         applyCurrentDayEvent();
         applyCurrentDayEnemyMovement();
         setCurrentTurnActionPoints();
@@ -163,10 +163,13 @@ public class GameData implements Serializable{
     //Game phase functions
     //#######################################################
 
-    public void enemyLineCheck()
+    public boolean enemyLineCheck()
     {
-        if(dice.roll_dice() == 1 && castle.getTunnelPosition() == TunnelPos.ENEMY_LINES)
+        if(dice.roll_dice() == 1 && castle.getTunnelPosition() == TunnelPos.ENEMY_LINES){
             castle.tunnelForcesCaptured();
+            return true;
+        }
+        return false;
     }
     
     public void endOfDay()
@@ -351,7 +354,7 @@ public class GameData implements Serializable{
     
     public boolean increaseMorale()
     {
-        return castle.increaseSupplies();
+        return castle.increaseMorale();
     }
     
     public boolean increaseWallStrength()
