@@ -15,11 +15,14 @@ import IU.GUI.Views.EnemyLineOptions_Panel;
 import IU.GUI.Views.GameEnding_Panel;
 import IU.GUI.Views.GamedataToString_Panel;
 import IU.GUI.Views.GeneralOptions_Panel;
+import IU.GUI.Views.NonRepeatableActionsPossible_Panel;
 import IU.GUI.Views.Pt1TunnelOptions_Panel;
 import IU.GUI.Views.Pt2TunnelOptions_Panel;
 import IU.GUI.Views.RallySelection_Panel;
 import IU.GUI.Views.StatusReductionSelection_Panel;
+import IU.GUI.Views.ViewCard_Panel;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -29,8 +32,11 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.border.LineBorder;
 
 public class GamePanel extends JPanel implements Observer{
     
@@ -56,16 +62,22 @@ public class GamePanel extends JPanel implements Observer{
     //dice panel
     private DiceFaces_Panel dicePanel;
     
+    //Game Status Panel
+    private CastleBoard_Panel castlePanel;
+    
+    //Card Panel
+    private ViewCard_Panel cardPanel;
+            
+    //Enemy Board Panel
     private EnemyBoard_Panel enemyPanel;
     
-    private GameEnding_Panel endingPanel;
+    //User info Board
+    private NonRepeatableActionsPossible_Panel infoPanel;
     
     //Panels
     private JPanel panelCenter;
     private JPanel panelTop;
     private JPanel panelBottom;
-    private JPanel panelLeft;
-    private JPanel panelRight;
     
     //Labels info
     private JLabel days;
@@ -78,7 +90,9 @@ public class GamePanel extends JPanel implements Observer{
         observable.addObserver(this);
         
         SetupComponents();
-        SetupLayout();        
+        SetupLayout();
+        
+        update(observable, null);
     }
     
     private void CreateMenuPanels(){
@@ -111,28 +125,82 @@ public class GamePanel extends JPanel implements Observer{
     }
     
     private void CreateComponents(){
+        
+        //Cria Paineis interativos
+        deckPanel   = new Deck_Panel(observable);
+        dicePanel   = new DiceFaces_Panel(observable);
+        enemyPanel  = new EnemyBoard_Panel(observable);
+        castlePanel = new CastleBoard_Panel(observable);
+        cardPanel   = new ViewCard_Panel(observable);
+        infoPanel   = new NonRepeatableActionsPossible_Panel(observable);
+        
+        deckPanel.setOpaque(false);
+        dicePanel.setOpaque(false);
+        enemyPanel.setOpaque(false);
+        castlePanel.setOpaque(false);
+        cardPanel.setOpaque(false);
+        
+        //Cria boxes iniciais
+        Box verticalBox = Box.createVerticalBox();
+        Box lowerHBox = Box.createHorizontalBox();
+        Box upperHBox = Box.createHorizontalBox();
+        
+        verticalBox.setOpaque(false);
+        lowerHBox.setOpaque(false);
+        upperHBox.setOpaque(false);
+        
+        verticalBox.add(upperHBox);
+        verticalBox.add(Box.createVerticalStrut(10));
+        verticalBox.add(lowerHBox);
+        
+        upperHBox.add(cardPanel);
+        upperHBox.add(Box.createHorizontalStrut(10));
+        upperHBox.add(castlePanel);
+        upperHBox.add(Box.createHorizontalStrut(10));
+        upperHBox.add(enemyPanel);
+        
+        
+        //Cria 3 vertical boxes dentro lower Horizontal
+        lowerHBox.setBorder(new LineBorder(Color.yellow));
+        Box lowerVBoxLeft = Box.createVerticalBox();
+        Box lowerVBoxCenter = Box.createVerticalBox();
+        Box lowerVBoxRight = Box.createVerticalBox();
+        
+        //lowerHBox.setAlignmentX(CENTER_ALIGNMENT);
+        lowerHBox.add(lowerVBoxLeft);
+        //lowerHBox.add(Box.createVerticalStrut(10));
+        lowerHBox.add(lowerVBoxCenter);
+        //lowerHBox.add(Box.createVerticalStrut(10));
+        //lowerHBox.add(lowerVBoxRight);
+        
+        
+        //Adiciona box horizontais dentro da box mais a esquerda.
+        Box deckNdiceHBox = Box.createHorizontalBox();
+        lowerVBoxLeft.add(deckNdiceHBox);
+        deckNdiceHBox.setBorder(new LineBorder(Color.red));
+        
+        
+        //Adiciona dois paineis à box mais a esquerda.
+        deckNdiceHBox.add(deckPanel);
+        deckNdiceHBox.add(Box.createHorizontalStrut(15));
+        deckNdiceHBox.add(dicePanel);
+        deckNdiceHBox.add(Box.createHorizontalStrut(15));
+        
+        //Adiciona painel de info na box do centro
+        deckNdiceHBox.add(infoPanel);
+        //lowerVBoxCenter.setBorder(new LineBorder(Color.magenta));
+        //lowerVBoxCenter.setAlignmentX(LEFT_ALIGNMENT);
+        
+        
         panelCenter = new JPanel();
+        panelCenter.add(verticalBox);
         
-        deckPanel = new Deck_Panel(observable);
-        dicePanel = new DiceFaces_Panel(observable);
-        enemyPanel = new EnemyBoard_Panel(observable);
-        endingPanel= new GameEnding_Panel(observable);
-        panelCenter.add(deckPanel);
-        panelCenter.add(dicePanel);
-        panelCenter.add(enemyPanel);
-        panelCenter.add(endingPanel);        
-        
-        panelRight = new JPanel();
-        panelRight.setOpaque(false);
-        panelRight.add(new CastleBoard_Panel(observable));
-        //falta criar views de cada carta de status
-        //Criar view para dado
-        //Criar View para Carta atual
+        panelCenter.setOpaque(false);
     }
     
     private void CreateTopInfo(){
        Dimension d = new Dimension(150,20);
-        days = new JLabel("Days: n/d");
+        days = new JLabel("Day n/d");
         days.setFont(new Font("Arial", Font.BOLD, 18));
         days.setAlignmentX(Component.CENTER_ALIGNMENT);
         days.setMaximumSize(d);
@@ -167,9 +235,7 @@ public class GamePanel extends JPanel implements Observer{
         setLayout(new BorderLayout());        
         add(panelTop, BorderLayout.NORTH);        
         add(panelBottom,BorderLayout.SOUTH);
-        add(panelCenter,BorderLayout.WEST);
-        add(panelRight,BorderLayout.EAST);
-        //add(new GamedataToString_Panel(observable),BorderLayout.CENTER);
+        add(panelCenter,BorderLayout.CENTER);
     }
 
     @Override
@@ -177,12 +243,14 @@ public class GamePanel extends JPanel implements Observer{
         int day = observable.getGamedata().getCurrentDay();
         int ap = observable.getGamedata().getActionPoints();
         
-        days.setText("Days: " + day);
+        days.setText("Current Day: " + day);
         actionPoints.setText("Action Points: " + ap);
     }
 
     @Override
     public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        
         g.drawImage(backgroundImage,0,0,this.getWidth(), this.getHeight(),this);
     }
     

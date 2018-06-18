@@ -213,7 +213,6 @@ public class GameFrame extends JFrame implements Observer{
         }
     }
     
-    //TODO: falta por update
     @Override
     public void update(Observable o, Object o1) {
     }

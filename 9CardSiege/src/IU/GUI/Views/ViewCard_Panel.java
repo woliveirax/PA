@@ -10,7 +10,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.Observable;
 import java.util.Observer;
-import javax.annotation.Resource;
 import javax.swing.JPanel;
 
 public class ViewCard_Panel extends JPanel implements Observer,FrameConstants {
@@ -21,15 +20,13 @@ public class ViewCard_Panel extends JPanel implements Observer,FrameConstants {
         this.observable = observable;
         this.observable.addObserver(this);
         
-        card = Resources.getCard_image(this.observable.getGamedata().getCurrentCard().getId() - 1);
-        
         //Set Dimensions
         Dimension a = new Dimension(DIM_BOARD_PANEL_X,DIM_BOARD_PANEL_Y);
         this.setPreferredSize(a);
         this.setMaximumSize(a);
         this.setMinimumSize(a);
         
-        update(this.observable,null);
+        //update(this.observable,null);
     }
 
     @Override
@@ -39,7 +36,16 @@ public class ViewCard_Panel extends JPanel implements Observer,FrameConstants {
 
     @Override
     protected void paintComponent(Graphics g) {
-        g.drawImage(card,0,0,CARD_DIM_X,CARD_DIM_Y, this);
+        
+        try{
+            card = Resources.getCard_image(this.observable.getGamedata().getCurrentCard().getId() - 1);
+            if(card != null)
+                g.drawImage(card,0,0,CARD_DIM_X,CARD_DIM_Y, this);
+            
+        } catch (Exception e) {
+            g.drawImage(Resources.getCard_image(9),0,0,CARD_DIM_X,CARD_DIM_Y, this);
+            //e.printStackTrace();
+        }
     }
     
 }

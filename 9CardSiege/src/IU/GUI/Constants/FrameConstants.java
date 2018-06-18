@@ -12,12 +12,12 @@ public interface FrameConstants {
     public static final int DIM_FRAME_DECK_Y = 120;
     
 //diceframes max sizes:
-    public static final int DIM_FRAME_DICE_X = 80;
-    public static final int DIM_FRAME_DICE_Y = 80;
+    public static final int DIM_FRAME_DICE_X = 120;
+    public static final int DIM_FRAME_DICE_Y = 120;
     
 //Gamedata to string sizes:
-    public static final int DIM_FRAME_TOSTRING_X = 450;
-    public static final int DIM_FRAME_TOSTRING_Y = 180;
+    public static final int DIM_FRAME_TOSTRING_X = 200;
+    public static final int DIM_FRAME_TOSTRING_Y = 110;
 
 //board panel dimensions
     public static final int DIM_BOARD_PANEL_X=300;
@@ -28,8 +28,8 @@ public interface FrameConstants {
     public static final int DIM_TOKEN_Y=40;
  
 //Image Dimensions
-    public static final int CARD_DIM_X = 200;
-    public static final int CARD_DIM_Y = 300;
+    public static final int CARD_DIM_X = 300;
+    public static final int CARD_DIM_Y = 400;
     
 //Final PopUps dimensions
     public static final int POPUP_DIM_X = 500;

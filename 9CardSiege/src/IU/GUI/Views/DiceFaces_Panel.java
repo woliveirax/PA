@@ -24,9 +24,9 @@ public class DiceFaces_Panel extends JPanel implements Observer, ImageConstants,
         this.observableGame = observableGame;
         this.observableGame.addObserver(this);
         
-//        setMaximumSize(new Dimension(DIM_FRAME_DECK_X, DIM_FRAME_DECK_Y));
+        setMaximumSize(new Dimension(DIM_FRAME_DICE_X, DIM_FRAME_DICE_Y));
         setPreferredSize(new Dimension(DIM_FRAME_DICE_X, DIM_FRAME_DICE_Y));
-//        setMinimumSize(new Dimension(DIM_FRAME_DECK_X, DIM_FRAME_DECK_Y));
+        setMinimumSize(new Dimension(DIM_FRAME_DICE_X, DIM_FRAME_DICE_Y));
 
         setOpaque(false);
     }
@@ -43,5 +43,4 @@ public class DiceFaces_Panel extends JPanel implements Observer, ImageConstants,
         super.paintComponent(g);
         g.drawImage(images.get(index),0,0, DIM_FRAME_DICE_X-2, DIM_FRAME_DICE_Y-2, this);  
     }
-    
 }

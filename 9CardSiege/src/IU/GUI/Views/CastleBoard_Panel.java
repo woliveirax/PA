@@ -67,7 +67,7 @@ public class CastleBoard_Panel extends JPanel implements FrameConstants, Observe
         if(val > 0)
             g.drawImage(wallStrength,TOKEN_X_ALLINGMENT,TOKEN_Y_ALLINGMENT + (TOKEN_Y_NEXT_SPACING * Math.abs(val - 4)),40,40,this);
         else
-            g.drawImage(supplies,TOKEN_X_ALLINGMENT + TOKEN_X_NEXT_SPACING,TOKEN_Y_ALLINGMENT +(TOKEN_Y_NEXT_SPACING * 4),40,40,this);
+            g.drawImage(wallStrength,TOKEN_X_ALLINGMENT + TOKEN_X_NEXT_SPACING,TOKEN_Y_ALLINGMENT +(TOKEN_Y_NEXT_SPACING * 4),40,40,this);
         
         
         //Draw Morale Icon
@@ -75,7 +75,7 @@ public class CastleBoard_Panel extends JPanel implements FrameConstants, Observe
         if(val > 0)
             g.drawImage(morale,TOKEN_X_ALLINGMENT + TOKEN_X_NEXT_SPACING,TOKEN_Y_ALLINGMENT +(TOKEN_Y_NEXT_SPACING * Math.abs(val - 4)),40,40,this);
         else
-            g.drawImage(supplies,TOKEN_X_ALLINGMENT + TOKEN_X_NEXT_SPACING,TOKEN_Y_ALLINGMENT +(TOKEN_Y_NEXT_SPACING * 4),40,40,this);
+            g.drawImage(morale,TOKEN_X_ALLINGMENT + TOKEN_X_NEXT_SPACING,TOKEN_Y_ALLINGMENT +(TOKEN_Y_NEXT_SPACING * 4),40,40,this);
         
         
         //Draw SuppliesIcon
