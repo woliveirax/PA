@@ -184,6 +184,52 @@ public class GameData implements Serializable{
         currentCard = null;
         currentDay++;
     }
+ 
+    //Added verifications of lose conditions
+    public boolean endOfTurn_LosingBy_CloseCombat(){
+        return closeCombatArea.size() == 2;
+    }
+    
+    public boolean endOfTurn_LosingBy_Castle(){
+        return castle.isCastleOutOfResources() == 1;
+    }
+    
+    public String endOfTurn_getStatusFor_LosingBy_Castle(){
+        if(getMorale()==0)
+            return "Morale";
+        
+        if(getSupplies()==0)
+            return "Supplies";
+        
+        return "Wall Strength";
+    }
+    
+    public String inTurn_getStatusFor_LosingBy_Castle(){
+        String s = "";
+        
+        if(getMorale()==0)
+            s+="Morale";
+        
+        if(getSupplies()==0)
+            s+="Supplies";
+        
+        if(getWallStrength()==0)
+            s+="Wall Strength";
+        
+        return s;
+    }
+        
+    public boolean inTurn_LosingBy_CloseCombat(){
+        return castle.isCastleOutOfResources() == 3;
+    }
+    
+    public boolean inTurn_LosingBy_Castle(){
+        return castle.isCastleOutOfResources() > 1;
+    }
+    
+    public boolean winningCondition(){
+        return (getSizeOfDeck() == 0) && (getCurrentDay() == 2);
+    }
     
     public boolean endOfTurn_LoseCodition()
     {
