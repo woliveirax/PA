@@ -176,18 +176,13 @@ public class GamePanel extends JPanel implements Observer{
         upperHBox.add(Box.createHorizontalStrut(20));
         upperHBox.add(enemyPanel);
         
-        
-        //Cria 3 vertical boxes dentro lower Horizontal
+        //Cria 2 vertical boxes dentro lower Horizontal
         Box lowerVBoxLeft = Box.createVerticalBox();
         Box lowerVBoxCenter = Box.createVerticalBox();
-        Box lowerVBoxRight = Box.createVerticalBox();
         
-        lowerHBox.setAlignmentX(RIGHT_ALIGNMENT);
+        lowerHBox.setAlignmentX(CENTER_ALIGNMENT);
         lowerHBox.add(lowerVBoxLeft);
-        //lowerHBox.add(Box.createVerticalStrut(10));
         lowerHBox.add(lowerVBoxCenter);
-        //lowerHBox.add(Box.createVerticalStrut(10));
-        //lowerHBox.add(lowerVBoxRight);
         
         
         //Adiciona box horizontais dentro da box mais a esquerda.

@@ -7,7 +7,6 @@ import gameLogic.Model.ObservableGame;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
@@ -25,7 +24,10 @@ public class EnemyBoard_Panel extends JPanel implements Observer, ImageConstants
         this.observableGame = observableGame;
         this.observableGame.addObserver(this);
         
-        setPreferredSize(new Dimension(DIM_BOARD_PANEL_X,DIM_BOARD_PANEL_Y));
+        Dimension x = new Dimension(DIM_BOARD_PANEL_X,DIM_BOARD_PANEL_Y);
+        setPreferredSize(x);
+        setMaximumSize(x);
+        setMinimumSize(x);
         setOpaque(false);
     }
 
