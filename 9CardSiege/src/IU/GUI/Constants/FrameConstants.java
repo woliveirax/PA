@@ -32,6 +32,6 @@ public interface FrameConstants {
     public static final int CARD_DIM_Y = 400;
     
 //Final PopUps dimensions
-    public static final int POPUP_DIM_X = 500;
-    public static final int POPUP_DIM_Y = 500;
+    public static final int POPUP_DIM_X = 120;
+    public static final int POPUP_DIM_Y = 120;
 }
