@@ -35,7 +35,7 @@ public class Resources implements ImageConstants{
     private static List<Image> card_images = new ArrayList();
     private static List<Image> dice_faces = new ArrayList();
     private static Image background = null;
-    private static Image winPopUp = null, loosePopUp = null;
+    private static Image winPopUp = null, loosePopUp = null, neutralPopUp = null;
     private static Image ladderToken = null,towerToken = null, ramToken = null, trebuchetToken;
     private static Image suppliesToken = null,wallStrengthToken = null,moraleToken = null;
     private static Image tunnelPosToken = null,tunnelSuppliesToken = null;
@@ -56,6 +56,7 @@ public class Resources implements ImageConstants{
         try {
             winPopUp = ImageIO.read(Resources.getResourceFile(path_winPopUp));
             loosePopUp = ImageIO.read(Resources.getResourceFile(path_loosePopUp));
+            neutralPopUp = ImageIO.read(Resources.getResourceFile(path_neutralPopUp));
         } catch (IOException e) {
             System.out.println("Error loading background");
         }
@@ -116,6 +117,10 @@ public class Resources implements ImageConstants{
             }
     }
 
+    public static Image getNeutralPopUp() {
+        return neutralPopUp;
+    }
+    
     public static List<Image> getCard_images() {
         return card_images;
     }
