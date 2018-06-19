@@ -160,15 +160,19 @@ public class GamePanel extends JPanel implements Observer{
         Box verticalBox = Box.createVerticalBox();
         Box lowerHBox = Box.createHorizontalBox();
         Box upperHBox = Box.createHorizontalBox();
+        Box endTextHBox = Box.createHorizontalBox();
         
         verticalBox.setOpaque(false);
         lowerHBox.setOpaque(false);
         upperHBox.setOpaque(false);
+        endTextHBox.setOpaque(false);
         
         verticalBox.add(Box.createVerticalStrut(10));
         verticalBox.add(upperHBox);
         verticalBox.add(Box.createVerticalStrut(20));
         verticalBox.add(lowerHBox);
+        verticalBox.add(Box.createVerticalStrut(20));
+        verticalBox.add(endTextHBox);
         
         upperHBox.add(cardPanel);
         upperHBox.add(Box.createHorizontalStrut(20));
@@ -184,6 +188,8 @@ public class GamePanel extends JPanel implements Observer{
         lowerHBox.add(lowerVBoxLeft);
         lowerHBox.add(lowerVBoxCenter);
         
+        //Add ending text panel to box
+        endTextHBox.add(endingPanel);
         
         //Adiciona box horizontais dentro da box mais a esquerda.
         Box deckNdiceHBox = Box.createHorizontalBox();
@@ -198,8 +204,6 @@ public class GamePanel extends JPanel implements Observer{
         
         //Adiciona painel de info na box do centro
         deckNdiceHBox.add(infoPanel);
-        //lowerVBoxCenter.setBorder(new LineBorder(Color.magenta));
-        //lowerVBoxCenter.setAlignmentX(LEFT_ALIGNMENT);
         
         
         panelCenter = new JPanel();

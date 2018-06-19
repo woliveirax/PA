@@ -39,6 +39,8 @@ public class NonRepeatableActionsPossible_Panel extends JPanel implements Observ
         MOTD.setFont(new Font("Helvetica",Font.BOLD,12));
         MOTD.setForeground(Color.BLACK);
         
+        setAlignmentX(LEFT_ALIGNMENT);
+        
         boilling.setFont(new Font("Helvetica",Font.BOLD,12));
         boilling.setAlignmentX(LEFT_ALIGNMENT);
         
