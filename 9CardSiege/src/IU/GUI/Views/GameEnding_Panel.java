@@ -28,7 +28,7 @@ public class GameEnding_Panel extends JPanel implements Observer, ImageConstants
         this.observableGame.addObserver(this);
         
         
-        Dimension x = new Dimension(700,35);
+        Dimension x = new Dimension(900,35);
         setMinimumSize(new Dimension(x));
         setPreferredSize(new Dimension(x));
         setMaximumSize(new Dimension(x));

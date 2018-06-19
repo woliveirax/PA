@@ -15,6 +15,7 @@ import IU.GUI.Views.EnemyLineOptions_Panel;
 import IU.GUI.Views.GameEnding_Panel;
 import IU.GUI.Views.GamedataToString_Panel;
 import IU.GUI.Views.GeneralOptions_Panel;
+import IU.GUI.Views.ImgsRefletingGameStatus_Panel;
 import IU.GUI.Views.NonRepeatableActionsPossible_Panel;
 import IU.GUI.Views.Pt1TunnelOptions_Panel;
 import IU.GUI.Views.Pt2TunnelOptions_Panel;
@@ -80,6 +81,9 @@ public class GamePanel extends JPanel implements Observer{
     //Game Over Screen
     private GameEnding_Panel endingPanel;
     
+    //Image Game Status Screen
+    private ImgsRefletingGameStatus_Panel gameStatusPanel;
+    
     //Panels
     private JPanel panelCenter;
     private JPanel panelTop;
@@ -141,6 +145,7 @@ public class GamePanel extends JPanel implements Observer{
         cardPanel   = new ViewCard_Panel(observable);
         infoPanel   = new NonRepeatableActionsPossible_Panel(observable);
         endingPanel = new GameEnding_Panel(observable);
+        gameStatusPanel = new ImgsRefletingGameStatus_Panel(observable);
         
         deckPanel.setOpaque(false);
         dicePanel.setOpaque(false);
@@ -148,6 +153,7 @@ public class GamePanel extends JPanel implements Observer{
         castlePanel.setOpaque(false);
         cardPanel.setOpaque(false);
         endingPanel.setOpaque(false);
+        gameStatusPanel.setOpaque(false);
         
         //Cria Borders
         infoPanel.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -197,6 +203,8 @@ public class GamePanel extends JPanel implements Observer{
         
         
         //Adiciona dois paineis à box mais a esquerda.
+        deckNdiceHBox.add(gameStatusPanel);
+        deckNdiceHBox.add(Box.createHorizontalStrut(15));
         deckNdiceHBox.add(deckPanel);
         deckNdiceHBox.add(Box.createHorizontalStrut(15));
         deckNdiceHBox.add(dicePanel);
