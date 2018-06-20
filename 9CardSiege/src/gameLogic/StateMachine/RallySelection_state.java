@@ -29,7 +29,7 @@ public class RallySelection_state extends StateAdapter{
             return new AwaitRestart_state(getGameData(), false);
         
                
-        return new AwaitGeneralAction_state(getGameData());
+        return getOldState();
     }
     
     @Override
