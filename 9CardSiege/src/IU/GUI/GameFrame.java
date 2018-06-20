@@ -7,6 +7,7 @@ import IU.GUI.Constants.FrameConstants;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -195,9 +196,8 @@ public class GameFrame extends JFrame implements Observer{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(GameFrame.this,
-                    "Not done yet ",
-                    "Instructions", JOptionPane.PLAIN_MESSAGE);
+            Point x = getLocationOnScreen();
+            new HelpFileFrame("Game Instructions", Resources.getResourceFile("Images/game_instructions.html"),x.x,x.y);
         }
     }
 

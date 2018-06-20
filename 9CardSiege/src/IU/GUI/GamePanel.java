@@ -271,7 +271,7 @@ public class GamePanel extends JPanel implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-        int day = observable.getGamedata().getCurrentDay();
+        int day = observable.getGamedata().getCurrentDay() + 1;
         int ap = observable.getGamedata().getActionPoints();
         int t = 7 - observable.getGamedata().getSizeOfDeck();
         
