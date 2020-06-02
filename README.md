@@ -1,6 +1,7 @@
 We developped a desktop version of the 9 card siege game
 
 Game description from https://boardgamegeek.com/boardgame/224596/9-card-siege:
+
 9 Card Siege is a solitaire micro card game. In this game, you must defend a medieval European fortress from a besieging army. You must defend against medieval siege engines such as ladders, a battering ram, siege tower, and trebuchets. You've also got to ensure there are adequate supplies to feed your army and keep their morale high. You must survive the siege for three days. At this point your army will arrive and drive away the invading forces.
 
 The game uses a States of Siege system similar to games like Israeli Independence and Constantinople. Each turn you will draw a card and resolve the event, move enemy units, and gain action points for your units. You will have to decide how to best use your limited resources to protect your fortress.
